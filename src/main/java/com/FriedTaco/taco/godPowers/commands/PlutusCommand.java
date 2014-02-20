@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class PlutusCommand implements CommandExecutor {
     private Player player;
@@ -32,7 +33,7 @@ public class PlutusCommand implements CommandExecutor {
                 } else {
                     Material poss[] = {Material.IRON_SPADE, Material.IRON_PICKAXE, Material.IRON_AXE, Material.WOOD_SPADE, Material.WOOD_PICKAXE, Material.WOOD_AXE, Material.STONE_SPADE, Material.STONE_PICKAXE, Material.STONE_AXE, Material.DIAMOND_SPADE, Material.DIAMOND_PICKAXE, Material.DIAMOND_AXE, Material.GOLD_SPADE, Material.GOLD_PICKAXE, Material.GOLD_AXE};
                     ArrayList<Material> possible = new ArrayList<Material>();
-                    for (int i = 0; i < poss.length; i++) possible.add(poss[i]);
+                    Collections.addAll(possible, poss);
                     ItemStack i = player.getItemInHand();
                     if (i != null && possible.contains(i.getType())) {
                         player.sendMessage(ChatColor.GOLD + "You suddenly feel as if earthly riches will come easily to you.");
