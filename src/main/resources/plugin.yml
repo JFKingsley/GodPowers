@@ -1,0 +1,171 @@
+name: godPowers
+main: com.FriedTaco.taco.godPowers.godPowers
+version: ${project.version}
+author: Swift
+commands:
+    godmode:
+        description: Become invincible!
+        usage: /godMode
+    jesus:
+        description: You feel like you can walk on water.... Maybe even lava!
+        usage: /jesus
+    heal:
+        description: Heals you. Duh.
+        usage: /heal
+    die:
+        description: I wonder what this does! :o
+        usage: /die
+    slay:
+        description: Slay your enemies with just the press of a few keys!
+        usage: /slay
+    maim:
+        description: Beat those disobediant players within an inch of their lives!
+        usage: /maim
+    inferno:
+        description: Burn the ground behind you with the power of your fiery rage!
+        usage: /inferno
+    superjump:
+        description: Gain the ability to leap tall buildings in a single bound!
+        usage: /superjump
+    godmodeon:
+        description: Enable godmode (Temporary fix for conflict with Essentials).
+        usage: /godmodeon
+    godmodeoff:
+        description: Disable godmode (Temporary fix for conflict with Essentials).
+        usage: /godmodeoff
+    zeus:
+        description: Strike lightning were you're looking.
+        usage: /zeus
+    gaia:
+        description: Beautify the earth with every step you take.
+        usage: /gaia
+    godpowers:
+        description: Displays avaliable commands.
+        usage: /godpowers
+    vulcan:
+        description: Goodness gracious, great balls of fire!
+        usage: /vulcan
+    myballsareonfire:
+        description: See vulcan.
+        usage: /myballsareonfire
+    demigod:
+        description: Reduces damage by an adjustable rate.
+        usage: /demigod
+    hades:
+        description: Corrupts the world beneath your feet.
+        usage: /hades
+    bless:
+        description: Enchants all items in inv.
+        usage: /bless
+    bless:
+        description: Enchants all items in inv.
+        usage: /bless
+    fusrodah:
+        description: Puts knockback lvl 10 on held item.
+        usage: /fusrodah
+    plutus:
+        description: Puts wealth lvl 10 on held item.
+        usage: /plutus
+    dupe:
+        description: Duplicates the item in your hand
+        usage: /dupe <amount>
+    medusa:
+        description: Curses you with he ability to turn people to stone
+        usage: /medusa
+    poseidon:
+        description: Gives you poseidon like powers while in water
+        usage: /poseidon
+    hermes:
+        description: Gives you the powers of hermes
+        usage: /hermes
+permissions:
+    godpowers.*:
+        description: Gives access to all godpowers commands.
+        children:
+            godpowers.godmodeonlogin: true
+            godpowers.godmode: true
+            godpowers.jesus: true
+            godpowers.demigod: true
+            godpowers.die: true
+            godpowers.gaia: true
+            godpowers.hades: true
+            godpowers.heal: true
+            godpowers.inferno: true
+            godpowers.maim: true
+            godpowers.slay: true
+            godpowers.superjump: true
+            godpowers.vulcan: true
+            godpowers.zeus: true
+            godpowers.godtools: true
+            godpowers.bless: true
+            godpowers.fusrodah: true
+            godpowers.medusa: true
+            godpowers.dupe: true
+            godpowers.medusa: true
+            godpowers.poseidon: true
+            godpowers.hermes: true
+    godpowers.godmodeonlogin:
+        description: Allows godmode upon login.
+        default: op
+    godpowers.godmode:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.jesus:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.demigod:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.die:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.gaia:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.hades:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.heal:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.inferno:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.maim:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.slay:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.superjump:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.vulcan:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.zeus:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.godtools:
+        description: Gives permission to godtools.
+        default: op
+    godpowers.bless:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.fusrodah:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.dupe:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.medusa:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.poseidon:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.hermes:
+        description: Gives permission to relevant command.
+        default: op
+    
+       
