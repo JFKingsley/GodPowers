@@ -308,6 +308,19 @@ public class godPowers extends JavaPlugin {
         } catch (Exception e) {
             System.out.println(error + "poseidon.");
         }
+        try {
+            getCommand("repair").setExecutor(new RepairCommand(this));
+            list.put("repair", "- Repairs the item you hold.");
+        } catch (Exception e) {
+            System.out.println(error + "repair.");
+            try {
+                getCommand("itemrepair").setExecutor(new RepairCommand(this));
+                System.out.println(error + "repair. " + "Registered itemrepair in place of repair.");
+                list.put("repair", "- Repairs the item you hold.");
+            } catch (Exception e1) {
+                System.out.println(error + "itemrepair in place of repair.");
+            }
+        }
 
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new EntityListener(this), this);

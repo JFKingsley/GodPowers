@@ -45,6 +45,9 @@ commands:
     inferno:
         description: Burn the ground beneath you in your fiery rage!
         usage: /inferno
+    itemrepair:
+        description: See repair
+        usage: /itemrepair
     jesus:
         description: Grants you the ability to walk on water and lava!
         usage: /jesus
@@ -63,6 +66,9 @@ commands:
     poseidon:
         description: Grants you poseidon's powers in water!
         usage: /poseidon
+    repair:
+        description: Repairs the item you're holding!
+        usage: /repair
     slay:
         description: Kills the specified player!
         usage: /slay
@@ -96,6 +102,7 @@ permissions:
             godpowers.maim: true
             godpowers.medusa: true
             godpowers.poseidon: true
+            godpowers.repair:true
             godpowers.slay: true
             godpowers.superjump: true
             godpowers.vulcan: true
@@ -150,6 +157,9 @@ permissions:
         default: op
     godpowers.poseidon:
         description: Gives permission to relevant command.
+        default: op
+    godpowers.repair
+        description: Gives permission to relevant command
         default: op
     godpowers.slay:
         description: Gives permission to relevant command.

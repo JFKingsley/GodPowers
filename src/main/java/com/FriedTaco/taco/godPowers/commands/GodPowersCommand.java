@@ -75,6 +75,8 @@ public class GodPowersCommand implements CommandExecutor {
                             player.sendMessage(ChatColor.RED + "/plutus " + ChatColor.GREEN + "Puts fortune level 10 on the item in your hand!");
                         if (player.hasPermission("godpowers.poseidon") | player.isOp())
                             player.sendMessage(ChatColor.RED + "/poseidon " + ChatColor.GREEN + "Grants you poseidon's powers in water!");
+                        if (player.hasPermission("godpowers.repair") | player.isOp())
+                            player.sendMessage(ChatColor.RED + "/repair " + ChatColor.GREEN + "Repairs the item you're holding!");
                         if (player.hasPermission("godpowers.slay") | player.isOp())
                             player.sendMessage(ChatColor.RED + "/slay " + ChatColor.GREEN + "Kills the specified player!");
                         if (player.hasPermission("godpowers.superjump") | player.isOp())
