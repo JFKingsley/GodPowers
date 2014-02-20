@@ -29,17 +29,10 @@ public class hermesCommand implements CommandExecutor {
                 } else {
                     if (plugin.isHermes.contains(player.getName())) {
                         plugin.isHermes.remove(player.getName());
-                        player.getInventory().setBoots(null);
                         player.sendMessage(ChatColor.AQUA + "You feel your hermes like powers slowly draining");
                         return true;
                     } else {
                         plugin.isHermes.add(player.getName());
-                        ItemStack feather = new ItemStack(Material.FEATHER, 1);
-                        ItemMeta meta = feather.getItemMeta();
-                        meta.setDisplayName(ChatColor.AQUA + "Hermes boots");
-                        feather.setItemMeta(meta);
-                        feather.addUnsafeEnchantment(Enchantment.PROTECTION_FALL, 10);
-                        player.getInventory().setBoots(feather);
                         player.sendMessage(ChatColor.AQUA + "You feel like you have speed like hermes");
                         return true;
                     }
