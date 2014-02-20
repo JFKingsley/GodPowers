@@ -94,6 +94,7 @@ public class godPowers extends JavaPlugin {
             medusaFreezeTime = this.getConfig().getInt("MedusaFreezeTime", 10);
             this.saveConfig();
         } catch (Exception e) {
+            System.out.println("[GodPowers] Error loading config file.");
             e.printStackTrace();
         }
     }
