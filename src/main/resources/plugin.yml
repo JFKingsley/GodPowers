@@ -4,25 +4,25 @@ version: ${project.version}
 author: Swift
 commands:
     bless:
-        description: Enchants all items in inv.
+        description: Enchants all items in your inventory!
         usage: /bless
     demigod:
-        description: Reduces damage by an adjustable rate.
+        description: Reduces all damage you take!
         usage: /demigod
     die:
-        description: I wonder what this does! :o
+        description: Kills yourself!
         usage: /die
     dupe:
-        description: Duplicates the item in your hand
+        description: Dupes the item you're holding!
         usage: /dupe <amount>
     fusrodah:
-        description: Puts knockback lvl 10 on held item.
+        description: Puts knockback level 10 on the item in your hand!
         usage: /fusrodah
     gaia:
-        description: Beautify the earth with every step you take.
+        description: Beautify the earth with every step you take!
         usage: /gaia
     godmode:
-        description: Become invincible!
+        description: Makes you immune to all damage!
         usage: /godMode
     godmodeon:
         description: Enable godmode (Temporary fix for conflict with Essentials).
@@ -31,49 +31,49 @@ commands:
         description: Disable godmode (Temporary fix for conflict with Essentials).
         usage: /godmodeoff
     godpowers:
-        description: Displays avaliable commands.
+        description: Displays commands and credits information
         usage: /godpowers
     hades:
-        description: Corrupts the world beneath your feet.
+        description: Corrupts the world beneath your feet!
         usage: /hades
     heal:
-        description: Heals you. Duh.
+        description: Heals you or the player you specify!
         usage: /heal
     hermes:
-        description: Gives you the powers of heremes
+        description: Makes you run as fast as hermes!
         usage: /hermes
     inferno:
-        description: Burn the ground behind you with the power of your fiery rage!
+        description: Burn the ground beneath you in your fiery rage!
         usage: /inferno
     jesus:
-        description: You feel like you can walk on water.... Maybe even lava!
+        description: Grants you the ability to walk on water and lava!
         usage: /jesus
     maim:
-        description: Beat those disobediant players within an inch of their lives!
+        description: Nearly beat a specified player to death!
         usage: /maim
     medusa:
-        description: Curses you with he ability to turn people to stone
+        description: Curses you with the ability to turn people to stone!
         usage: /medusa
     myballsareonfire:
         description: See vulcan.
         usage: /myballsareonfire
     plutus:
-        description: Puts wealth lvl 10 on held item.
+        description: Puts fortune level 10 on the item in your hand!
         usage: /plutus
     poseidon:
-        description: Gives you poseidon like powers while in water
+        description: Grants you poseidon's powers in water!
         usage: /poseidon
     slay:
-        description: Slay your enemies with just the press of a few keys!
+        description: Kills the specified player!
         usage: /slay
     superjump:
-        description: Gain the ability to leap tall buildings in a single bound!
+        description: Leap tall structures in a single bound!
         usage: /superjump
     vulcan:
-        description: Goodness gracious, great balls of fire!
+        description: Shoot fireballs with a swing of your hand!
         usage: /vulcan
     zeus:
-        description: Strike lightning were you're looking.
+        description: Strike lightning wherever you look!
         usage: /zeus
 permissions:
     godpowers.*:

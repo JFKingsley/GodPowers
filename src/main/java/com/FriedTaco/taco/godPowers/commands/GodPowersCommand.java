@@ -55,10 +55,10 @@ public class GodPowersCommand implements CommandExecutor {
                         if (player.hasPermission("godpowers.gaia") | player.isOp())
                             player.sendMessage(ChatColor.RED + "/gaia " + ChatColor.GREEN + "Beautify the earth with every step you take!");
                         if (player.hasPermission("godpowers.godmode") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/godmode " + ChatColor.GREEN + "Makes you invincible to all damage!");
+                            player.sendMessage(ChatColor.RED + "/godmode " + ChatColor.GREEN + "Makes you immune to all damage!");
                         player.sendMessage(ChatColor.RED + "/godpowers " + ChatColor.GREEN + "Show plugin information!");
                         if (player.hasPermission("godpowers.hades") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/hades " + ChatColor.GREEN + "Corrups the world beneath your feet!");
+                            player.sendMessage(ChatColor.RED + "/hades " + ChatColor.GREEN + "Corrupts the world beneath your feet!");
                         if (player.hasPermission("godpowers.heal") | player.isOp())
                             player.sendMessage(ChatColor.RED + "/heal " + ChatColor.GREEN + "Heals you or the player you specify!");
                         if (player.hasPermission("godpowers.hermes") | player.isOp())
