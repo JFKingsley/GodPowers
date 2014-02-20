@@ -168,18 +168,15 @@ public class godPowers extends JavaPlugin {
                 e.printStackTrace();
             }
         }
-        String message = "[GodPowers] Successfully registered command ";
         String error = "[GodPowers] ERROR another plugin has already taken the command ";
         try {
             getCommand("zeus").setExecutor(new ZeusCommand(this));
-            System.out.println(message + "zeus.");
             list.put("zeus", "- Strike lightning with a swing of your arm!");
         } catch (Exception e) {
             System.out.println(error + "zeus.");
         }
         try {
             getCommand("godmode").setExecutor(new godModeCommand(this));
-            System.out.println(message + "godmode.");
             list.put("godmode", "<Player> - Toggles godmode on and off.");
         } catch (Exception e) {
             System.out.println(error + "godmode.");
@@ -188,27 +185,24 @@ public class godPowers extends JavaPlugin {
         getCommand("godmodeoff").setExecutor(new godModeCommand(this));
         try {
             getCommand("jesus").setExecutor(new JesusCommand(this));
-            System.out.println(message + "jesus.");
             list.put("jesus", "<Player> - Allows you to walk on water and lava");
         } catch (Exception e) {
             System.out.println(error + "jesus.");
         }
         try {
             getCommand("die").setExecutor(new DieCommand(this));
-            System.out.println(message + "die.");
             list.put("die", "- Causes you to die.");
         } catch (Exception e) {
             System.out.println(error + "die.");
         }
         try {
             getCommand("slay").setExecutor(new SlayCommand(this));
-            System.out.println(message + "slay.");
             list.put("slay", "[Player] <arrows/fire/drop> - Kills a player with/without the optional method.");
         } catch (Exception e) {
             System.out.println(error + "slay.");
             try {
                 getCommand("smite").setExecutor(new SlayCommand(this));
-                System.out.println(message + "smite in place of slay.");
+                System.out.println(error + "slay, registering smite in place of slay.");
                 list.put("smite", "[Player] <arrows/fire/drop> - Kills a player with/without the optional method.");
             } catch (Exception e1) {
                 System.out.println(error + "smite in place of slay.");
@@ -216,112 +210,96 @@ public class godPowers extends JavaPlugin {
         }
         try {
             getCommand("maim").setExecutor(new MaimCommand(this));
-            System.out.println(message + "maim.");
             list.put("maim", "[Player] - Beat a player within an inch of their life!");
         } catch (Exception e) {
             System.out.println(error + "maim.");
         }
         try {
             getCommand("inferno").setExecutor(new InfernoCommand(this));
-            System.out.println(message + "inferno.");
             list.put("inferno", "- Creates a trail of fire behind you.");
         } catch (Exception e) {
             System.out.println(error + "inferno.");
         }
         try {
             getCommand("superjump").setExecutor(new SuperJumpCommand(this));
-            System.out.println(message + "superjump.");
             list.put("superjump", "- Be able to leap tall building in a single bound!");
         } catch (Exception e) {
             System.out.println(error + "superjump.");
         }
         try {
             getCommand("gaia").setExecutor(new GaiaCommand(this));
-            System.out.println(message + "gaia.");
             list.put("gaia", "- Sprouts grass and flowers wherever you step.");
         } catch (Exception e) {
             System.out.println(error + "gaia.");
         }
         try {
             getCommand("heal").setExecutor(new HealCommand(this));
-            System.out.println(message + "heal.");
             list.put("heal", "<Player> - Heals either you or the specified player.");
         } catch (Exception e) {
             System.out.println(error + "heal.");
         }
         try {
             getCommand("godpowers").setExecutor(new GodPowersCommand(this));
-            System.out.println(message + "godpowers.");
             list.put("godpowers", "- Displays this message.");
         } catch (Exception e) {
             System.out.println(error + "godpowers. How dare they!");
         }
         try {
             getCommand("vulcan").setExecutor(new VulcanCommand(this));
-            System.out.println(message + "vulcan.");
             list.put("vulcan", "- Fling fireballs at those pesky mortals!");
         } catch (Exception e) {
             System.out.println(error + "vulcan.");
         }
         try {
             getCommand("demigod").setExecutor(new DemiGodCommand(this));
-            System.out.println(message + "demigod.");
             list.put("demigod", "- Allows you to take a small fraction of the damage you'd normally take.");
         } catch (Exception e) {
             System.out.println(error + "demigod.");
         }
         try {
             getCommand("hades").setExecutor(new HadesCommand(this));
-            System.out.println(message + "hades.");
             list.put("hades", "- Corrupt the world as you walk through it.");
         } catch (Exception e) {
             System.out.println(error + "hades.");
         }
         try {
             getCommand("bless").setExecutor(new BlessCommand(this));
-            System.out.println(message + "bless.");
             list.put("bless [player]", "- Enchant your equipment with the power of gods!");
         } catch (Exception e) {
             System.out.println(error + "bless.");
         }
         try {
             getCommand("fusrodah").setExecutor(new FusRoDAH(this));
-            System.out.println(message + "FusRoDah.");
             list.put("FusRoDAH", "- Enchants item in hand with Knockback level 10!");
         } catch (Exception e) {
             System.out.println(error + "FusRoDAH.");
         }
         try {
             getCommand("plutus").setExecutor(new PlutusCommand(this));
-            System.out.println(message + "plutus.");
             list.put("plutus", "- Enchants item in hand with Wealth level 10!");
         } catch (Exception e) {
             System.out.println(error + "plutus");
         }
         try {
             getCommand("dupe").setExecutor(new DupeCommand(this));
-            System.out.println(message + "dupe.");
             list.put("dupe <amount>", "- Use your godly powers to create an exact replica of the item you hold!");
         } catch (Exception e) {
             System.out.println(error + "dupe.");
         }
         try {
             getCommand("medusa").setExecutor(new MedusaCommand(this));
-            System.out.println(message + "medusa.");
             list.put("medusa", "- Become cursed by the gods, and turn anyone you look at to stone.");
         } catch (Exception e) {
             System.out.println(error + "medusa.");
         }
         try {
             getCommand("hermes").setExecutor(new hermesCommand(this));
-            System.out.println(message + "hermes.");
             list.put("hermes", "- Gives you speed and the ability to send letters.");
         } catch (Exception e) {
             System.out.println(error + "hermes.");
         }
         try {
             getCommand("poseidon").setExecutor(new poseidonCommand(this));
-            System.out.println(message + "poseidon.");
             list.put("poseidon", "- Gives you Poseidon like powers while in water.");
         } catch (Exception e) {
             System.out.println(error + "poseidon.");
