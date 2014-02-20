@@ -23,7 +23,8 @@ public class HealCommand implements CommandExecutor {
             if (player.hasPermission("godpowers.heal")) {
                 if (split.length == 0) {
                     player.sendMessage(ChatColor.BLUE + "Thou hath been healed! Huzzah!");
-                    player.setHealth(20);
+                    player.setHealth(player.getMaxHealth());
+                    player.setFoodLevel(20);
                     return true;
                 } else {
                     Player targetPlayer = plugin.getServer().getPlayer(split[0]);
