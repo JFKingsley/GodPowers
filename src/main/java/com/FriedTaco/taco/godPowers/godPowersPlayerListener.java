@@ -147,6 +147,7 @@ public class godPowersPlayerListener implements Listener {
             Material m = event.getPlayer().getLocation().getBlock().getType();
             if (m == Material.STATIONARY_WATER || m == Material.WATER) {
                 event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120, 2));
+                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 120, 2));
                 event.getPlayer().setRemainingAir(300);
             }
         }
