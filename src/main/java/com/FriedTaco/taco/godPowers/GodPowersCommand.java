@@ -21,13 +21,14 @@ public class GodPowersCommand implements CommandExecutor {
             if (args.length == 0) {
                 player.sendMessage(ChatColor.DARK_AQUA + "About the " + ChatColor.DARK_GREEN + "godPowers" + ChatColor.DARK_AQUA + " Project:");
                 player.sendMessage(ChatColor.GOLD + "godPowers is an " + ChatColor.RED + "Open Source" + ChatColor.GOLD + " plugin created in December 2011");
-                player.sendMessage(ChatColor.GOLD + "by " + ChatColor.BLUE + "FriedTaco" + ChatColor.GOLD + ". It is currently developed by " + ChatColor.BLUE + "Swift" + ChatColor.GOLD + ".");
+                player.sendMessage(ChatColor.GOLD + "by " + ChatColor.BLUE + "FriedTaco" + ChatColor.GOLD + ". It is currently developed by " + ChatColor.BLUE + "Swift" + ChatColor.GOLD + "&" + ChatColor.BLUE + "Zbob750" + ChatColor.GOLD + ".");
                 player.sendMessage(ChatColor.GOLD + "The goal is to provide a set of commands to give users powers based on greek and roman mythology.");
                 player.sendMessage(ChatColor.DARK_AQUA + "Tips:");
                 player.sendMessage(ChatColor.GOLD + "- " + ChatColor.GREEN + "Use " + ChatColor.RED + "/godpowers commands" + ChatColor.GREEN + " to see all commands");
                 player.sendMessage(ChatColor.GOLD + "- " + ChatColor.GREEN + "Use " + ChatColor.RED + "/godpowers update" + ChatColor.GREEN + " to manually install updates");
                 player.sendMessage(ChatColor.DARK_AQUA + "Developers:");
                 player.sendMessage(ChatColor.GOLD + "- " + ChatColor.GREEN + "SwiftDev" + ChatColor.BLUE + " (Developer)");
+                player.sendMessage(ChatColor.GOLD + "- " + ChatColor.GREEN + "Zbob750" + ChatColor.BLUE + " (Developer)");
                 player.sendMessage(ChatColor.GOLD + "- " + ChatColor.GREEN + "FriedTaco" + ChatColor.BLUE + " (Former Developer)");
                 player.sendMessage(ChatColor.DARK_AQUA + "Useful Links:");
                 player.sendMessage(ChatColor.GOLD + "- " + ChatColor.GREEN + "#godpowers @ irc.esper.net" + ChatColor.GOLD + " IRC Chat");
@@ -50,7 +51,7 @@ public class GodPowersCommand implements CommandExecutor {
                 if (args[0].equalsIgnoreCase("update")) {
                     Updater updater = new Updater(plugin, 33866, plugin.file, Updater.UpdateType.NO_DOWNLOAD, false);
                     if (updater.getResult().equals(Updater.UpdateResult.NO_UPDATE)) {
-                        player.sendMessage(ChatColor.GREEN + "godPowers: " + ChatColor.GOLD + "There is currently no updates available.");
+                        player.sendMessage(ChatColor.GREEN + "godPowers: " + ChatColor.GOLD + "There are currently no updates available.");
                     } else if (updater.getResult().equals(Updater.UpdateResult.UPDATE_AVAILABLE)) {
                         player.sendMessage(ChatColor.GREEN + "godPowers: " + ChatColor.GOLD + "There is currently an update available, downloading now...");
                         new Updater(plugin, 33866, plugin.file, Updater.UpdateType.NO_VERSION_CHECK, true);
