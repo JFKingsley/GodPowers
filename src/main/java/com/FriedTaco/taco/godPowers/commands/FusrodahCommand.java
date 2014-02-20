@@ -1,5 +1,6 @@
-package com.FriedTaco.taco.godPowers;
+package com.FriedTaco.taco.godPowers.commands;
 
+import com.FriedTaco.taco.godPowers.godPowers;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -9,12 +10,12 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
-public class FusRoDAH implements CommandExecutor {
+public class FusrodahCommand implements CommandExecutor {
     private Player player;
     @SuppressWarnings("unused")
     private final godPowers plugin;
 
-    public FusRoDAH(godPowers instance) {
+    public FusrodahCommand(godPowers instance) {
         plugin = instance;
     }
 

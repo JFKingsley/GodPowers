@@ -3,6 +3,9 @@ package com.FriedTaco.taco.godPowers;
 
 import com.FriedTaco.taco.godPowers.Metrics.Plotter;
 import com.FriedTaco.taco.godPowers.Updater.UpdateResult;
+import com.FriedTaco.taco.godPowers.commands.*;
+import com.FriedTaco.taco.godPowers.listeners.EntityListener;
+import com.FriedTaco.taco.godPowers.listeners.PlayerListener;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -177,13 +180,13 @@ public class godPowers extends JavaPlugin {
             System.out.println(error + "zeus.");
         }
         try {
-            getCommand("godmode").setExecutor(new godModeCommand(this));
+            getCommand("godmode").setExecutor(new GodmodeCommand(this));
             list.put("godmode", "<Player> - Toggles godmode on and off.");
         } catch (Exception e) {
             System.out.println(error + "godmode.");
         }
-        getCommand("godmodeon").setExecutor(new godModeCommand(this));
-        getCommand("godmodeoff").setExecutor(new godModeCommand(this));
+        getCommand("godmodeon").setExecutor(new GodmodeCommand(this));
+        getCommand("godmodeoff").setExecutor(new GodmodeCommand(this));
         try {
             getCommand("jesus").setExecutor(new JesusCommand(this));
             list.put("jesus", "<Player> - Allows you to walk on water and lava");
@@ -222,7 +225,7 @@ public class godPowers extends JavaPlugin {
             System.out.println(error + "inferno.");
         }
         try {
-            getCommand("superjump").setExecutor(new SuperJumpCommand(this));
+            getCommand("superjump").setExecutor(new SuperjumpCommand(this));
             list.put("superjump", "- Be able to leap tall building in a single bound!");
         } catch (Exception e) {
             System.out.println(error + "superjump.");
@@ -252,7 +255,7 @@ public class godPowers extends JavaPlugin {
             System.out.println(error + "vulcan.");
         }
         try {
-            getCommand("demigod").setExecutor(new DemiGodCommand(this));
+            getCommand("demigod").setExecutor(new DemigodCommand(this));
             list.put("demigod", "- Allows you to take a small fraction of the damage you'd normally take.");
         } catch (Exception e) {
             System.out.println(error + "demigod.");
@@ -270,10 +273,10 @@ public class godPowers extends JavaPlugin {
             System.out.println(error + "bless.");
         }
         try {
-            getCommand("fusrodah").setExecutor(new FusRoDAH(this));
-            list.put("FusRoDAH", "- Enchants item in hand with Knockback level 10!");
+            getCommand("fusrodah").setExecutor(new FusrodahCommand(this));
+            list.put("FusrodahCommand", "- Enchants item in hand with Knockback level 10!");
         } catch (Exception e) {
-            System.out.println(error + "FusRoDAH.");
+            System.out.println(error + "FusrodahCommand.");
         }
         try {
             getCommand("plutus").setExecutor(new PlutusCommand(this));
@@ -294,21 +297,21 @@ public class godPowers extends JavaPlugin {
             System.out.println(error + "medusa.");
         }
         try {
-            getCommand("hermes").setExecutor(new hermesCommand(this));
+            getCommand("hermes").setExecutor(new HermesCommand(this));
             list.put("hermes", "- Gives you speed and the ability to send letters.");
         } catch (Exception e) {
             System.out.println(error + "hermes.");
         }
         try {
-            getCommand("poseidon").setExecutor(new poseidonCommand(this));
+            getCommand("poseidon").setExecutor(new PoseidonCommand(this));
             list.put("poseidon", "- Gives you Poseidon like powers while in water.");
         } catch (Exception e) {
             System.out.println(error + "poseidon.");
         }
 
         PluginManager pm = getServer().getPluginManager();
-        pm.registerEvents(new godPowersEntityListener(this), this);
-        pm.registerEvents(new godPowersPlayerListener(this), this);
+        pm.registerEvents(new EntityListener(this), this);
+        pm.registerEvents(new PlayerListener(this), this);
         PluginDescriptionFile pdfFile = this.getDescription();
         System.out.println(pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!");
         populateLists();
@@ -354,7 +357,7 @@ public class godPowers extends JavaPlugin {
         debugees.put(player, value);
     }
 
-    void dropDeadItems(Player player) {
+    public void dropDeadItems(Player player) {
         if (player.getInventory() != null) {
             ItemStack[] item = player.getInventory().getContents();
             Location position = new Location(player.getWorld(), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ());

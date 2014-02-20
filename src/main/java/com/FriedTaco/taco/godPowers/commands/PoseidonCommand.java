@@ -1,16 +1,17 @@
-package com.FriedTaco.taco.godPowers;
+package com.FriedTaco.taco.godPowers.commands;
 
+import com.FriedTaco.taco.godPowers.godPowers;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class poseidonCommand implements CommandExecutor {
+public class PoseidonCommand implements CommandExecutor {
     private Player player;
     private final godPowers plugin;
 
-    public poseidonCommand(godPowers instance) {
+    public PoseidonCommand(godPowers instance) {
         plugin = instance;
     }
 

@@ -1,34 +1,35 @@
-package com.FriedTaco.taco.godPowers;
+package com.FriedTaco.taco.godPowers.commands;
 
+import com.FriedTaco.taco.godPowers.godPowers;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class GaiaCommand implements CommandExecutor {
+public class HadesCommand implements CommandExecutor {
     private Player player;
     private final godPowers plugin;
 
-    public GaiaCommand(godPowers instance) {
+    public HadesCommand(godPowers instance) {
         plugin = instance;
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             player = (Player) sender;
-            if (player.hasPermission("godpowers.gaia")) {
+            if (player.hasPermission("godpowers.hades")) {
                 if (args.length == 0) {
-                    if (plugin.gaia.contains(player.getName())) {
-                        player.sendMessage(ChatColor.DARK_GREEN + "The earth no longer rejuvenates with your every step.");
-                        plugin.gaia.remove(player.getName());
+                    if (plugin.hades.contains(player.getName())) {
+                        player.sendMessage(ChatColor.DARK_RED + "You no longer corrupt the ground you walk on.");
+                        plugin.hades.remove(player.getName());
                     } else {
-                        player.sendMessage(ChatColor.DARK_GREEN + "The essence of life spreads from you, rejuvenating the world around you.");
-                        plugin.gaia.add(player.getName());
+                        player.sendMessage(ChatColor.DARK_RED + "The fires of the nether begin to corse through your veins.");
+                        plugin.hades.add(player.getName());
                     }
                     return true;
                 } else {
-                    player.sendMessage(ChatColor.RED + "Incorrect syntax, use '/gaia'");
+                    player.sendMessage(ChatColor.RED + "Incorrect syntax, use '/hades'");
                     return true;
                 }
             } else {

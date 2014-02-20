@@ -1,7 +1,9 @@
-package com.FriedTaco.taco.godPowers;
+package com.FriedTaco.taco.godPowers.commands;
 
 //import org.bukkit.World;
 
+import com.FriedTaco.taco.godPowers.Metrics;
+import com.FriedTaco.taco.godPowers.godPowers;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,11 +12,11 @@ import org.bukkit.entity.Player;
 
 import java.io.IOException;
 
-public class godModeCommand implements CommandExecutor {
+public class GodmodeCommand implements CommandExecutor {
     private Player player;
     private final godPowers plugin;
 
-    public godModeCommand(godPowers instance) {
+    public GodmodeCommand(godPowers instance) {
         plugin = instance;
     }
 

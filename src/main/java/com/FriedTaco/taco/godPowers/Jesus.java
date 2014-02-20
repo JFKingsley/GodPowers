@@ -60,7 +60,7 @@ public class Jesus {
                         new RaftPiece(-2, -1, -2)
                 };
 
-        void makeJesusRaft(Player player) {
+        public void makeJesusRaft(Player player) {
             for (int i = 0; i < raft.length; i++) {
                 Block block = player.getWorld().getBlockAt(((int) player.getLocation().getX() + raft[i].x), ((int) player.getLocation().getY() + raft[i].y), ((int) player.getLocation().getZ() + raft[i].z));
                 if (block.getType() == Material.WATER) {
@@ -81,7 +81,7 @@ public class Jesus {
             }
         }
 
-        void destroyJesusRaft(Player player) {
+        public void destroyJesusRaft(Player player) {
             for (int i = 0; i < raft.length; i++) {
                 Block block = player.getWorld().getBlockAt(((int) raftX[i]), ((int) raftY[i]), ((int) raftZ[i]));
                 if (block.getType() == Material.ICE) {

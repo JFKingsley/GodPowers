@@ -1,5 +1,6 @@
-package com.FriedTaco.taco.godPowers;
+package com.FriedTaco.taco.godPowers.listeners;
 
+import com.FriedTaco.taco.godPowers.*;
 import com.FriedTaco.taco.godPowers.Jesus.Raft;
 import org.bukkit.*;
 import org.bukkit.FireworkEffect.Type;
@@ -25,7 +26,7 @@ import java.util.ListIterator;
 import java.util.Random;
 
 
-public class godPowersPlayerListener implements Listener {
+public class PlayerListener implements Listener {
 
 
     int health = 0;
@@ -48,7 +49,7 @@ public class godPowersPlayerListener implements Listener {
         }
     }
 
-    public godPowersPlayerListener(godPowers instance) {
+    public PlayerListener(godPowers instance) {
         plugin = instance;
     }
 

@@ -1,5 +1,6 @@
-package com.FriedTaco.taco.godPowers;
+package com.FriedTaco.taco.godPowers.listeners;
 
+import com.FriedTaco.taco.godPowers.godPowers;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -14,10 +15,10 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 
-public class godPowersEntityListener implements Listener {
+public class EntityListener implements Listener {
     private final godPowers plugin;
 
-    public godPowersEntityListener(godPowers instance) {
+    public EntityListener(godPowers instance) {
         plugin = instance;
     }
 

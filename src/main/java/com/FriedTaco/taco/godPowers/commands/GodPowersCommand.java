@@ -1,5 +1,7 @@
-package com.FriedTaco.taco.godPowers;
+package com.FriedTaco.taco.godPowers.commands;
 
+import com.FriedTaco.taco.godPowers.Updater;
+import com.FriedTaco.taco.godPowers.godPowers;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

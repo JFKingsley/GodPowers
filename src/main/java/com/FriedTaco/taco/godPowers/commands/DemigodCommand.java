@@ -1,18 +1,19 @@
-package com.FriedTaco.taco.godPowers;
+package com.FriedTaco.taco.godPowers.commands;
 
 //import org.bukkit.World;
 
+import com.FriedTaco.taco.godPowers.godPowers;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class DemiGodCommand implements CommandExecutor {
+public class DemigodCommand implements CommandExecutor {
     private Player player;
     private final godPowers plugin;
 
-    public DemiGodCommand(godPowers instance) {
+    public DemigodCommand(godPowers instance) {
         plugin = instance;
     }
 

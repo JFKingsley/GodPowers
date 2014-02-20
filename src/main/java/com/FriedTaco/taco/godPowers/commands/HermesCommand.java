@@ -1,5 +1,6 @@
-package com.FriedTaco.taco.godPowers;
+package com.FriedTaco.taco.godPowers.commands;
 
+import com.FriedTaco.taco.godPowers.godPowers;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -10,11 +11,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class hermesCommand implements CommandExecutor {
+public class HermesCommand implements CommandExecutor {
     private Player player;
     private final godPowers plugin;
 
-    public hermesCommand(godPowers instance) {
+    public HermesCommand(godPowers instance) {
         plugin = instance;
     }
 
