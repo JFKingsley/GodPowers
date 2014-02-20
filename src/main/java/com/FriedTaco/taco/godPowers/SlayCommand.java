@@ -32,7 +32,7 @@ public class SlayCommand implements CommandExecutor {
                     } else {
                         targetPlayer.setHealth(0);
                         plugin.dropDeadItems(targetPlayer);
-                        player.sendMessage("ChatColor.BLUE + You have slain " + targetPlayer.getName() + ".");
+                        player.sendMessage(ChatColor.BLUE + "You have slain " + targetPlayer.getName() + ".");
                         targetPlayer.sendMessage(ChatColor.BLUE + "By the will of " + player.getName() + ", you have died.");
 
                     }
