@@ -361,9 +361,9 @@ public class godPowers extends JavaPlugin {
         if (player.getInventory() != null) {
             ItemStack[] item = player.getInventory().getContents();
             Location position = new Location(player.getWorld(), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ());
-            for (int x = 0; x < item.length; x++) {
-                if (item[x] != null && item[x].getType() != Material.AIR) {
-                    player.getWorld().dropItemNaturally(position, item[x]);
+            for (ItemStack anItem : item) {
+                if (anItem != null && anItem.getType() != Material.AIR) {
+                    player.getWorld().dropItemNaturally(position, anItem);
                 }
             }
         }
