@@ -30,7 +30,7 @@ public class MaimCommand implements CommandExecutor {
                         player.sendMessage(ChatColor.RED + "Fool! You cannot maim a god!");
                     } else {
                         targetPlayer.setHealth(2);
-                        player.sendMessage(ChatColor.BLUE + "You viciously beat " + targetPlayer.getName() + " within an inch of thier life.");
+                        player.sendMessage(ChatColor.BLUE + "You viciously beat " + targetPlayer.getName() + " within an inch of their life.");
                         targetPlayer.sendMessage(ChatColor.BLUE + player.getName() + " has beaten you within an inch of your life!");
                     }
                     return true;
