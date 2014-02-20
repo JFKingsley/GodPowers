@@ -72,6 +72,9 @@ commands:
     slay:
         description: Kills the specified player!
         usage: /slay
+    smite:
+        description: See slay.
+        usage: /smite
     superjump:
         description: Leap tall structures in a single bound!
         usage: /superjump
