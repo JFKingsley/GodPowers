@@ -24,7 +24,7 @@ public class GodPowersCommand implements CommandExecutor {
             if (args.length == 0) {
                 player.sendMessage(ChatColor.DARK_AQUA + "About the " + ChatColor.DARK_GREEN + "godPowers" + ChatColor.DARK_AQUA + " Project:");
                 player.sendMessage(ChatColor.GOLD + "godPowers is an " + ChatColor.RED + "Open Source" + ChatColor.GOLD + " plugin created in December 2011");
-                player.sendMessage(ChatColor.GOLD + "by " + ChatColor.BLUE + "FriedTaco" + ChatColor.GOLD + ". It is currently developed by " + ChatColor.BLUE + "Swift" + ChatColor.GOLD + "&" + ChatColor.BLUE + "Zbob750" + ChatColor.GOLD + ".");
+                player.sendMessage(ChatColor.GOLD + "by " + ChatColor.BLUE + "FriedTaco" + ChatColor.GOLD + ". It is currently developed by " + ChatColor.BLUE + "Swift" + ChatColor.GOLD + " & " + ChatColor.BLUE + "Zbob750" + ChatColor.GOLD + ".");
                 player.sendMessage(ChatColor.GOLD + "The goal is to provide a set of commands to give users powers based on greek and roman mythology.");
                 player.sendMessage(ChatColor.DARK_AQUA + "Tips:");
                 player.sendMessage(ChatColor.GOLD + "- " + ChatColor.GREEN + "Use " + ChatColor.RED + "/godpowers commands" + ChatColor.GREEN + " to see all commands");
