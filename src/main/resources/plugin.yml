@@ -105,7 +105,7 @@ permissions:
             godpowers.maim: true
             godpowers.medusa: true
             godpowers.poseidon: true
-            godpowers.repair:true
+            godpowers.repair: true
             godpowers.slay: true
             godpowers.superjump: true
             godpowers.vulcan: true
@@ -161,7 +161,7 @@ permissions:
     godpowers.poseidon:
         description: Gives permission to relevant command.
         default: op
-    godpowers.repair
+    godpowers.repair:
         description: Gives permission to relevant command
         default: op
     godpowers.slay:
