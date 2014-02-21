@@ -3,6 +3,7 @@ package com.FriedTaco.taco.godPowers.commands;
 //import org.bukkit.World;
 
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -26,21 +27,21 @@ public class MaimCommand implements CommandExecutor {
                 if (split.length == 1) {
                     Player targetPlayer = plugin.getServer().getPlayer(split[0]);
                     if (targetPlayer == null) {
-                        player.sendMessage(ChatColor.RED + "The user " + split[0] + " does not exist or is not currently logged in.");
+                        player.sendMessage(ChatColor.RED + StringHandler.MAIM_ERROR);
                     } else if (plugin.godmodeEnabled.contains(targetPlayer.getName())) {
-                        player.sendMessage(ChatColor.RED + "Fool! You cannot maim a god!");
+                        player.sendMessage(ChatColor.RED + StringHandler.MAIM_GOD);
                     } else {
                         targetPlayer.setHealth(2);
-                        player.sendMessage(ChatColor.BLUE + "You viciously beat " + targetPlayer.getName() + " within an inch of their life.");
-                        targetPlayer.sendMessage(ChatColor.BLUE + player.getName() + " has beaten you within an inch of your life!");
+                        player.sendMessage(ChatColor.BLUE + StringHandler.MAIM_ATTACK + " " + targetPlayer.getName() + " " + StringHandler.MAIM_DAMAGE);
+                        targetPlayer.sendMessage(ChatColor.BLUE + player.getName() + " " + StringHandler.MAIM_TARGET);
                     }
                     return true;
                 } else {
-                    player.sendMessage(ChatColor.RED + "Incorrect syntax, use '/maim [playerName]'");
+                    player.sendMessage(ChatColor.RED + StringHandler.MAIM_SYNTAX);
                     return true;
                 }
             } else {
-                player.sendMessage(ChatColor.DARK_RED + "The gods prevent you from using this command.");
+                player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
                 return true;
             }
         }

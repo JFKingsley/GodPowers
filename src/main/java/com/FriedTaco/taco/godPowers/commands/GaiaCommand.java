@@ -1,6 +1,7 @@
 package com.FriedTaco.taco.godPowers.commands;
 
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -21,19 +22,19 @@ public class GaiaCommand implements CommandExecutor {
             if (player.hasPermission("godpowers.gaia")) {
                 if (args.length == 0) {
                     if (plugin.gaia.contains(player.getName())) {
-                        player.sendMessage(ChatColor.DARK_GREEN + "The earth no longer rejuvenates with your every step.");
+                        player.sendMessage(ChatColor.DARK_GREEN + StringHandler.GAIA_REMOVE);
                         plugin.gaia.remove(player.getName());
                     } else {
-                        player.sendMessage(ChatColor.DARK_GREEN + "The essence of life spreads from you, rejuvenating the world around you.");
+                        player.sendMessage(ChatColor.DARK_GREEN + StringHandler.GAIA_ADD);
                         plugin.gaia.add(player.getName());
                     }
                     return true;
                 } else {
-                    player.sendMessage(ChatColor.RED + "Incorrect syntax, use '/gaia'");
+                    player.sendMessage(ChatColor.RED + StringHandler.GAIA_SYNTAX);
                     return true;
                 }
             } else {
-                player.sendMessage(ChatColor.DARK_RED + "The gods prevent you from using this command.");
+                player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
                 return true;
             }
         }

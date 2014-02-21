@@ -2,6 +2,7 @@ package com.FriedTaco.taco.godPowers.commands;
 
 import com.FriedTaco.taco.godPowers.godPowers;
 
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -32,25 +33,25 @@ public class RepairCommand implements CommandExecutor {
                         ItemStack i = player.getItemInHand();
                         if (i != null && possible.contains(i.getType())) {
                             if (player.getItemInHand().getDurability() == 0) {
-                                player.sendMessage(ChatColor.BLUE + "The gods cannot repair that which is not broken!");
+                                player.sendMessage(ChatColor.BLUE + StringHandler.REPAIR_NOTBROKEN);
                             } else {
                                 player.getItemInHand().setDurability((short) 0);
-                                player.sendMessage(ChatColor.BLUE + "The gods have repaired the item in your hand!");
+                                player.sendMessage(ChatColor.BLUE + StringHandler.REPAIR_REPAIRED);
                             }
                         } else if (player.getItemInHand().getType() == Material.AIR) {
-                            player.sendMessage(ChatColor.BLUE + "The gods cannot repair nothing!");
+                            player.sendMessage(ChatColor.BLUE + StringHandler.REPAIR_NOTHING);
                         } else {
-                            player.sendMessage(ChatColor.RED + "Not even the gods are allowed to repair this item!");
+                            player.sendMessage(ChatColor.RED + StringHandler.REPAIR_NOTALLOWED);
                         }
                     } catch (Exception i) {
-                        player.sendMessage(ChatColor.RED + "Not even the gods can repair this item!");
+                        player.sendMessage(ChatColor.RED + StringHandler.REPAIR_ERROR);
                     }
                 } else {
-                    player.sendMessage("Incorrect syntax. Correct usage: '/repair'");
+                    player.sendMessage(StringHandler.REPAIR_SYNTAX);
                     return true;
                 }
             } else {
-                player.sendMessage(ChatColor.DARK_RED + "The gods prevent you from using this command.");
+                player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
                 return true;
             }
         }

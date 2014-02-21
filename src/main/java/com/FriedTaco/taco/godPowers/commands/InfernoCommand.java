@@ -3,6 +3,7 @@ package com.FriedTaco.taco.godPowers.commands;
 //import org.bukkit.World;
 
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,13 +24,13 @@ public class InfernoCommand implements CommandExecutor {
             if (player.hasPermission("godpowers.inferno")) {
                 if (plugin.isInferno.contains(player.getName())) {
                     plugin.isInferno.remove(player.getName());
-                    player.sendMessage(ChatColor.BLUE + "You feel your firey rage suddenly subside.");
+                    player.sendMessage(ChatColor.BLUE + StringHandler.INFERNO_REMOVE);
                 } else {
                     plugin.isInferno.add(player.getName());
-                    player.sendMessage(ChatColor.DARK_RED + "You begin to become so angry that your firey rage causes the very ground beneath you to burn!");
+                    player.sendMessage(ChatColor.DARK_RED + StringHandler.INFERNO_ADD);
                 }
             } else {
-                player.sendMessage(ChatColor.RED + "The gods prevent you from using this command.");
+                player.sendMessage(ChatColor.RED + StringHandler.GODPOWERS_NOPERMISSION);
                 return true;
             }
             return true;

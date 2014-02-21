@@ -1,6 +1,7 @@
 package com.FriedTaco.taco.godPowers.commands;
 
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -25,7 +26,7 @@ public class DupeCommand implements CommandExecutor {
                 if (split.length == 0) {
                     int amount = 64;
                     if (player.getItemInHand().getType() != Material.AIR) {
-                        player.sendMessage(ChatColor.BLUE + "The gods have decided to multiply your items.");
+                        player.sendMessage(ChatColor.BLUE + StringHandler.DUPE_DUPE);
                         Inventory inv = player.getInventory();
                         ItemStack item = player.getItemInHand();
                         ItemStack newitem = new ItemStack(item.getType(), amount, (short) item.getDurability());
@@ -36,11 +37,11 @@ public class DupeCommand implements CommandExecutor {
                         newitem.setType(item.getType());
                         inv.addItem(newitem);
                     } else {
-                        player.sendMessage(ChatColor.DARK_RED + "The gods cannot multiply nothing.");
+                        player.sendMessage(ChatColor.DARK_RED + StringHandler.DUPE_NOTHING);
                     }
                 } else if (split.length == 1) {
                     if (player.getItemInHand().getType() != Material.AIR) {
-                        player.sendMessage(ChatColor.BLUE + "The gods have decided to multiply your items.");
+                        player.sendMessage(ChatColor.BLUE + StringHandler.DUPE_DUPE);
                         int amount = Integer.parseInt(split[0]);
                         if (amount == 0) {
                             amount = 64;
@@ -55,16 +56,15 @@ public class DupeCommand implements CommandExecutor {
                         newitem.setType(item.getType());
                         inv.addItem(newitem);
                     } else {
-                        player.sendMessage(ChatColor.DARK_RED + "The gods cannot multiply nothing.");
+                        player.sendMessage(ChatColor.DARK_RED + StringHandler.DUPE_NOTHING);
                     }
                 }
                 return true;
             } else {
-                player.sendMessage(ChatColor.DARK_RED + "The gods prevent you from using this command.");
+                player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
                 return true;
             }
         }
         return false;
     }
 }
-

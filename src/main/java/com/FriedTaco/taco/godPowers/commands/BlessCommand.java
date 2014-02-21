@@ -1,6 +1,7 @@
 package com.FriedTaco.taco.godPowers.commands;
 
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,23 +24,23 @@ public class BlessCommand implements CommandExecutor {
                 if (split.length == 1) {
                     Player player2 = plugin.getServer().getPlayer(split[0]);
                     if (player2 != null) {
-                        player.sendMessage(ChatColor.BLUE + "The gods have blessed the equipment of " + player2.getDisplayName());
-                        player2.sendMessage(ChatColor.BLUE + "The gods have blessed your equipment with their holy might!");
+                        player.sendMessage(ChatColor.BLUE + StringHandler.BLESS_PLAYER2 + " " + player2.getDisplayName());
+                        player2.sendMessage(ChatColor.BLUE + StringHandler.BLESS_BLESSED);
                         plugin.bless(player2);
                     } else {
-                        player.sendMessage(ChatColor.BLUE + "This player cannot be blessed/is offline.");
+                        player.sendMessage(ChatColor.BLUE + StringHandler.BLESS_CANNOTBLESS);
                     }
                     return true;
                 } else if (split.length == 0) {
-                    player.sendMessage(ChatColor.BLUE + "The gods have blessed your equipment with their holy might!");
+                    player.sendMessage(ChatColor.BLUE + StringHandler.BLESS_BLESSED);
                     plugin.bless(player);
                     return true;
                 } else {
-                    player.sendMessage(ChatColor.RED + "Incorrect syntax. Correct usage: '/bless or /bless <player>'");
+                    player.sendMessage(ChatColor.RED + StringHandler.BLESS_SYNTAXERROR);
                     return true;
                 }
             } else {
-                player.sendMessage(ChatColor.DARK_RED + "The gods prevent you from using this command.");
+                player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
             }
         }
         return false;

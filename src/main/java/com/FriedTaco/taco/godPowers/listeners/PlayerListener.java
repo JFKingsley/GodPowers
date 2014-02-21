@@ -2,6 +2,7 @@ package com.FriedTaco.taco.godPowers.listeners;
 
 import com.FriedTaco.taco.godPowers.*;
 import com.FriedTaco.taco.godPowers.Jesus.Raft;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.*;
 import org.bukkit.FireworkEffect.Type;
 import org.bukkit.block.Block;
@@ -54,63 +55,16 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(final PlayerJoinEvent event) {
+    public void onPlayerJoin(PlayerJoinEvent event) {
         final Player player = event.getPlayer();
-        if (player.getDisplayName().equalsIgnoreCase("goldgamermc")) {
-            plugin.getServer().broadcastMessage(ChatColor.DARK_GREEN + "[godPowers] " + ChatColor.GOLD + "The developer of godPowers has joined the game.");
-            plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
-                public void run() {
-                    FireworkEffectPlayer firework = new FireworkEffectPlayer();
-                    Player p = event.getPlayer();
-                    double xcenter = p.getLocation().getBlockX();
-                    double zcenter = p.getLocation().getBlockZ();
-                    double y = p.getLocation().getY();
-                    int radius = 5; //radius of circle from player
-                    //cycle through every degree on a circle
-                    for (int i = 0; i <= 360; i++) {
-                        //cosine function is the x
-                        double tempx = (radius * Math.cos(i)) + xcenter;
-                        //sine function is the z
-                        double tempz = (radius * Math.sin(i)) + zcenter;
-                        Location loc = new Location(p.getWorld(), tempx, y, tempz);
-                        //do something with this location i.e. play firework
-                        try {
-                            int r2i = new Random().nextInt(17) + 1;
-                            Color c1 = getColor(r2i);
-                            firework.playFirework(loc.getWorld(), loc, FireworkEffect.builder().with(Type.BALL).withColor(c1).flicker(true).build());
-                        } catch (IllegalArgumentException e) {
-                            e.printStackTrace();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-            }, 20L);
-        }
         if (plugin.godModeOnLogin && player.hasPermission("godpowers.godmodeonlogin")) {
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                 public void run() {
-                    try {
-                        Metrics metrics = new Metrics(plugin);
-                        // Plot the total amount of protections
-                        metrics.addCustomData(new Metrics.Plotter("Total Players using Godmode") {
-
-                            @Override
-                            public int getValue() {
-                                return plugin.godmodeEnabled.size();
-                            }
-
-                        });
-                        metrics.start();
-                        System.out.println("[GodPowers] Successfully sent stats to MCStats/Metrics ");
-                    } catch (IOException e) {
-                        System.out.println("[GodPowers] Failed to send stats to MCStats/Metrics :-(");
-                        // Failed to submit the stats :-(
-                    }
-                    player.sendMessage("As you enter the world, you feel your godly powers returning.");
+                    player.sendMessage(StringHandler.GODMODE_LOGIN);
                     player.setDisplayName(plugin.title + player.getDisplayName());
                     plugin.godmodeEnabled.add(player.getName());
-                    player.setHealth(20);
+                    player.setHealth(player.getMaxHealth());
+                    player.setFoodLevel(20);
                     player.setDisplayName(plugin.title + player.getName());
                 }
             }, 10L);
@@ -132,7 +86,7 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         /*
-    	if(event.getFrom().getBlock() != event.getTo().getBlock())
+        if(event.getFrom().getBlock() != event.getTo().getBlock())
     	{
     		event.getFrom().getBlock().getRelative(0,-1,0).setTypeId(plugin.lastID);
     		event.getFrom().getBlock().getRelative(0,-1,0).setData((byte) plugin.lastData);
@@ -152,12 +106,6 @@ public class PlayerListener implements Listener {
                 event.getPlayer().setRemainingAir(300);
             }
         }
-        if (plugin.godmodeEnabled.contains(event.getPlayer().getName())) {
-            Material m = event.getPlayer().getLocation().getBlock().getType();
-            if (m == Material.STATIONARY_WATER || m == Material.WATER) {
-                event.getPlayer().setRemainingAir(300);
-            }
-        }
         if (plugin.isMedusa.contains(event.getPlayer().getName())) {
             if (getTarget(event.getPlayer()) != null) {
                 Player target = getTarget(event.getPlayer());
@@ -168,9 +116,9 @@ public class PlayerListener implements Listener {
                         isAlreadyUnder = true;
                     }
                 }
-                if (isAlreadyUnder == false) {
+                if (!isAlreadyUnder) {
                     plugin.isUnderMedusaInfluence.add(new MedusaPlayer(target, plugin.medusaFreezeTime, player));
-                    target.sendMessage(ChatColor.GREEN + "Medusa has looked at you, you feel your skin turning to stone. You cannot move for " + plugin.medusaFreezeTime + " seconds.");
+                    target.sendMessage(ChatColor.GREEN + StringHandler.MEDUSA_CURSED + " " + plugin.medusaFreezeTime + " seconds.");
                 }
             }
         }
@@ -188,7 +136,7 @@ public class PlayerListener implements Listener {
                 double zto = event.getTo().getZ();
                 if (!(xfrom == xto && yfrom == yto && zfrom == zto)) {
                     p.teleport(from);
-                    event.getPlayer().sendMessage(ChatColor.RED + "You cannot move while you are under Medusa's spell.");
+                    event.getPlayer().sendMessage(ChatColor.RED + StringHandler.MEDUSA_MOVEATTEMPT);
                 }
             }
         }
@@ -256,7 +204,7 @@ public class PlayerListener implements Listener {
             for (int x = -2; x <= 2; x++) {
                 for (int z = -2; z <= 2; z++) {
                     Block block = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY() - 1, event.getTo().getBlockZ() + z);
-                    if (block.getType() != Material.AIR && block.getType() != Material.WATER) {
+                    if (block.getType() != Material.AIR && block.getType() != Material.WATER && block.getType() != Material.STATIONARY_WATER) {
                         double rand = Math.random();
                         if (x == 0 && z == 0) {
                             if (rand < .5)
@@ -296,7 +244,7 @@ public class PlayerListener implements Listener {
             Player p = event.getPlayer();
             World w = p.getWorld();
             if (plugin.isZeus.contains(p.getName())) {
-                w.strikeLightning((p.getTargetBlock(null, 100).getLocation())); // p.getTargetBlock is a magic value! Double check on updates!
+                w.strikeLightning((p.getTargetBlock(null, 100).getLocation())); // p.getTargetBlock is a Magic Value!
             }
             if (plugin.isVulcan.contains(p.getName())) {
                 Fireball f = event.getPlayer().getWorld().spawn(event.getPlayer().getLocation().add(event.getPlayer().getLocation().getDirection().normalize().multiply(3).toLocation(event.getPlayer().getWorld(), event.getPlayer().getLocation().getYaw(), event.getPlayer().getLocation().getPitch())).add(0, 1D, 0), Fireball.class);

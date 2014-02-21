@@ -1,6 +1,7 @@
 package com.FriedTaco.taco.godPowers.commands;
 
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -25,20 +26,20 @@ public class FusrodahCommand implements CommandExecutor {
             player = (Player) sender;
             if (player.hasPermission("godpowers.fusrodah")) {
                 if (split.length > 0) {
-                    player.sendMessage(ChatColor.RED + "Incorrect syntax. Correct usage: '/FusRoDah'");
+                    player.sendMessage(ChatColor.RED + StringHandler.FUSRODAH_SYNTAX);
                     return true;
                 } else {
                     ItemStack i = player.getItemInHand();
                     if (i != null && i.getType() != Material.AIR) {
-                        player.sendMessage(ChatColor.DARK_RED + "Fus ro DAH!!");
+                        player.sendMessage(ChatColor.DARK_RED + StringHandler.FUSRODAH_FUSRODAH);
                         i.addUnsafeEnchantment(Enchantment.KNOCKBACK, 10);
                     } else {
-                        player.sendMessage(ChatColor.RED + "You aren't holding anything.");
+                        player.sendMessage(ChatColor.RED + StringHandler.FUSRODAH_ERROR);
                     }
                     return true;
                 }
             } else {
-                player.sendMessage(ChatColor.DARK_RED + "The gods prevent you from using this command.");
+                player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
             }
         }
         return false;

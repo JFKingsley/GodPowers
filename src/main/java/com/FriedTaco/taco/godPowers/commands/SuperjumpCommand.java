@@ -3,6 +3,7 @@ package com.FriedTaco.taco.godPowers.commands;
 //import org.bukkit.World;
 
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -24,14 +25,14 @@ public class SuperjumpCommand implements CommandExecutor {
             if (player.hasPermission("godpowers.superjump")) {
                 if (plugin.superJumper.contains(player.getName())) {
                     plugin.superJumper.remove(player.getName());
-                    player.sendMessage(ChatColor.BLUE + "You can no longer jump great heights.");
+                    player.sendMessage(ChatColor.BLUE + StringHandler.SUPERJUMP_REMOVE);
                 } else {
-                    player.sendMessage(ChatColor.BLUE + "You feel like you can leap tall building in a single bound!");
+                    player.sendMessage(ChatColor.BLUE + StringHandler.SUPERJUMP_ADD);
                     plugin.superJumper.add(player.getName());
                 }
                 return true;
             } else {
-                player.sendMessage(ChatColor.DARK_RED + "The gods prevent you from using this command.");
+                player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
                 return true;
             }
         }

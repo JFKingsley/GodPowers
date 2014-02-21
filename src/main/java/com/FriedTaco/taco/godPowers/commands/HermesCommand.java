@@ -1,6 +1,7 @@
 package com.FriedTaco.taco.godPowers.commands;
 
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -25,21 +26,21 @@ public class HermesCommand implements CommandExecutor {
             player = (Player) sender;
             if (player.hasPermission("godpowers.hermes")) {
                 if (split.length > 0) {
-                    player.sendMessage(ChatColor.RED + "Incorrect syntax. Correct usage: '/hermes'");
+                    player.sendMessage(ChatColor.RED + StringHandler.HERMES_SYNTAX);
                     return true;
                 } else {
                     if (plugin.isHermes.contains(player.getName())) {
                         plugin.isHermes.remove(player.getName());
-                        player.sendMessage(ChatColor.AQUA + "You feel your hermes like powers slowly draining");
+                        player.sendMessage(ChatColor.AQUA + StringHandler.HERMES_REMOVE);
                         return true;
                     } else {
                         plugin.isHermes.add(player.getName());
-                        player.sendMessage(ChatColor.AQUA + "You feel like you have speed like hermes");
+                        player.sendMessage(ChatColor.AQUA + StringHandler.HERMES_ADD);
                         return true;
                     }
                 }
             } else {
-                player.sendMessage(ChatColor.DARK_RED + "The gods prevent you from using this command.");
+                player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
             }
         }
         return false;

@@ -1,6 +1,7 @@
 package com.FriedTaco.taco.godPowers.commands;
 
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -28,7 +29,7 @@ public class PlutusCommand implements CommandExecutor {
             player = (Player) sender;
             if (player.hasPermission("godpowers.plutus")) {
                 if (split.length > 0) {
-                    player.sendMessage(ChatColor.RED + "Incorrect syntax. Correct usage: '/plutus'");
+                    player.sendMessage(ChatColor.RED + StringHandler.PLUTUS_SYNTAX);
                     return true;
                 } else {
                     Material poss[] = {Material.IRON_SPADE, Material.IRON_PICKAXE, Material.IRON_AXE, Material.WOOD_SPADE, Material.WOOD_PICKAXE, Material.WOOD_AXE, Material.STONE_SPADE, Material.STONE_PICKAXE, Material.STONE_AXE, Material.DIAMOND_SPADE, Material.DIAMOND_PICKAXE, Material.DIAMOND_AXE, Material.GOLD_SPADE, Material.GOLD_PICKAXE, Material.GOLD_AXE};
@@ -36,15 +37,15 @@ public class PlutusCommand implements CommandExecutor {
                     Collections.addAll(possible, poss);
                     ItemStack i = player.getItemInHand();
                     if (i != null && possible.contains(i.getType())) {
-                        player.sendMessage(ChatColor.GOLD + "You suddenly feel as if earthly riches will come easily to you.");
+                        player.sendMessage(ChatColor.GOLD + StringHandler.PLUTUS_ADD);
                         i.addUnsafeEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 25);
                     } else {
-                        player.sendMessage(ChatColor.RED + "You aren't holding the correct type of item.");
+                        player.sendMessage(ChatColor.RED + StringHandler.PLUTUS_ERROR);
                     }
                     return true;
                 }
             } else {
-                player.sendMessage(ChatColor.DARK_RED + "The gods prevent you from using this command.");
+                player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
             }
         }
         return false;

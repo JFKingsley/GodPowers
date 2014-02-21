@@ -4,6 +4,7 @@ package com.FriedTaco.taco.godPowers.commands;
 
 import com.FriedTaco.taco.godPowers.Metrics;
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -27,38 +28,21 @@ public class GodmodeCommand implements CommandExecutor {
             player = (Player) sender;
             if (player.hasPermission("godpowers.godmode")) {
                 if (split.length == 0) {
-                    try {
-                        Metrics metrics = new Metrics(plugin);
-                        // Plot the total amount of protections
-                        metrics.addCustomData(new Metrics.Plotter("Total Players using Godmode") {
-
-                            @Override
-                            public int getValue() {
-                                return plugin.godmodeEnabled.size();
-                            }
-
-                        });
-                        metrics.start();
-                        System.out.println("[GodPowers] Successfully sent stats to MCStats/Metrics ");
-                    } catch (IOException e) {
-                        System.out.println("[GodPowers] Failed to send stats to MCStats/Metrics :-(");
-                        // Failed to submit the stats :-(
-                    }
                     if (plugin.godmodeEnabled.contains(player.getName())) {
                         if (command.getName().equalsIgnoreCase("godmodeon")) {
-                            player.sendMessage(ChatColor.BLUE + "You are already invincible!");
+                            player.sendMessage(ChatColor.BLUE + StringHandler.GODMODE_ALREADY);
                             return true;
                         }
                         plugin.godmodeEnabled.remove(player.getName());
-                        player.sendMessage(ChatColor.BLUE + "You have returned to being mortal.");
+                        player.sendMessage(ChatColor.BLUE + StringHandler.GODMODE_REMOVE);
                         player.setDisplayName(player.getName());
                         return true;
                     } else {
                         if (command.getName().equalsIgnoreCase("godmodeoff")) {
-                            player.sendMessage(ChatColor.BLUE + "You aren't invincible!");
+                            player.sendMessage(ChatColor.BLUE + StringHandler.GODMODE_ALREADYREMOVE);
                             return true;
                         }
-                        player.sendMessage(ChatColor.BLUE + "You are now invincible!");
+                        player.sendMessage(ChatColor.BLUE + StringHandler.GODMODE_ADD);
                         player.setDisplayName(plugin.title + player.getDisplayName());
                         plugin.godmodeEnabled.add(player.getName());
                         player.setHealth(20);
@@ -67,36 +51,36 @@ public class GodmodeCommand implements CommandExecutor {
                 } else {
                     Player targetPlayer = plugin.getServer().getPlayer(split[0]);
                     if (targetPlayer == null) {
-                        player.sendMessage(ChatColor.RED + "The user " + split[0] + " does not exist or is not currently logged in.");
+                        player.sendMessage(ChatColor.RED + StringHandler.GODMODE_ERROR);
                     } else if (targetPlayer == player) {
-                        player.sendMessage(ChatColor.RED + "Please use '/godmode' to godmode yourself.");
+                        player.sendMessage(ChatColor.RED + StringHandler.GODMODE_YOURSELF);
 
                     } else {
                         if (plugin.godmodeEnabled.contains(targetPlayer.getName())) {
                             if (command.getName().equalsIgnoreCase("godmodeon")) {
-                                player.sendMessage(ChatColor.RED + "They're already invincible!");
+                                player.sendMessage(ChatColor.RED + StringHandler.GODMODE_ALREADY);
                                 return true;
                             }
                             plugin.godmodeEnabled.remove(targetPlayer.getName());
-                            targetPlayer.sendMessage(ChatColor.BLUE + player.getName() + " has returned you to being mortal.");
+                            targetPlayer.sendMessage(ChatColor.BLUE + player.getName() + " " + StringHandler.GODMODE_REMOVEOTHER);
                             targetPlayer.setDisplayName(targetPlayer.getName());
-                            player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " has been returned to being mortal.");
+                            player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " " + StringHandler.GODMODE_REMOVED);
                         } else {
                             if (command.getName().equalsIgnoreCase("godmodeoff")) {
-                                player.sendMessage("They aren't invincible!");
+                                player.sendMessage(StringHandler.GODMODE_ALREADYREMOVEOTHER);
                                 return true;
                             }
-                            targetPlayer.sendMessage(ChatColor.BLUE + "By the power of " + player.getName() + " you are now invincible!");
+                            targetPlayer.sendMessage(ChatColor.BLUE + StringHandler.GODMODE_POWEROF + " " + player.getName() + " " + StringHandler.GODMODE_POWEROFADDED);
                             targetPlayer.setDisplayName(plugin.title + targetPlayer.getName());
                             plugin.godmodeEnabled.add(targetPlayer.getName());
                             targetPlayer.setHealth(20);
-                            player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " has been given invincibility.");
+                            player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " " + StringHandler.GODMODE_ADDED);
                         }
                     }
                     return true;
                 }
             } else {
-                player.sendMessage(ChatColor.DARK_RED + "The gods prevent you from using this command.");
+                player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
                 return true;
             }
         }

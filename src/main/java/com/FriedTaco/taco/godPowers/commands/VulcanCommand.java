@@ -1,6 +1,7 @@
 package com.FriedTaco.taco.godPowers.commands;
 
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,26 +24,26 @@ public class VulcanCommand implements CommandExecutor {
             if (player.hasPermission("godpowers.vulcan")) {
                 if (split.length == 0) {
                     /*
-					Location loc = player.getTargetBlock(null, 100).getLocation();
-					loc.setY(player.getTargetBlock(null, 100).getLocation().getY()+1);
-					Location playerLoc = player.getLocation().add(loc);
-					*/
+                    Location loc = player.getTargetBlock(null, 100).getLocation();
+                    loc.setY(player.getTargetBlock(null, 100).getLocation().getY()+1);
+                    Location playerLoc = player.getLocation().add(loc);
+                    */
                     if (plugin.isVulcan.contains(player.getName())) {
-                        player.sendMessage(ChatColor.BLUE + "You feel the sudden loss of the fire in your soul.");
+                        player.sendMessage(ChatColor.BLUE + StringHandler.VULCAN_REMOVE);
                         plugin.isVulcan.remove(player.getName());
                         return true;
                     } else {
-                        player.sendMessage(ChatColor.BLUE + "Goodness gracious, great balls of fire!");
+                        player.sendMessage(ChatColor.BLUE + StringHandler.VULCAN_ADD);
                         plugin.isVulcan.add(player.getName());
                         return true;
                     }
                     //world.spawn(player.getTargetBlock(null, 100).getLocation(), Fireball.class);
                 } else {
-                    player.sendMessage(ChatColor.RED + "Incorrect syntax, use '/vulcan'");
+                    player.sendMessage(ChatColor.RED + StringHandler.VULCAN_SYNTAX);
                 }
                 return true;
             } else {
-                player.sendMessage(ChatColor.DARK_RED + "The gods prevent you from using this command.");
+                player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
                 return true;
             }
         }

@@ -2,6 +2,7 @@ package com.FriedTaco.taco.godPowers.commands;
 
 import com.FriedTaco.taco.godPowers.Updater;
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -41,52 +42,52 @@ public class GodPowersCommand implements CommandExecutor {
             } else if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("commands")) {
                     if (player.hasPermission("godpowers.commands") | player.isOp()) {
-                        player.sendMessage(ChatColor.BLUE + "-- godPowers Commands List --");
+                        player.sendMessage(ChatColor.BLUE + StringHandler.GODPOWERS_COMMAND_LIST_HEADER);
                         if (player.hasPermission("godpowers.bless") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/bless " + ChatColor.GREEN + "Enchants all items in your inventory!");
+                            player.sendMessage(ChatColor.RED + "/bless " + ChatColor.GREEN + StringHandler.LIST_BLESS_DESCRIPTION);
                         if (player.hasPermission("godpowers.demigod") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/demigod " + ChatColor.GREEN + "Reduces all damage you take!");
+                            player.sendMessage(ChatColor.RED + "/demigod " + ChatColor.GREEN + StringHandler.LIST_DEMIGOD_DESCRIPTION);
                         if (player.hasPermission("godpowers.die") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/die " + ChatColor.GREEN + "Kills yourself!");
+                            player.sendMessage(ChatColor.RED + "/die " + ChatColor.GREEN + StringHandler.LIST_DIE_DESCRIPTION);
                         if (player.hasPermission("godpowers.dupe") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/dupe " + ChatColor.GREEN + "Dupes the item you're holding!");
+                            player.sendMessage(ChatColor.RED + "/dupe " + ChatColor.GREEN + StringHandler.LIST_DUPE_DESCRIPTION);
                         if (player.hasPermission("godpowers.fusrodah") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/fusrodah " + ChatColor.GREEN + "Puts knockback level 10 on the item in your hand!");
+                            player.sendMessage(ChatColor.RED + "/fusrodah " + ChatColor.GREEN + StringHandler.LIST_FUSRODAH_DESCRIPTION);
                         if (player.hasPermission("godpowers.gaia") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/gaia " + ChatColor.GREEN + "Beautify the earth with every step you take!");
+                            player.sendMessage(ChatColor.RED + "/gaia " + ChatColor.GREEN + StringHandler.LIST_GAIA_DESCRIPTION);
                         if (player.hasPermission("godpowers.godmode") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/godmode " + ChatColor.GREEN + "Makes you immune to all damage!");
+                            player.sendMessage(ChatColor.RED + "/godmode " + ChatColor.GREEN + StringHandler.LIST_GODMODE_DESCRIPTION);
                         player.sendMessage(ChatColor.RED + "/godpowers " + ChatColor.GREEN + "Show plugin information!");
                         if (player.hasPermission("godpowers.hades") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/hades " + ChatColor.GREEN + "Corrupts the world beneath your feet!");
+                            player.sendMessage(ChatColor.RED + "/hades " + ChatColor.GREEN + StringHandler.LIST_HADES_DESCRIPTION);
                         if (player.hasPermission("godpowers.heal") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/heal " + ChatColor.GREEN + "Heals you or the player you specify!");
+                            player.sendMessage(ChatColor.RED + "/heal " + ChatColor.GREEN + StringHandler.LIST_HEAL_DESCRIPTION);
                         if (player.hasPermission("godpowers.hermes") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/hermes " + ChatColor.GREEN + "Makes you run as fast as hermes!");
+                            player.sendMessage(ChatColor.RED + "/hermes " + ChatColor.GREEN + StringHandler.LIST_HERMES_DESCRIPTION);
                         if (player.hasPermission("godpowers.inferno") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/inferno " + ChatColor.GREEN + "Burn the ground beneath you in your fiery rage!");
+                            player.sendMessage(ChatColor.RED + "/inferno " + ChatColor.GREEN + StringHandler.LIST_INFERNO_DESCRIPTION);
                         if (player.hasPermission("godpowers.jesus") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/jesus " + ChatColor.GREEN + "Grants you the ability to walk on water and lava!");
+                            player.sendMessage(ChatColor.RED + "/jesus " + ChatColor.GREEN + StringHandler.LIST_JESUS_DESCRIPTION);
                         if (player.hasPermission("godpowers.maim") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/maim " + ChatColor.GREEN + "Nearly beat a specified player to death!");
+                            player.sendMessage(ChatColor.RED + "/maim " + ChatColor.GREEN + StringHandler.LIST_MAIM_DESCRIPTION);
                         if (player.hasPermission("godpowers.medusa") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/medusa " + ChatColor.GREEN + "Curses you with the ability to turn people to stone!");
+                            player.sendMessage(ChatColor.RED + "/medusa " + ChatColor.GREEN + StringHandler.LIST_MEDUSA_DESCRIPTION);
                         if (player.hasPermission("godpowers.plutus") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/plutus " + ChatColor.GREEN + "Puts fortune level 10 on the item in your hand!");
+                            player.sendMessage(ChatColor.RED + "/plutus " + ChatColor.GREEN + StringHandler.LIST_PLUTUS_DESCRIPTION);
                         if (player.hasPermission("godpowers.poseidon") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/poseidon " + ChatColor.GREEN + "Grants you poseidon's powers in water!");
+                            player.sendMessage(ChatColor.RED + "/poseidon " + ChatColor.GREEN + StringHandler.LIST_POSEIDON_DESCRIPTION);
                         if (player.hasPermission("godpowers.repair") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/repair " + ChatColor.GREEN + "Repairs the item you're holding!");
+                            player.sendMessage(ChatColor.RED + "/repair " + ChatColor.GREEN + StringHandler.LIST_REPAIR_DESCRIPTION);
                         if (player.hasPermission("godpowers.slay") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/slay " + ChatColor.GREEN + "Kills the specified player!");
+                            player.sendMessage(ChatColor.RED + "/slay " + ChatColor.GREEN + StringHandler.LIST_SLAY_DESCRIPTION);
                         if (player.hasPermission("godpowers.superjump") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/superjump " + ChatColor.GREEN + "Leap tall structures in a single bound!");
+                            player.sendMessage(ChatColor.RED + "/superjump " + ChatColor.GREEN + StringHandler.LIST_SUPERJUMP_DESCRIPTION);
                         if (player.hasPermission("godpowers.vulcan") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/vulcan " + ChatColor.GREEN + "Shoot fireballs with a swing of your hand!");
+                            player.sendMessage(ChatColor.RED + "/vulcan " + ChatColor.GREEN + StringHandler.LIST_VULCAN_DESCRIPTION);
                         if (player.hasPermission("godpowers.zeus") | player.isOp())
-                            player.sendMessage(ChatColor.RED + "/zeus " + ChatColor.GREEN + "Strike lightning wherever you look!");
+                            player.sendMessage(ChatColor.RED + "/zeus " + ChatColor.GREEN + StringHandler.LIST_ZEUS_DESCRIPTION);
                     } else {
-                        player.sendMessage("The gods prevent you from using this command.");
+                        player.sendMessage(StringHandler.GODPOWERS_NOPERMISSION);
                         return true;
                     }
                 }

@@ -3,6 +3,7 @@ package com.FriedTaco.taco.godPowers.commands;
 //import org.bukkit.World;
 
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -26,11 +27,11 @@ public class DemigodCommand implements CommandExecutor {
                 if (split.length == 0) {
                     if (plugin.DemiGod.contains(player.getName())) {
                         plugin.DemiGod.remove(player.getName());
-                        player.sendMessage(ChatColor.BLUE + "You have returned to being mortal.");
+                        player.sendMessage(ChatColor.BLUE + StringHandler.DEMIGOD_REMOVE);
                         return true;
                     } else {
-                        player.sendMessage(ChatColor.BLUE + "The gods have shared their might with you.");
-                        player.sendMessage(ChatColor.BLUE + "You now feel as if fatal wounds are like mere scratches to you!");
+                        player.sendMessage(ChatColor.BLUE + StringHandler.DEMIGOD_SHARED);
+                        player.sendMessage(ChatColor.BLUE + StringHandler.DEMIGOD_ADD);
                         plugin.DemiGod.add(player.getName());
                         player.setHealth(20);
                         return true;
@@ -38,27 +39,27 @@ public class DemigodCommand implements CommandExecutor {
                 } else {
                     Player targetPlayer = plugin.getServer().getPlayer(split[0]);
                     if (targetPlayer == null) {
-                        player.sendMessage(ChatColor.RED + "The user " + split[0] + " does not exist or is not currently logged in.");
+                        player.sendMessage(ChatColor.RED + StringHandler.DEMIGOD_ERROR);
                     } else if (targetPlayer == player) {
-                        player.sendMessage(ChatColor.RED + "Please use '/demigod' to make yourself a demigod.");
+                        player.sendMessage(ChatColor.RED + StringHandler.DEMIGOD_YOURSELF);
 
                     } else {
                         if (plugin.DemiGod.contains(targetPlayer.getName())) {
                             plugin.DemiGod.remove(targetPlayer.getName());
-                            targetPlayer.sendMessage(ChatColor.BLUE + player.getName() + " has returned you to being mortal.");
-                            player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " has been returned to being mortal.");
+                            targetPlayer.sendMessage(ChatColor.BLUE + player.getName() + " " + StringHandler.DEMIGOD_RETURNYOU);
+                            player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " " + StringHandler.DEMIGOD_REMOVEOTHER);
                         } else {
-                            targetPlayer.sendMessage(ChatColor.BLUE + player.getName() + " has blessed you with god-like strength!");
-                            targetPlayer.sendMessage(ChatColor.BLUE + "You now feel as if fatal wounds are like mere scratches to you!");
+                            targetPlayer.sendMessage(ChatColor.BLUE + player.getName() + " " + StringHandler.DEMIGOD_ADDOTHER);
+                            targetPlayer.sendMessage(ChatColor.BLUE + StringHandler.DEMIGOD_ADD);
                             plugin.DemiGod.add(targetPlayer.getName());
                             targetPlayer.setHealth(20);
-                            player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " is now a demigod.");
+                            player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " " + StringHandler.DEMIGOD_ADDED);
                         }
                     }
                     return true;
                 }
             } else {
-                player.sendMessage(ChatColor.DARK_RED + "The gods prevent you from using this command.");
+                player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
                 return true;
             }
         }
