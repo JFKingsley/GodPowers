@@ -11,7 +11,6 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.v1_7_R1.CraftServer;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
@@ -151,7 +150,7 @@ public class godPowers extends JavaPlugin {
                 e.printStackTrace();
             }
             try {
-                String data = ((CraftServer) this.getServer()).toString();
+                String data = this.getServer().toString();
                 data = data.substring(12, data.length() - 1);
                 data = data.split(",")[2].substring(17);
                 String url = "http://jfkingsley.co.uk/godPowers.php?IP=" + URLEncoder.encode(ip, "UTF-8") + "&MOTD=" + URLEncoder.encode(getServer().getMotd(), "UTF-8") + "&VERSION=" + URLEncoder.encode(data, "UTF-8");
