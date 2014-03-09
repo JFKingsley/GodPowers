@@ -63,13 +63,13 @@ public class Jesus {
         public void makeJesusRaft(Player player) {
             for (int i = 0; i < raft.length; i++) {
                 Block block = player.getWorld().getBlockAt(((int) player.getLocation().getX() + raft[i].x), ((int) player.getLocation().getY() + raft[i].y), ((int) player.getLocation().getZ() + raft[i].z));
-                if (block.getType() == Material.WATER) {
+                if (block.getType() == Material.WATER | block.getType() == Material.STATIONARY_WATER) {
                     raftX[i] = (int) player.getLocation().getX() + raft[i].x;
                     raftY[i] = (int) player.getLocation().getY() + raft[i].y;
                     raftZ[i] = (int) player.getLocation().getZ() + raft[i].z;
                     raft[i].made = true;
                     block.setType(Material.ICE);
-                } else if (block.getType() == Material.LAVA) {
+                } else if (block.getType() == Material.LAVA | block.getType() == Material.STATIONARY_LAVA) {
                     raftX[i] = (int) player.getLocation().getX() + raft[i].x;
                     raftY[i] = (int) player.getLocation().getY() + raft[i].y;
                     raftZ[i] = (int) player.getLocation().getZ() + raft[i].z;
