@@ -2,7 +2,6 @@ package com.FriedTaco.taco.godPowers.commands;
 
 //import org.bukkit.World;
 
-import com.FriedTaco.taco.godPowers.Metrics;
 import com.FriedTaco.taco.godPowers.godPowers;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
@@ -10,8 +9,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
-import java.io.IOException;
 
 public class GodmodeCommand implements CommandExecutor {
     private Player player;

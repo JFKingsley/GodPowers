@@ -1,4 +1,4 @@
-package com.FriedTaco.taco.godPowers;
+package com.FriedTaco.taco.godPowers.util;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;

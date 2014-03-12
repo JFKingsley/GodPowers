@@ -1,12 +1,12 @@
 package com.FriedTaco.taco.godPowers;
 
 
-import com.FriedTaco.taco.godPowers.Metrics.Plotter;
-import com.FriedTaco.taco.godPowers.Updater.UpdateResult;
+import com.FriedTaco.taco.godPowers.util.*;
+import com.FriedTaco.taco.godPowers.util.Metrics.Plotter;
+import com.FriedTaco.taco.godPowers.util.Updater.UpdateResult;
 import com.FriedTaco.taco.godPowers.commands.*;
 import com.FriedTaco.taco.godPowers.listeners.EntityListener;
 import com.FriedTaco.taco.godPowers.listeners.PlayerListener;
-import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;

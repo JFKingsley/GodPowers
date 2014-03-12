@@ -1,10 +1,11 @@
 package com.FriedTaco.taco.godPowers.listeners;
 
 import com.FriedTaco.taco.godPowers.*;
-import com.FriedTaco.taco.godPowers.Jesus.Raft;
+import com.FriedTaco.taco.godPowers.util.Jesus;
+import com.FriedTaco.taco.godPowers.util.Jesus.Raft;
+import com.FriedTaco.taco.godPowers.util.MedusaPlayer;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.*;
-import org.bukkit.FireworkEffect.Type;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Fireball;
@@ -20,11 +21,9 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.BlockIterator;
 import org.bukkit.util.Vector;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Random;
 
 
 public class PlayerListener implements Listener {

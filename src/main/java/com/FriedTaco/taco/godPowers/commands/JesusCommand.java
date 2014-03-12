@@ -2,9 +2,9 @@ package com.FriedTaco.taco.godPowers.commands;
 
 //import org.bukkit.World;
 
-import com.FriedTaco.taco.godPowers.Jesus;
-import com.FriedTaco.taco.godPowers.Jesus.Raft;
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.Jesus;
+import com.FriedTaco.taco.godPowers.util.Jesus.Raft;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;

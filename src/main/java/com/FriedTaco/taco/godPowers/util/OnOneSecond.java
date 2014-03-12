@@ -1,6 +1,6 @@
-package com.FriedTaco.taco.godPowers;
+package com.FriedTaco.taco.godPowers.util;
 
-import com.FriedTaco.taco.godPowers.util.StringHandler;
+import com.FriedTaco.taco.godPowers.godPowers;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;

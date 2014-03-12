@@ -1,8 +1,8 @@
 package com.FriedTaco.taco.godPowers.commands;
 
-import com.FriedTaco.taco.godPowers.Updater;
 import com.FriedTaco.taco.godPowers.godPowers;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
+import com.FriedTaco.taco.godPowers.util.Updater;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

@@ -1,4 +1,4 @@
-package com.FriedTaco.taco.godPowers;
+package com.FriedTaco.taco.godPowers.util;
 /*
  * Updater for Bukkit.
  *
