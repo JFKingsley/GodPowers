@@ -187,14 +187,19 @@ public class PlayerListener implements Listener {
         if (plugin.gaia.contains(event.getPlayer().getName())) {
             for (int x = -2; x <= 2; x++) {
                 for (int z = -2; z <= 2; z++) {
-                    Block block = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY() - 1, event.getTo().getBlockZ() + z);
-                    if (block.getType() == Material.DIRT) {
-                        block.setType(Material.GRASS);
-                        block = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
-                        plantStuff(block);
-                    } else if (block.getType() == Material.GRASS) {
-                        block = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
-                        plantStuff(block);
+                    Block blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY() - 1, event.getTo().getBlockZ() + z);
+                    Block blockPlayerLegs = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
+                    if (blockUnderFoot.getType() == Material.DIRT) {
+                        blockUnderFoot.setType(Material.GRASS);
+                        blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
+                        plantStuff(blockUnderFoot);
+                    } else if (blockUnderFoot.getType() == Material.GRASS) {
+                        blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
+                        plantStuff(blockUnderFoot);
+                    } else if (blockPlayerLegs.getType() == Material.CROPS) {
+                        if (blockPlayerLegs.getData() != 7) {
+                            blockPlayerLegs.setData((byte) 7);
+                        }
                     }
                 }
             }
@@ -233,7 +238,6 @@ public class PlayerListener implements Listener {
                 block.setType(Material.LONG_GRASS);
                 block.setData((byte) 1);
             }
-
         }
     }
 
