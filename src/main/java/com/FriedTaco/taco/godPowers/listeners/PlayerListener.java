@@ -187,8 +187,8 @@ public class PlayerListener implements Listener {
         if (plugin.gaia.contains(event.getPlayer().getName())) {
             for (int x = -2; x <= 2; x++) {
                 for (int z = -2; z <= 2; z++) {
-                    Block blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY() - 1, event.getTo().getBlockZ() + z);
-                    Block blockPlayerLegs = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
+                    Block blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY() - 1, event.getTo().getBlockZ() + z); // Block under player's feet
+                    Block blockPlayerLegs = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z); // Block at same Y-level as player's legs
                     if (blockUnderFoot.getType() == Material.DIRT) {
                         blockUnderFoot.setType(Material.GRASS);
                         blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
@@ -197,9 +197,11 @@ public class PlayerListener implements Listener {
                         blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
                         plantStuff(blockUnderFoot);
                     } else if (blockPlayerLegs.getType() == Material.CROPS) {
-                        if (blockPlayerLegs.getData() != 7) {
-                            blockPlayerLegs.setData((byte) 7);
-                        }
+                        growCrops(blockPlayerLegs);
+                    } else if (blockPlayerLegs.getType() == Material.PUMPKIN_STEM) {
+                        growCrops(blockPlayerLegs);
+                    } else if (blockPlayerLegs.getType() == Material.MELON_STEM) {
+                        growCrops(blockPlayerLegs);
                     }
                 }
             }
@@ -224,6 +226,12 @@ public class PlayerListener implements Listener {
                     }
                 }
             }
+        }
+    }
+
+    private void growCrops(Block block) {
+        if (block.getData() != 7) {
+            block.setData((byte) 7);
         }
     }
 
