@@ -14,6 +14,9 @@ https://github.com/JFKingsley/GodPowers/commits/master
 - Properly register all commands in recent Bukkit versions
 - Fix a color issue caused by a typo in /slay
 - Added damage resistance to /poseidon
+- Fix /jesus for non-moving water/lava
+- Make /gaia grow crops
+- Remove NMS (fix inter-version compat)
 
 ## Legacy ##
 - Added /hermes
