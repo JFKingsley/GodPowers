@@ -104,6 +104,7 @@ permissions:
             godpowers.jesus: true
             godpowers.maim: true
             godpowers.medusa: true
+            godpowers.plutus: true
             godpowers.poseidon: true
             godpowers.repair: true
             godpowers.slay: true
@@ -156,6 +157,9 @@ permissions:
         description: Gives permission to relevant command.
         default: op
     godpowers.medusa:
+        description: Gives permission to relevant command.
+        default: op
+    godpowers.plutus:
         description: Gives permission to relevant command.
         default: op
     godpowers.poseidon:
