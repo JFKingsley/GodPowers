@@ -56,6 +56,7 @@ public class StringHandler {
     public static String DIE_CANTDIE;
     public static String DIE_DIE;
     public static String DUPE_DUPE;
+    public static String DUPE_ERROR;
     public static String DUPE_NOTHING;
     public static String FUSRODAH_SYNTAX;
     public static String FUSRODAH_FUSRODAH;

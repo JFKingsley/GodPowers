@@ -26,16 +26,20 @@ public class DupeCommand implements CommandExecutor {
                 if (split.length == 0) {
                     int amount = 64;
                     if (player.getItemInHand().getType() != Material.AIR) {
-                        player.sendMessage(ChatColor.BLUE + StringHandler.DUPE_DUPE);
-                        Inventory inv = player.getInventory();
-                        ItemStack item = player.getItemInHand();
-                        ItemStack newitem = new ItemStack(item.getType(), amount, (short) item.getDurability());
-                        newitem.setData(item.getData());
-                        newitem.setItemMeta(item.getItemMeta());
-                        newitem.addEnchantments(item.getEnchantments());
-                        newitem.setType(item.getType());
-                        newitem.setType(item.getType());
-                        inv.addItem(newitem);
+                        try {
+                            Inventory inv = player.getInventory();
+                            ItemStack item = player.getItemInHand();
+                            ItemStack newitem = new ItemStack(item.getType(), amount, (short) item.getDurability());
+                            newitem.setData(item.getData());
+                            newitem.setItemMeta(item.getItemMeta());
+                            newitem.addEnchantments(item.getEnchantments());
+                            newitem.setType(item.getType());
+                            newitem.setType(item.getType());
+                            inv.addItem(newitem);
+                            player.sendMessage(ChatColor.BLUE + StringHandler.DUPE_DUPE);
+                        } catch (Exception e) {
+                            player.sendMessage(ChatColor.RED + StringHandler.DUPE_ERROR);
+                        }
                     } else {
                         player.sendMessage(ChatColor.DARK_RED + StringHandler.DUPE_NOTHING);
                     }
