@@ -36,6 +36,8 @@ public class EntityListener implements Listener {
             if (plugin.godmodeEnabled.contains(player.getName())) {
                 player.setHealth(player.getMaxHealth());
                 event.setCancelled(true);
+            } else if (plugin.isInferno.contains(player.getName()) && event.getCause() == DamageCause.FIRE) {
+                event.setCancelled(true);
             } else if (plugin.superJumper.contains(player.getName()) && event.getCause() == DamageCause.FALL) {
                 event.setCancelled(true);
             } else if (plugin.DemiGod.contains(player.getName())) {
