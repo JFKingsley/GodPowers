@@ -31,12 +31,10 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Logger;
 
 
 public class godPowers extends JavaPlugin {
     @SuppressWarnings("unused")
-    private Logger log;
     public String title = "";
     private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
     public HashMap<String, Integer> curse = new HashMap<String, Integer>();
@@ -97,7 +95,7 @@ public class godPowers extends JavaPlugin {
             medusaFreezeTime = this.getConfig().getInt("MedusaFreezeTime", 10);
             this.saveConfig();
         } catch (Exception e) {
-            System.out.println("[GodPowers] Error loading config file.");
+            getLogger().warning("Error loading config file.");
             e.printStackTrace();
         }
     }
@@ -124,18 +122,18 @@ public class godPowers extends JavaPlugin {
 
             });
             metrics.start();
-            System.out.println("[GodPowers] Successfully sent stats to MCStats/Metrics ");
+            getLogger().info("Successfully sent stats to MCStats/Metrics");
         } catch (IOException e) {
-            System.out.println("[GodPowers] Failed to send stats to MCStats/Metrics :-(");
+            getLogger().info("Failed to send stats to MCStats/Metrics :-(");
             // Failed to submit the stats :-(
         }
         if (checkUpdate == true) {
             Updater updater = new Updater(this, 33866, this.getFile(), Updater.UpdateType.NO_DOWNLOAD, false); // Start Updater but just do a version check
             if (updater.getResult() == UpdateResult.UPDATE_AVAILABLE) {
-                this.getServer().broadcastMessage(ChatColor.RED + "[GodPowers] An update is available: " + updater.getLatestName() + ", a " + updater.getLatestType() + " for " + updater.getLatestGameVersion() + " available at " + updater.getLatestFileLink());
+                this.getServer().broadcastMessage(ChatColor.RED + "An update is available: " + updater.getLatestName() + ", a " + updater.getLatestType() + " for " + updater.getLatestGameVersion() + " available at " + updater.getLatestFileLink());
                 if (autoUpdate == true) {
                     new Updater(this, 33866, this.getFile(), Updater.UpdateType.NO_VERSION_CHECK, true);
-                    this.getServer().broadcastMessage(ChatColor.RED + "[GodPowers] An update is available: " + updater.getLatestName() + ", downloading and updating automatically..");
+                    this.getServer().broadcastMessage(ChatColor.RED + "An update is available: " + updater.getLatestName() + ", downloading and updating automatically..");
                 }
             }
         }
@@ -147,6 +145,7 @@ public class godPowers extends JavaPlugin {
                         whatismyip.openStream()));
                 ip = in.readLine(); //you get the IP as a String
             } catch (Exception e) {
+                getLogger().info("Unable to add server to GodPowers' server list");
                 e.printStackTrace();
             }
             try {
@@ -159,7 +158,7 @@ public class godPowers extends JavaPlugin {
                 con.setRequestMethod("GET");
                 con.setRequestProperty("User-Agent", "Mozilla/5.0");
                 int responseCode = con.getResponseCode();
-                System.out.println("Response Code from server list: " + responseCode);
+                getLogger().info("Response Code from server list: " + responseCode);
                 BufferedReader in = new BufferedReader(
                         new InputStreamReader(con.getInputStream()));
                 String inputLine;
@@ -168,176 +167,177 @@ public class godPowers extends JavaPlugin {
                     response.append(inputLine);
                 }
                 in.close();
-                System.out.println("Response: " + response);
+                getLogger().info("Response: " + response);
             } catch (Exception e) {
+                getLogger().info("Unable to add server to GodPowers' server list");
                 e.printStackTrace();
             }
         }
-        String error = "[GodPowers] ERROR another plugin has already taken the command ";
+        String error = "ERROR another plugin has already taken the command ";
         try {
             getCommand("zeus").setExecutor(new ZeusCommand(this));
             list.put("zeus", "- " + StringHandler.LIST_ZEUS_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "zeus.");
+            getLogger().warning(error + "zeus.");
         }
         try {
             getCommand("godmode").setExecutor(new GodmodeCommand(this));
             list.put("godmode", "[Player] - " + StringHandler.LIST_GODMODE_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "godmode.");
+            getLogger().warning(error + "godmode.");
         }
         try {
             getCommand("godmodeon").setExecutor(new GodmodeCommand(this));
         } catch (Exception e) {
-            System.out.println(error + "godmodeon.");
+            getLogger().warning(error + "godmodeon.");
         }
         try {
             getCommand("godmodeoff").setExecutor(new GodmodeCommand(this));
         } catch (Exception e) {
-            System.out.println(error + "godmodeoff.");
+            getLogger().warning(error + "godmodeoff.");
         }
         try {
             getCommand("jesus").setExecutor(new JesusCommand(this));
             list.put("jesus", "- " + StringHandler.LIST_JESUS_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "jesus.");
+            getLogger().warning(error + "jesus.");
         }
         try {
             getCommand("die").setExecutor(new DieCommand(this));
             list.put("die", "- " + StringHandler.LIST_DIE_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "die.");
+            getLogger().warning(error + "die.");
         }
         try {
             getCommand("slay").setExecutor(new SlayCommand(this));
             list.put("slay", "[Player] <arrows/fire/drop> - " + StringHandler.LIST_SLAY_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "slay.");
+            getLogger().warning(error + "slay.");
         }
         try {
             getCommand("smite").setExecutor(new SlayCommand(this));
             list.put("smite", "[Player] <arrows/fire/drop> - " + StringHandler.LIST_SLAY_DESCRIPTION);
         } catch (Exception e1) {
-            System.out.println(error + "smite.");
+            getLogger().warning(error + "smite.");
         }
         try {
             getCommand("maim").setExecutor(new MaimCommand(this));
             list.put("maim", "[Player] - " + StringHandler.LIST_MAIM_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "maim.");
+            getLogger().warning(error + "maim.");
         }
         try {
             getCommand("inferno").setExecutor(new InfernoCommand(this));
             list.put("inferno", "- " + StringHandler.LIST_INFERNO_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "inferno.");
+            getLogger().warning(error + "inferno.");
         }
         try {
             getCommand("superjump").setExecutor(new SuperjumpCommand(this));
             list.put("superjump", "- " + StringHandler.LIST_SUPERJUMP_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "superjump.");
+            getLogger().warning(error + "superjump.");
         }
         try {
             getCommand("gaia").setExecutor(new GaiaCommand(this));
             list.put("gaia", "- " + StringHandler.LIST_GAIA_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "gaia.");
+            getLogger().warning(error + "gaia.");
         }
         try {
             getCommand("heal").setExecutor(new HealCommand(this));
             list.put("heal", "<Player> - " + StringHandler.LIST_HEAL_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "heal.");
+            getLogger().warning(error + "heal.");
         }
         try {
             getCommand("godpowers").setExecutor(new GodPowersCommand(this));
             list.put("godpowers", "- Displays this message.");
         } catch (Exception e) {
-            System.out.println(error + "godpowers. How dare they!");
+            getLogger().warning(error + "godpowers. How dare they!");
         }
         try {
             getCommand("vulcan").setExecutor(new VulcanCommand(this));
             list.put("vulcan", "- " + StringHandler.LIST_VULCAN_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "vulcan.");
+            getLogger().warning(error + "vulcan.");
         }
         try {
             getCommand("myballsareonfire").setExecutor(new VulcanCommand(this));
         } catch (Exception e) {
-            System.out.println(error + "myballsareonfire.");
+            getLogger().warning(error + "myballsareonfire.");
         }
         try {
             getCommand("demigod").setExecutor(new DemigodCommand(this));
             list.put("demigod", "- " + StringHandler.LIST_DEMIGOD_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "demigod.");
+            getLogger().warning(error + "demigod.");
         }
         try {
             getCommand("hades").setExecutor(new HadesCommand(this));
             list.put("hades", "- " + StringHandler.LIST_HADES_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "hades.");
+            getLogger().warning(error + "hades.");
         }
         try {
             getCommand("bless").setExecutor(new BlessCommand(this));
             list.put("bless", "[Player] - " + StringHandler.LIST_BLESS_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "bless.");
+            getLogger().warning(error + "bless.");
         }
         try {
             getCommand("fusrodah").setExecutor(new FusrodahCommand(this));
             list.put("FusRoDAH", "- " + StringHandler.LIST_FUSRODAH_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "FusRoDAHCommand.");
+            getLogger().warning(error + "FusRoDAHCommand.");
         }
         try {
             getCommand("plutus").setExecutor(new PlutusCommand(this));
             list.put("plutus", "- " + StringHandler.LIST_PLUTUS_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "plutus");
+            getLogger().warning(error + "plutus");
         }
         try {
             getCommand("dupe").setExecutor(new DupeCommand(this));
             list.put("dupe", "<amount> - " + StringHandler.LIST_DUPE_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "dupe.");
+            getLogger().warning(error + "dupe.");
         }
         try {
             getCommand("medusa").setExecutor(new MedusaCommand(this));
             list.put("medusa", "- " + StringHandler.LIST_MEDUSA_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "medusa.");
+            getLogger().warning(error + "medusa.");
         }
         try {
             getCommand("hermes").setExecutor(new HermesCommand(this));
             list.put("hermes", "- " + StringHandler.LIST_HERMES_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "hermes. ");
+            getLogger().warning(error + "hermes. ");
         }
         try {
             getCommand("poseidon").setExecutor(new PoseidonCommand(this));
             list.put("poseidon", "- " + StringHandler.LIST_POSEIDON_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "poseidon.");
+            getLogger().warning(error + "poseidon.");
         }
         try {
             getCommand("repair").setExecutor(new RepairCommand(this));
             list.put("repair", "- " + StringHandler.LIST_REPAIR_DESCRIPTION);
         } catch (Exception e) {
-            System.out.println(error + "repair.");
+            getLogger().warning(error + "repair.");
         }
         try {
             getCommand("itemrepair").setExecutor(new RepairCommand(this));
         } catch (Exception e) {
-            System.out.println(error + "itemrepair.");
+            getLogger().warning(error + "itemrepair.");
         }
 
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new EntityListener(this), this);
         pm.registerEvents(new PlayerListener(this), this);
         PluginDescriptionFile pdfFile = this.getDescription();
-        System.out.println(pdfFile.getName() + " version " + pdfFile.getVersion() + " is enabled!");
+        getLogger().info("version " + pdfFile.getVersion() + " is enabled!");
         populateLists();
     }
 
