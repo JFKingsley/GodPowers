@@ -25,7 +25,7 @@ public class HadesCommand implements CommandExecutor {
                         player.sendMessage(ChatColor.DARK_RED + StringHandler.HADES_REMOVE);
                         plugin.hades.remove(player.getName());
                     } else {
-                        player.sendMessage(ChatColor.DARK_RED + StringHandler.HADES_REMOVE);
+                        player.sendMessage(ChatColor.DARK_RED + StringHandler.HADES_ADD);
                         plugin.hades.add(player.getName());
                     }
                     return true;
