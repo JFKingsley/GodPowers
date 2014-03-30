@@ -59,7 +59,7 @@ public class PlayerListener implements Listener {
         final Player player = event.getPlayer();
         if (plugin.developerJoinEffect) {
             if (player.getUniqueId().equals(goldgamerID) | player.getUniqueId().equals(zbob750ID)) {
-                plugin.getServer().broadcastMessage(ChatColor.DARK_GREEN + "[godPowers] " + ChatColor.GOLD + "One of the developers of godPowers has joined the game.");
+                plugin.getServer().broadcastMessage(ChatColor.DARK_GREEN + "[godPowers] " + ChatColor.GOLD + "A godPowers Developer has joined the game.");
                 plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                     public void run() {
                         FireworkEffectPlayer firework = new FireworkEffectPlayer();
@@ -75,7 +75,7 @@ public class PlayerListener implements Listener {
                             //sine function is the z
                             double tempz = (radius * Math.sin(i)) + zcenter;
                             Location loc = new Location(p.getWorld(), tempx, y, tempz);
-                            //do something with this location i.e. play firework
+                            //Randoms up a few colors then makes a ring of fireworks around the player
                             try {
                                 int r2i = new Random().nextInt(17) + 1;
                                 Color c1 = getColor(r2i);
