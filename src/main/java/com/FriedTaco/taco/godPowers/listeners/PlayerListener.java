@@ -1,6 +1,7 @@
 package com.FriedTaco.taco.godPowers.listeners;
 
 import com.FriedTaco.taco.godPowers.*;
+import com.FriedTaco.taco.godPowers.util.FireworkEffectPlayer;
 import com.FriedTaco.taco.godPowers.util.Jesus;
 import com.FriedTaco.taco.godPowers.util.Jesus.Raft;
 import com.FriedTaco.taco.godPowers.util.MedusaPlayer;
@@ -24,6 +25,7 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.Random;
 
 
 public class PlayerListener implements Listener {
@@ -54,8 +56,41 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
+    public void onPlayerJoin(final PlayerJoinEvent event) {
         final Player player = event.getPlayer();
+        if (plugin.developerJoinEffect) {
+            if (player.getName().equalsIgnoreCase("goldgamermc") | player.getName().equalsIgnoreCase("zbob750")) {
+                plugin.getServer().broadcastMessage(ChatColor.DARK_GREEN + "[godPowers] " + ChatColor.GOLD + "One of the developers of godPowers has joined the game.");
+                plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                    public void run() {
+                        FireworkEffectPlayer firework = new FireworkEffectPlayer();
+                        Player p = event.getPlayer();
+                        double xcenter = p.getLocation().getBlockX();
+                        double zcenter = p.getLocation().getBlockZ();
+                        double y = p.getLocation().getY();
+                        int radius = 5; //radius of circle from player
+                        //cycle through every degree on a circle
+                        for (int i = 0; i <= 360; i++) {
+                            //cosine function is the x
+                            double tempx = (radius * Math.cos(i)) + xcenter;
+                            //sine function is the z
+                            double tempz = (radius * Math.sin(i)) + zcenter;
+                            Location loc = new Location(p.getWorld(), tempx, y, tempz);
+                            //do something with this location i.e. play firework
+                            try {
+                                int r2i = new Random().nextInt(17) + 1;
+                                Color c1 = getColor(r2i);
+                                firework.playFirework(loc.getWorld(), loc, FireworkEffect.builder().with(FireworkEffect.Type.BALL).withColor(c1).flicker(true).build());
+                            } catch (IllegalArgumentException e) {
+                                e.printStackTrace();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                }, 20L);
+            }
+        }
         if (plugin.godModeOnLogin && player.hasPermission("godpowers.godmodeonlogin")) {
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                 public void run() {
