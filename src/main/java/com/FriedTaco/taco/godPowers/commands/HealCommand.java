@@ -39,7 +39,7 @@ public class HealCommand implements CommandExecutor {
                     } else {
                         player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " " + StringHandler.HEAL_HEALEDOTHER);
                         targetPlayer.sendMessage(ChatColor.BLUE + player.getName() + " " + StringHandler.HEAL_HEALEDYOU);
-                        targetPlayer.setHealth(20);
+                        targetPlayer.setHealth(targetPlayer.getMaxHealth());
                     }
                     return true;
                 }

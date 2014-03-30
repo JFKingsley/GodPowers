@@ -33,7 +33,7 @@ public class DemigodCommand implements CommandExecutor {
                         player.sendMessage(ChatColor.BLUE + StringHandler.DEMIGOD_SHARED);
                         player.sendMessage(ChatColor.BLUE + StringHandler.DEMIGOD_ADD);
                         plugin.DemiGod.add(player.getName());
-                        player.setHealth(20);
+                        player.setHealth(player.getMaxHealth());
                         return true;
                     }
                 } else {
@@ -52,7 +52,7 @@ public class DemigodCommand implements CommandExecutor {
                             targetPlayer.sendMessage(ChatColor.BLUE + player.getName() + " " + StringHandler.DEMIGOD_ADDOTHER);
                             targetPlayer.sendMessage(ChatColor.BLUE + StringHandler.DEMIGOD_ADD);
                             plugin.DemiGod.add(targetPlayer.getName());
-                            targetPlayer.setHealth(20);
+                            targetPlayer.setHealth(player.getMaxHealth());
                             player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " " + StringHandler.DEMIGOD_ADDED);
                         }
                     }

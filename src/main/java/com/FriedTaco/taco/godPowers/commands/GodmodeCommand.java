@@ -42,7 +42,7 @@ public class GodmodeCommand implements CommandExecutor {
                         player.sendMessage(ChatColor.BLUE + StringHandler.GODMODE_ADD);
                         player.setDisplayName(plugin.title + player.getDisplayName());
                         plugin.godmodeEnabled.add(player.getName());
-                        player.setHealth(20);
+                        player.setHealth(player.getMaxHealth());
                         return true;
                     }
                 } else {
@@ -70,7 +70,7 @@ public class GodmodeCommand implements CommandExecutor {
                             targetPlayer.sendMessage(ChatColor.BLUE + StringHandler.GODMODE_POWEROF + " " + player.getName() + " " + StringHandler.GODMODE_POWEROFADDED);
                             targetPlayer.setDisplayName(plugin.title + targetPlayer.getName());
                             plugin.godmodeEnabled.add(targetPlayer.getName());
-                            targetPlayer.setHealth(20);
+                            targetPlayer.setHealth(targetPlayer.getMaxHealth());
                             player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " " + StringHandler.GODMODE_ADDED);
                         }
                     }
