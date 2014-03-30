@@ -22,10 +22,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.BlockIterator;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Random;
+import java.util.*;
 
 
 public class PlayerListener implements Listener {
@@ -38,6 +35,8 @@ public class PlayerListener implements Listener {
     Raft jesus;
     private Vector dir;
     final godPowers plugin;
+    UUID goldgamerID = UUID.fromString("e3191eca-d803-4788-bd06-cd45736f196e");
+    UUID zbob750ID = UUID.fromString  ("6c780b81-d087-485e-8786-b0a500d7c224");
 
     void dropDeadItems(Player player) {
         if (player.getInventory() != null) {
@@ -59,7 +58,7 @@ public class PlayerListener implements Listener {
     public void onPlayerJoin(final PlayerJoinEvent event) {
         final Player player = event.getPlayer();
         if (plugin.developerJoinEffect) {
-            if (player.getName().equalsIgnoreCase("goldgamermc") | player.getName().equalsIgnoreCase("zbob750")) {
+            if (player.getUniqueId().equals(goldgamerID) | player.getUniqueId().equals(zbob750ID)) {
                 plugin.getServer().broadcastMessage(ChatColor.DARK_GREEN + "[godPowers] " + ChatColor.GOLD + "One of the developers of godPowers has joined the game.");
                 plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                     public void run() {
