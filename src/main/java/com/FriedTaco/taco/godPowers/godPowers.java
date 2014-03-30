@@ -57,7 +57,7 @@ public class godPowers extends JavaPlugin {
     public ArrayList<Material> pickDrops = new ArrayList<Material>();
     public ArrayList<Material> axeDrops = new ArrayList<Material>();
     public HashMap<String, String> list = new HashMap<String, String>();
-    public double DemiModifier = 0;
+    public double demiModifier = 0.2;
     public boolean godModeOnLogin = true;
     public boolean godTools = true;
     public boolean autoUpdate = false;
@@ -93,7 +93,7 @@ public class godPowers extends JavaPlugin {
             uploadToList = this.getConfig().getBoolean("UploadToServerList", true);
             title = this.getConfig().getString("GodModeTitle", "");
             godModeOnLogin = this.getConfig().getBoolean("GodModeOnLogin", true);
-            DemiModifier = this.getConfig().getDouble("DemiGodDamageModifier", 0.2);
+            demiModifier = this.getConfig().getDouble("DemiGodDamageModifier", 0.2);
             godTools = this.getConfig().getBoolean("GodToolsEnabled", true);
             medusaFreezeTime = this.getConfig().getInt("MedusaFreezeTime", 10);
             developerJoinEffect = this.getConfig().getBoolean("DeveloperJoinEffect", true);

@@ -41,7 +41,7 @@ public class EntityListener implements Listener {
             } else if (plugin.superJumper.contains(player.getName()) && event.getCause() == DamageCause.FALL) {
                 event.setCancelled(true);
             } else if (plugin.DemiGod.contains(player.getName())) {
-                event.setDamage((int) (event.getDamage() * plugin.DemiModifier));
+                event.setDamage((int) (event.getDamage() * plugin.demiModifier));
             }
         }
         if (event instanceof EntityDamageByEntityEvent) {
