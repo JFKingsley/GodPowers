@@ -35,8 +35,8 @@ public class PlayerListener implements Listener {
     Raft jesus;
     private Vector dir;
     final godPowers plugin;
-    UUID goldgamerID = UUID.fromString("e3191eca-d803-4788-bd06-cd45736f196e");
-    UUID zbob750ID = UUID.fromString  ("6c780b81-d087-485e-8786-b0a500d7c224");
+    UUID goldgamerID = UUID.fromString ("e3191eca-d803-4788-bd06-cd45736f196e");
+    UUID zbob750ID = UUID.fromString ("6c780b81-d087-485e-8786-b0a500d7c224");
 
     void dropDeadItems(Player player) {
         if (player.getInventory() != null) {
