@@ -159,6 +159,9 @@ permissions:
     godpowers.medusa:
         description: Gives permission to relevant command.
         default: op
+    godpowers.medusa.exempt:
+        description: Exempts a player from medusa freeze
+        default: false
     godpowers.plutus:
         description: Gives permission to relevant command.
         default: op

@@ -150,8 +150,10 @@ public class PlayerListener implements Listener {
                     }
                 }
                 if (!isAlreadyUnder) {
-                    plugin.isUnderMedusaInfluence.add(new MedusaPlayer(target, plugin.medusaFreezeTime, player));
-                    target.sendMessage(ChatColor.GREEN + StringHandler.MEDUSA_CURSED + " " + plugin.medusaFreezeTime + " seconds.");
+                    if (!target.hasPermission("godpowers.medusa.exempt")) {
+                        plugin.isUnderMedusaInfluence.add(new MedusaPlayer(target, plugin.medusaFreezeTime, player));
+                        target.sendMessage(ChatColor.GREEN + StringHandler.MEDUSA_CURSED + " " + plugin.medusaFreezeTime + " seconds.");
+                    }
                 }
             }
         }
