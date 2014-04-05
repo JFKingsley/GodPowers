@@ -1,16 +1,14 @@
 package com.FriedTaco.taco.godPowers.listeners;
 
 import com.FriedTaco.taco.godPowers.godPowers;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
-import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
@@ -75,6 +73,10 @@ public class EntityListener implements Listener {
                 plugin.arrowKill.remove(player.getUniqueId());
             } else if (plugin.curse.containsKey(UUID)) {
                 plugin.getServer().getScheduler().cancelTask(plugin.curse.get(UUID).intValue());
+            } else if (plugin.die.contains(UUID)) {
+                PlayerDeathEvent e = (PlayerDeathEvent) event;
+                e.setDeathMessage(player.getName() + " " + StringHandler.DIE_DEATHMSG);
+                plugin.die.remove(UUID);
             }
         }
     }

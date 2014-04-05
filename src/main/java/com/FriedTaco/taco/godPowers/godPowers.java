@@ -54,6 +54,7 @@ public class godPowers extends JavaPlugin {
     public ArrayList<UUID> isVulcan = new ArrayList<UUID>();
     public ArrayList<UUID> DemiGod = new ArrayList<UUID>();
     public ArrayList<UUID> hades = new ArrayList<UUID>();
+    public ArrayList<UUID> die = new ArrayList<UUID>();
     public ArrayList<Material> shovelDrops = new ArrayList<Material>();
     public ArrayList<Material> pickDrops = new ArrayList<Material>();
     public ArrayList<Material> axeDrops = new ArrayList<Material>();

@@ -54,6 +54,7 @@ public class StringHandler {
     public static String DEMIGOD_YOURSELF;
     public static String DEMIGOD_RETURNYOU;
     public static String DIE_CANTDIE;
+    public static String DIE_DEATHMSG;
     public static String DIE_DIE;
     public static String DUPE_DUPE;
     public static String DUPE_ERROR;

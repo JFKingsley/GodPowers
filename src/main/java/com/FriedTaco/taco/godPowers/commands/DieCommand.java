@@ -27,6 +27,7 @@ public class DieCommand implements CommandExecutor {
                     player.sendMessage(ChatColor.BLUE + StringHandler.DIE_CANTDIE);
                     return true;
                 } else {
+                    plugin.die.add(player.getUniqueId());
                     player.setHealth(0);
                     plugin.dropDeadItems(player);
                     player.sendMessage(StringHandler.DIE_DIE);
