@@ -28,12 +28,12 @@ public class MedusaCommand implements CommandExecutor {
                     player.sendMessage(ChatColor.RED + StringHandler.MEDUSA_SYNTAX);
                     return true;
                 } else {
-                    if (!plugin.isMedusa.contains(player.getName())) {
+                    if (!plugin.isMedusa.contains(player.getUniqueId())) {
                         player.sendMessage(ChatColor.GREEN + StringHandler.MEDUSA_ADD);
-                        plugin.isMedusa.add(player.getName());
+                        plugin.isMedusa.add(player.getUniqueId());
                     } else {
                         player.sendMessage(ChatColor.GREEN + StringHandler.MEDUSA_REMOVE);
-                        plugin.isMedusa.remove(player.getName());
+                        plugin.isMedusa.remove(player.getUniqueId());
                         ListIterator<MedusaPlayer> it = plugin.isUnderMedusaInfluence.listIterator();
                         if (it.hasNext()) {
                             MedusaPlayer mplayer = it.next();

@@ -29,7 +29,7 @@ public class SlayCommand implements CommandExecutor {
                     targetPlayer = plugin.getServer().getPlayer(split[0]);
                     if (targetPlayer == null) {
                         player.sendMessage(ChatColor.RED + StringHandler.SLAY_DOESNTEXIST);
-                    } else if (plugin.godmodeEnabled.contains(targetPlayer.getName())) {
+                    } else if (plugin.godmodeEnabled.contains(targetPlayer.getUniqueId())) {
                         player.sendMessage(ChatColor.RED + StringHandler.SLAY_GOD);
                     } else {
                         targetPlayer.setHealth(0);
@@ -44,7 +44,7 @@ public class SlayCommand implements CommandExecutor {
                     if (targetPlayer == null) {
                         player.sendMessage(ChatColor.RED + StringHandler.SLAY_DOESNTEXIST);
                         return true;
-                    } else if (plugin.godmodeEnabled.contains(targetPlayer.getName())) {
+                    } else if (plugin.godmodeEnabled.contains(targetPlayer.getUniqueId())) {
                         player.sendMessage(ChatColor.DARK_RED + StringHandler.SLAY_GOD);
                         return true;
                     }
@@ -59,12 +59,12 @@ public class SlayCommand implements CommandExecutor {
                                 break;
                         }
                         player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " " +StringHandler.SLAY_SLAINARROWS);
-                        plugin.arrowKill.add(targetPlayer.getName());
+                        plugin.arrowKill.add(targetPlayer.getUniqueId());
                     } else if (split[1].equalsIgnoreCase("f") || split[1].equalsIgnoreCase("fire")) {
                         player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " " + StringHandler.SLAY_SLAINIGNITE);
                         targetPlayer.setFireTicks(500);
                         targetPlayer.sendMessage(ChatColor.BLUE + StringHandler.SLAY_SLAINIGNITEYOU);
-                        plugin.burn.add(targetPlayer.getName());
+                        plugin.burn.add(targetPlayer.getUniqueId());
                     } else if (split[1].equalsIgnoreCase("d") || split[1].equalsIgnoreCase("drop")) {
                         player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " " + StringHandler.SLAY_SLAINDROP);
                         targetPlayer.teleport(new Location(world, targetPlayer.getLocation().getX(), 1000, targetPlayer.getLocation().getZ()));
@@ -81,7 +81,7 @@ public class SlayCommand implements CommandExecutor {
                                 targetPlayer.sendMessage(ChatColor.DARK_PURPLE + StringHandler.SLAY_SLAINCURSEEFFECT);
                             }
                         }, 30L, 30L);
-                        plugin.curse.put(targetPlayer.getName(), Integer.valueOf(id));
+                        plugin.curse.put(targetPlayer.getUniqueId(), Integer.valueOf(id));
                     } else if (split[1].equalsIgnoreCase("v") || split[1].equalsIgnoreCase("void")) {
                         player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " " + StringHandler.SLAY_SLAINVOID);
                         targetPlayer.sendMessage(ChatColor.DARK_GRAY + StringHandler.SLAY_SLAINVOIDYOU);

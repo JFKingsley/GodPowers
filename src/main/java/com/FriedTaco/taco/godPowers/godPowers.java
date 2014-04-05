@@ -31,28 +31,29 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.UUID;
 
 
 public class godPowers extends JavaPlugin {
     @SuppressWarnings("unused")
     public String title = "";
     private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
-    public HashMap<String, Integer> curse = new HashMap<String, Integer>();
-    public ArrayList<String> godmodeEnabled = new ArrayList<String>();
-    public ArrayList<String> isJesus = new ArrayList<String>();
+    public HashMap<UUID, Integer> curse = new HashMap<UUID, Integer>();
+    public ArrayList<UUID> godmodeEnabled = new ArrayList<UUID>();
+    public ArrayList<UUID> isJesus = new ArrayList<UUID>();
     public ArrayList<MedusaPlayer> isUnderMedusaInfluence = new ArrayList<MedusaPlayer>();
-    public ArrayList<String> isInferno = new ArrayList<String>();
-    public ArrayList<String> isHermes = new ArrayList<String>();
-    public ArrayList<String> isPoseidon = new ArrayList<String>();
-    public ArrayList<String> isMedusa = new ArrayList<String>();
-    public ArrayList<String> superJumper = new ArrayList<String>();
-    public ArrayList<String> arrowKill = new ArrayList<String>();
-    public ArrayList<String> burn = new ArrayList<String>();
-    public ArrayList<String> gaia = new ArrayList<String>();
-    public ArrayList<String> isZeus = new ArrayList<String>();
-    public ArrayList<String> isVulcan = new ArrayList<String>();
-    public ArrayList<String> DemiGod = new ArrayList<String>();
-    public ArrayList<String> hades = new ArrayList<String>();
+    public ArrayList<UUID> isInferno = new ArrayList<UUID>();
+    public ArrayList<UUID> isHermes = new ArrayList<UUID>();
+    public ArrayList<UUID> isPoseidon = new ArrayList<UUID>();
+    public ArrayList<UUID> isMedusa = new ArrayList<UUID>();
+    public ArrayList<UUID> superJumper = new ArrayList<UUID>();
+    public ArrayList<UUID> arrowKill = new ArrayList<UUID>();
+    public ArrayList<UUID> burn = new ArrayList<UUID>();
+    public ArrayList<UUID> gaia = new ArrayList<UUID>();
+    public ArrayList<UUID> isZeus = new ArrayList<UUID>();
+    public ArrayList<UUID> isVulcan = new ArrayList<UUID>();
+    public ArrayList<UUID> DemiGod = new ArrayList<UUID>();
+    public ArrayList<UUID> hades = new ArrayList<UUID>();
     public ArrayList<Material> shovelDrops = new ArrayList<Material>();
     public ArrayList<Material> pickDrops = new ArrayList<Material>();
     public ArrayList<Material> axeDrops = new ArrayList<Material>();

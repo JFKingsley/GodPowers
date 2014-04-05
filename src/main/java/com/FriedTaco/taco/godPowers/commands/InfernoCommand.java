@@ -22,11 +22,11 @@ public class InfernoCommand implements CommandExecutor {
         if (sender instanceof Player) {
             player = (Player) sender;
             if (player.hasPermission("godpowers.inferno")) {
-                if (plugin.isInferno.contains(player.getName())) {
-                    plugin.isInferno.remove(player.getName());
+                if (plugin.isInferno.contains(player.getUniqueId())) {
+                    plugin.isInferno.remove(player.getUniqueId());
                     player.sendMessage(ChatColor.BLUE + StringHandler.INFERNO_REMOVE);
                 } else {
-                    plugin.isInferno.add(player.getName());
+                    plugin.isInferno.add(player.getUniqueId());
                     player.sendMessage(ChatColor.DARK_RED + StringHandler.INFERNO_ADD);
                 }
             } else {

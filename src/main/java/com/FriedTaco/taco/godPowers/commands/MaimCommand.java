@@ -28,7 +28,7 @@ public class MaimCommand implements CommandExecutor {
                     Player targetPlayer = plugin.getServer().getPlayer(split[0]);
                     if (targetPlayer == null) {
                         player.sendMessage(ChatColor.RED + StringHandler.MAIM_ERROR);
-                    } else if (plugin.godmodeEnabled.contains(targetPlayer.getName())) {
+                    } else if (plugin.godmodeEnabled.contains(targetPlayer.getUniqueId())) {
                         player.sendMessage(ChatColor.RED + StringHandler.MAIM_GOD);
                     } else {
                         targetPlayer.setHealth(2);

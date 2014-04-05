@@ -23,12 +23,12 @@ public class SuperjumpCommand implements CommandExecutor {
         if (sender instanceof Player) {
             player = (Player) sender;
             if (player.hasPermission("godpowers.superjump")) {
-                if (plugin.superJumper.contains(player.getName())) {
-                    plugin.superJumper.remove(player.getName());
+                if (plugin.superJumper.contains(player.getUniqueId())) {
+                    plugin.superJumper.remove(player.getUniqueId());
                     player.sendMessage(ChatColor.BLUE + StringHandler.SUPERJUMP_REMOVE);
                 } else {
                     player.sendMessage(ChatColor.BLUE + StringHandler.SUPERJUMP_ADD);
-                    plugin.superJumper.add(player.getName());
+                    plugin.superJumper.add(player.getUniqueId());
                 }
                 return true;
             } else {

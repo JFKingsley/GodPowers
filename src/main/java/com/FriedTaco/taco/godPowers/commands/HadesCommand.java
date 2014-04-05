@@ -21,12 +21,12 @@ public class HadesCommand implements CommandExecutor {
             player = (Player) sender;
             if (player.hasPermission("godpowers.hades")) {
                 if (args.length == 0) {
-                    if (plugin.hades.contains(player.getName())) {
+                    if (plugin.hades.contains(player.getUniqueId())) {
                         player.sendMessage(ChatColor.DARK_RED + StringHandler.HADES_REMOVE);
-                        plugin.hades.remove(player.getName());
+                        plugin.hades.remove(player.getUniqueId());
                     } else {
                         player.sendMessage(ChatColor.DARK_RED + StringHandler.HADES_ADD);
-                        plugin.hades.add(player.getName());
+                        plugin.hades.add(player.getUniqueId());
                     }
                     return true;
                 } else {

@@ -29,12 +29,12 @@ public class HermesCommand implements CommandExecutor {
                     player.sendMessage(ChatColor.RED + StringHandler.HERMES_SYNTAX);
                     return true;
                 } else {
-                    if (plugin.isHermes.contains(player.getName())) {
-                        plugin.isHermes.remove(player.getName());
+                    if (plugin.isHermes.contains(player.getUniqueId())) {
+                        plugin.isHermes.remove(player.getUniqueId());
                         player.sendMessage(ChatColor.AQUA + StringHandler.HERMES_REMOVE);
                         return true;
                     } else {
-                        plugin.isHermes.add(player.getName());
+                        plugin.isHermes.add(player.getUniqueId());
                         player.sendMessage(ChatColor.AQUA + StringHandler.HERMES_ADD);
                         return true;
                     }

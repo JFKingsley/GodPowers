@@ -25,18 +25,18 @@ public class JesusCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (sender instanceof Player) {
             player = (Player) sender;
-            Raft r = (Raft) Jesus.rafts.get(player.getName());
+            Raft r = (Raft) Jesus.rafts.get(player.getUniqueId());
             Jesus j = new Jesus();
             if (player.hasPermission("godpowers.jesus")) {
                 if (r == null) {
                     player.sendMessage(ChatColor.BLUE + StringHandler.JESUS_ADD);
-                    plugin.isJesus.add(player.getName());
-                    Jesus.rafts.put(player.getName(), j.new Raft());
+                    plugin.isJesus.add(player.getUniqueId());
+                    Jesus.rafts.put(player.getUniqueId(), j.new Raft());
                     return true;
                 } else {
                     player.sendMessage(ChatColor.BLUE + StringHandler.JESUS_REMOVE);
-                    Jesus.rafts.remove(player.getName());
-                    plugin.isJesus.remove(player.getName());
+                    Jesus.rafts.remove(player.getUniqueId());
+                    plugin.isJesus.remove(player.getUniqueId());
                     r.destroyJesusRaft(player);
                     return true;
                 }

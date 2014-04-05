@@ -23,7 +23,7 @@ public class DieCommand implements CommandExecutor {
         if (sender instanceof Player) {
             player = (Player) sender;
             if (player.hasPermission("godpowers.die")) {
-                if (plugin.godmodeEnabled.contains(player.getName())) {
+                if (plugin.godmodeEnabled.contains(player.getUniqueId())) {
                     player.sendMessage(ChatColor.BLUE + StringHandler.DIE_CANTDIE);
                     return true;
                 } else {

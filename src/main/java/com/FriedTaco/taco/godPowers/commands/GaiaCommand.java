@@ -21,12 +21,12 @@ public class GaiaCommand implements CommandExecutor {
             player = (Player) sender;
             if (player.hasPermission("godpowers.gaia")) {
                 if (args.length == 0) {
-                    if (plugin.gaia.contains(player.getName())) {
+                    if (plugin.gaia.contains(player.getUniqueId())) {
                         player.sendMessage(ChatColor.DARK_GREEN + StringHandler.GAIA_REMOVE);
-                        plugin.gaia.remove(player.getName());
+                        plugin.gaia.remove(player.getUniqueId());
                     } else {
                         player.sendMessage(ChatColor.DARK_GREEN + StringHandler.GAIA_ADD);
-                        plugin.gaia.add(player.getName());
+                        plugin.gaia.add(player.getUniqueId());
                     }
                     return true;
                 } else {

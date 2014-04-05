@@ -95,7 +95,7 @@ public class PlayerListener implements Listener {
                 public void run() {
                     player.sendMessage(StringHandler.GODMODE_LOGIN);
                     player.setDisplayName(plugin.title + player.getDisplayName());
-                    plugin.godmodeEnabled.add(player.getName());
+                    plugin.godmodeEnabled.add(player.getUniqueId());
                     player.setHealth(player.getMaxHealth());
                     player.setFoodLevel(20);
                     player.setDisplayName(plugin.title + player.getName());
@@ -106,12 +106,12 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event) {
-        if (plugin.godmodeEnabled.contains(event.getPlayer().getName())) {
-            plugin.godmodeEnabled.remove(event.getPlayer().getName());
+        if (plugin.godmodeEnabled.contains(event.getPlayer().getUniqueId())) {
+            plugin.godmodeEnabled.remove(event.getPlayer().getUniqueId());
         }
-        if (plugin.isJesus.contains(event.getPlayer().getName())) {
-            plugin.isJesus.remove(event.getPlayer().getName());
-            jesus = (Raft) Jesus.rafts.get(event.getPlayer().getName());
+        if (plugin.isJesus.contains(event.getPlayer().getUniqueId())) {
+            plugin.isJesus.remove(event.getPlayer().getUniqueId());
+            jesus = (Raft) Jesus.rafts.get(event.getPlayer().getUniqueId());
             jesus.destroyJesusRaft(event.getPlayer());
         }
     }
@@ -128,10 +128,10 @@ public class PlayerListener implements Listener {
     		event.getTo().getBlock().getRelative(0,-1,0).setTypeId(89);
     	}
     	*/
-        if (plugin.isHermes.contains(event.getPlayer().getName())) {
+        if (plugin.isHermes.contains(event.getPlayer().getUniqueId())) {
             event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 120, 6));
         }
-        if (plugin.isPoseidon.contains(event.getPlayer().getName())) {
+        if (plugin.isPoseidon.contains(event.getPlayer().getUniqueId())) {
             Material m = event.getPlayer().getLocation().getBlock().getType();
             if (m == Material.STATIONARY_WATER || m == Material.WATER) {
                 event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120, 2));
@@ -139,7 +139,7 @@ public class PlayerListener implements Listener {
                 event.getPlayer().setRemainingAir(300);
             }
         }
-        if (plugin.isMedusa.contains(event.getPlayer().getName())) {
+        if (plugin.isMedusa.contains(event.getPlayer().getUniqueId())) {
             if (getTarget(event.getPlayer()) != null) {
                 Player target = getTarget(event.getPlayer());
                 Player player = event.getPlayer();
@@ -175,15 +175,15 @@ public class PlayerListener implements Listener {
                 }
             }
         }
-        if (plugin.godmodeEnabled.contains(event.getPlayer().getName()) && event.getPlayer().getFireTicks() > 1) {
+        if (plugin.godmodeEnabled.contains(event.getPlayer().getUniqueId()) && event.getPlayer().getFireTicks() > 1) {
             event.getPlayer().setFireTicks(0);
         }
-        if (plugin.isJesus.contains(event.getPlayer().getName())) {
-            Raft jesus = (Raft) Jesus.rafts.get(event.getPlayer().getName());
+        if (plugin.isJesus.contains(event.getPlayer().getUniqueId())) {
+            Raft jesus = (Raft) Jesus.rafts.get(event.getPlayer().getUniqueId());
             jesus.destroyJesusRaft(event.getPlayer());
             jesus.makeJesusRaft(event.getPlayer());
         }
-        if (plugin.isInferno.contains(event.getPlayer().getName())) {
+        if (plugin.isInferno.contains(event.getPlayer().getUniqueId())) {
             double diffX = event.getFrom().getX() - event.getTo().getX();
             double diffZ = event.getFrom().getZ() - event.getTo().getZ();
             if (diffX > 0) {
@@ -202,7 +202,7 @@ public class PlayerListener implements Listener {
                 block.setType(Material.FIRE);
             }
         }
-        if ((plugin.superJumper.contains(event.getPlayer().getName()))) {
+        if ((plugin.superJumper.contains(event.getPlayer().getUniqueId()))) {
             Block block, control;
             dir = event.getPlayer().getVelocity().setY(2);
             if (event.getTo().getY() > event.getFrom().getY()) {
@@ -214,13 +214,13 @@ public class PlayerListener implements Listener {
                 }
             }
         }
-        if (plugin.burn.contains(event.getPlayer().getName()) && event.getPlayer().getFireTicks() < 10) {
+        if (plugin.burn.contains(event.getPlayer().getUniqueId()) && event.getPlayer().getFireTicks() < 10) {
             event.getPlayer().setFireTicks(9001);
         }
-        if (plugin.arrowKill.contains(event.getPlayer().getName())) {
+        if (plugin.arrowKill.contains(event.getPlayer().getUniqueId())) {
             plugin.arrowSlay(event.getTo(), event.getPlayer().getWorld(), event.getPlayer());
         }
-        if (plugin.gaia.contains(event.getPlayer().getName())) {
+        if (plugin.gaia.contains(event.getPlayer().getUniqueId())) {
             for (int x = -2; x <= 2; x++) {
                 for (int z = -2; z <= 2; z++) {
                     Block blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY() - 1, event.getTo().getBlockZ() + z); // Block under player's feet
@@ -242,7 +242,7 @@ public class PlayerListener implements Listener {
                 }
             }
         }
-        if (plugin.hades.contains(event.getPlayer().getName()) && event.getFrom().getBlock().getLocation().distance(event.getTo().getBlock().getLocation()) > 0) {
+        if (plugin.hades.contains(event.getPlayer().getUniqueId()) && event.getFrom().getBlock().getLocation().distance(event.getTo().getBlock().getLocation()) > 0) {
             for (int x = -2; x <= 2; x++) {
                 for (int z = -2; z <= 2; z++) {
                     Block block = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY() - 1, event.getTo().getBlockZ() + z);
@@ -290,10 +290,10 @@ public class PlayerListener implements Listener {
         if (event.getAnimationType().equals(PlayerAnimationType.ARM_SWING)) {
             Player p = event.getPlayer();
             World w = p.getWorld();
-            if (plugin.isZeus.contains(p.getName())) {
+            if (plugin.isZeus.contains(p.getUniqueId())) {
                 w.strikeLightning((p.getTargetBlock(null, 100).getLocation())); // p.getTargetBlock is a Magic Value!
             }
-            if (plugin.isVulcan.contains(p.getName())) {
+            if (plugin.isVulcan.contains(p.getUniqueId())) {
                 Fireball f = event.getPlayer().getWorld().spawn(event.getPlayer().getLocation().add(event.getPlayer().getLocation().getDirection().normalize().multiply(3).toLocation(event.getPlayer().getWorld(), event.getPlayer().getLocation().getYaw(), event.getPlayer().getLocation().getPitch())).add(0, 1D, 0), Fireball.class);
                 f.setShooter(p);
             }
@@ -359,13 +359,10 @@ public class PlayerListener implements Listener {
                 if ((bx - .75 <= ex && ex <= bx + 1.75) && (bz - .75 <= ez && ez <= bz + 1.75) && (by - 1 <= ey && ey <= by + 2.5)) {
                     target = e;
                     break;
-
                 }
             }
-
         }
         return target;
-
     }
 
     private Color getColor(int i) {

@@ -14,6 +14,7 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
+import java.util.UUID;
 
 public class EntityListener implements Listener {
     private final godPowers plugin;
@@ -25,7 +26,7 @@ public class EntityListener implements Listener {
     @EventHandler
     public void onFoodLevelChange(FoodLevelChangeEvent event) {
         Entity e = event.getEntity();
-        if (e instanceof Player && plugin.godmodeEnabled.contains(((Player) e).getName()))
+        if (e instanceof Player && plugin.godmodeEnabled.contains(((Player) e).getUniqueId()))
             event.setCancelled(true);
     }
 
@@ -33,14 +34,14 @@ public class EntityListener implements Listener {
     public void onEntityDamage(EntityDamageEvent event) {
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
-            if (plugin.godmodeEnabled.contains(player.getName())) {
+            if (plugin.godmodeEnabled.contains(player.getUniqueId())) {
                 player.setHealth(player.getMaxHealth());
                 event.setCancelled(true);
-            } else if (plugin.isInferno.contains(player.getName()) && event.getCause() == DamageCause.FIRE) {
+            } else if (plugin.isInferno.contains(player.getUniqueId()) && event.getCause() == DamageCause.FIRE) {
                 event.setCancelled(true);
-            } else if (plugin.superJumper.contains(player.getName()) && event.getCause() == DamageCause.FALL) {
+            } else if (plugin.superJumper.contains(player.getUniqueId()) && event.getCause() == DamageCause.FALL) {
                 event.setCancelled(true);
-            } else if (plugin.DemiGod.contains(player.getName())) {
+            } else if (plugin.DemiGod.contains(player.getUniqueId())) {
                 event.setDamage((int) (event.getDamage() * plugin.demiModifier));
             }
         }
@@ -66,18 +67,17 @@ public class EntityListener implements Listener {
     public void onEntityDeath(EntityDeathEvent event) {
         if (event.getEntity() instanceof Player) {
             Player player = (Player) event.getEntity();
-            String name = player.getName();
-            if (plugin.burn.contains(name)) {
-                plugin.burn.remove(player.getName());
+            UUID UUID = player.getUniqueId();
+            if (plugin.burn.contains(UUID)) {
+                plugin.burn.remove(player.getUniqueId());
                 player.setFireTicks(0);
-            } else if (plugin.arrowKill.contains(name)) {
-                plugin.arrowKill.remove(player.getName());
-            } else if (plugin.curse.containsKey(name)) {
-                plugin.getServer().getScheduler().cancelTask(plugin.curse.get(name).intValue());
+            } else if (plugin.arrowKill.contains(UUID)) {
+                plugin.arrowKill.remove(player.getUniqueId());
+            } else if (plugin.curse.containsKey(UUID)) {
+                plugin.getServer().getScheduler().cancelTask(plugin.curse.get(UUID).intValue());
             }
         }
     }
-
 
     public boolean isCancelled() {
         return false;
@@ -85,5 +85,4 @@ public class EntityListener implements Listener {
 
     public void setCancelled(boolean arg0) {
     }
-
 }
