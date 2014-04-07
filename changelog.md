@@ -1,7 +1,14 @@
 ## Changelog ##
 As always, more detailed info can be found in the commit logs at
 https://github.com/JFKingsley/GodPowers/commits/master
-===============
+
+## GodPowers 3.6 ##
+- Switch logging methods (cleaner, easier to read)
+- Re-Add DeveloperJoinEffect (with config.yml toggle)
+- Fixed Hades command returning the wrong string
+- (More) compatibility changes for plugins that alter player health
+- Ability to exempt players from the MedusaEffect (godpowers.medusa.exempt)
+- Make /die public death message customizable (see strings file)
 
 ## GodPowers 3.5 ##
 - Add /repair command
