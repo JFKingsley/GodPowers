@@ -139,7 +139,7 @@ public class PlayerListener implements Listener {
                 event.getPlayer().setRemainingAir(300);
             }
         }
-        if (plugin.isMedusa.contains(event.getPlayer().getUniqueId())) {
+        if (plugin.isMedusa.contains(event.getPlayer().getUniqueId()) || plugin.hasMedusaHead.contains(event.getPlayer().getUniqueId())) {
             if (getTarget(event.getPlayer()) != null) {
                 Player target = getTarget(event.getPlayer());
                 Player player = event.getPlayer();
@@ -314,6 +314,75 @@ public class PlayerListener implements Listener {
                         mine(p, b, i);
                     } else if (i.getType() == Material.GOLD_AXE && plugin.axeDrops.contains(b.getType())) {
                         mine(p, b, i);
+                    }
+                }
+            }
+        }
+    }
+    // TODO: Remove debug messages after further testing
+    @EventHandler
+    public void onPlayerItemHeld(PlayerItemHeldEvent event) {
+        if (plugin.medusaDropHead) {
+            Player player = event.getPlayer();
+            if (player.hasPermission("godpowers.medusa.usehead")) {
+                ItemStack item;
+                item = event.getPlayer().getInventory().getItem(event.getNewSlot());
+                // Slot change handling start
+                if (item != null) {
+                    if (item.getItemMeta().getDisplayName() != null) {
+                        if (item.getItemMeta().getDisplayName().equals("Medusa Head")) { // If the player is holding our skull item
+                            if (!plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                                plugin.hasMedusaHead.add(player.getUniqueId());
+                                player.sendMessage("[godPowers] Added to hasMedusaHead array");
+                            } else if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                                player.sendMessage("[godPowers] Player is already in hasMedusaHead array");
+                            }
+                        }
+                    } else { // the item isn't our skull
+                        if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                            plugin.hasMedusaHead.remove(player.getUniqueId());
+                            player.sendMessage("[godPowers] Removed from hasMedusaHead array");
+                        }
+                    }
+                } else { // the slot is null (empty)
+                    if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                        plugin.hasMedusaHead.remove(player.getUniqueId());
+                        player.sendMessage("[godPowers] Removed from hasMedusaHead array");
+                    }
+                }
+                // Slot change handling stop
+            }
+        }
+    }
+
+    @EventHandler
+    public void onDropItem(PlayerDropItemEvent event) {
+        if (plugin.medusaDropHead) {
+            Player player = event.getPlayer();
+            if (player.hasPermission("godpowers.medusa.usehead")) {
+                if (event.getItemDrop().getItemStack().getItemMeta().getDisplayName() != null) {
+                    if (event.getItemDrop().getItemStack().getItemMeta().getDisplayName().equals("Medusa Head")) { // If the player is holding our skull item
+                        plugin.hasMedusaHead.remove(player.getUniqueId());
+                        player.sendMessage("[godPowers] Removed from hasMedusaHead array");
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPickupItem(PlayerPickupItemEvent event) {
+        if (plugin.medusaDropHead) {
+            Player player = event.getPlayer();
+            if (player.hasPermission("godpowers.medusa.usehead")) {
+                if (event.getItem().getItemStack().getItemMeta().getDisplayName() != null) {
+                    if (event.getItem().getItemStack().getItemMeta().getDisplayName().equals("Medusa Head")) { // If the player is holding our skull item
+                        if (!plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                            plugin.hasMedusaHead.add(player.getUniqueId());
+                            player.sendMessage("[godPowers] Added to hasMedusaHead array");
+                        } else if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                            player.sendMessage("[godPowers] Player is already in hasMedusaArray");
+                        }
                     }
                 }
             }

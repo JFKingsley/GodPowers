@@ -46,6 +46,7 @@ public class godPowers extends JavaPlugin {
     public ArrayList<UUID> isHermes = new ArrayList<UUID>();
     public ArrayList<UUID> isPoseidon = new ArrayList<UUID>();
     public ArrayList<UUID> isMedusa = new ArrayList<UUID>();
+    public ArrayList<UUID> hasMedusaHead = new ArrayList <UUID>();
     public ArrayList<UUID> superJumper = new ArrayList<UUID>();
     public ArrayList<UUID> arrowKill = new ArrayList<UUID>();
     public ArrayList<UUID> burn = new ArrayList<UUID>();
