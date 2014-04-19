@@ -15,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -382,6 +383,27 @@ public class PlayerListener implements Listener {
                             player.sendMessage("[godPowers] Added to hasMedusaHead array");
                         } else if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
                             player.sendMessage("[godPowers] Player is already in hasMedusaArray");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent event) {
+        if (event.getWhoClicked() instanceof Player) {
+            Player player = (Player) event.getWhoClicked();
+            if (plugin.medusaDropHead) {
+                if (event.getCurrentItem() != null) { // If we're even working w/in an inventory
+                    if (!event.getCurrentItem().getType().equals(Material.AIR)) { // If the slot isnt empty
+                        if (event.getCurrentItem().getItemMeta().getDisplayName() != null) { // If the item has a display name
+                            if (event.getCurrentItem().getItemMeta().getDisplayName().equals("Medusa Head")) { // If this is our skull item
+                                if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                                    plugin.hasMedusaHead.remove(player.getUniqueId());
+                                    player.sendMessage("[godPowers] Removed from hasMedusaHead array");
+                                }
+                            }
                         }
                     }
                 }
