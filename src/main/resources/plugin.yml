@@ -104,6 +104,7 @@ permissions:
             godpowers.jesus: true
             godpowers.maim: true
             godpowers.medusa: true
+            godpowers.medusa.usehead: true
             godpowers.plutus: true
             godpowers.poseidon: true
             godpowers.repair: true
@@ -160,8 +161,11 @@ permissions:
         description: Gives permission to relevant command.
         default: op
     godpowers.medusa.exempt:
-        description: Exempts a player from medusa freeze
+        description: Exempts a player from medusa freeze.
         default: false
+    godpowers.medusa.usehead:
+        description: Allows a player to use a dropped medusa head.
+        default: op
     godpowers.plutus:
         description: Gives permission to relevant command.
         default: op

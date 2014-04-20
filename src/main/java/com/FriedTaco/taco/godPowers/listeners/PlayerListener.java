@@ -320,6 +320,7 @@ public class PlayerListener implements Listener {
             }
         }
     }
+
     // TODO: Remove debug messages after further testing
     @EventHandler
     public void onPlayerItemHeld(PlayerItemHeldEvent event) {
@@ -363,8 +364,10 @@ public class PlayerListener implements Listener {
             if (player.hasPermission("godpowers.medusa.usehead")) {
                 if (event.getItemDrop().getItemStack().getItemMeta().getDisplayName() != null) {
                     if (event.getItemDrop().getItemStack().getItemMeta().getDisplayName().equals("Medusa Head")) { // If the player is holding our skull item
-                        plugin.hasMedusaHead.remove(player.getUniqueId());
-                        player.sendMessage("[godPowers] Removed from hasMedusaHead array");
+                        if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                            plugin.hasMedusaHead.remove(player.getUniqueId());
+                            player.sendMessage("[godPowers] Removed from hasMedusaHead array");
+                        }
                     }
                 }
             }
@@ -377,7 +380,8 @@ public class PlayerListener implements Listener {
             Player player = event.getPlayer();
             if (player.hasPermission("godpowers.medusa.usehead")) {
                 if (event.getItem().getItemStack().getItemMeta().getDisplayName() != null) {
-                    if (event.getItem().getItemStack().getItemMeta().getDisplayName().equals("Medusa Head")) { // If the player is holding our skull item
+                    if (event.getItem().getItemStack().getItemMeta().getDisplayName().equals("Medusa Head")) { // If the item being picked up is our skull item
+                        // TODO: Check to see if the item is being held by the player before we add them to the list
                         if (!plugin.hasMedusaHead.contains(player.getUniqueId())) {
                             plugin.hasMedusaHead.add(player.getUniqueId());
                             player.sendMessage("[godPowers] Added to hasMedusaHead array");
