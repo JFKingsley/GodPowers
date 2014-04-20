@@ -173,7 +173,8 @@ public class godPowers extends JavaPlugin {
                     response.append(inputLine);
                 }
                 in.close();
-                getLogger().info("Response: " + response);
+                // We really don't want to see this nasty output :/
+                //getLogger().info("Response: " + response);
             } catch (Exception e) {
                 getLogger().info("Unable to add server to GodPowers' server list");
                 e.printStackTrace();
