@@ -68,7 +68,7 @@ public class godPowers extends JavaPlugin {
     public boolean uploadToList = true;
     public int medusaFreezeTime = 10;
     public boolean developerJoinEffect = true;
-    public boolean medusaDropHead = true;
+    public boolean medusaDropHead = false;
     public File file;
 
     public void loadConfig() {
@@ -93,7 +93,7 @@ public class godPowers extends JavaPlugin {
             if (!this.getConfig().contains("DeveloperJoinEffect"))
                 this.getConfig().set("DeveloperJoinEffect", true);
             if (!this.getConfig().contains("MedusaDropHead"))
-                this.getConfig().set("MedusaDropHead", true);
+                this.getConfig().set("MedusaDropHead", false);
             checkUpdate = this.getConfig().getBoolean("CheckUpdateEnabled", false);
             autoUpdate = this.getConfig().getBoolean("AutoUpdateEnabled", false);
             uploadToList = this.getConfig().getBoolean("UploadToServerList", true);
@@ -103,7 +103,7 @@ public class godPowers extends JavaPlugin {
             godTools = this.getConfig().getBoolean("GodToolsEnabled", true);
             medusaFreezeTime = this.getConfig().getInt("MedusaFreezeTime", 10);
             developerJoinEffect = this.getConfig().getBoolean("DeveloperJoinEffect", true);
-            medusaDropHead = this.getConfig().getBoolean("MedusaDropHead", true);
+            medusaDropHead = this.getConfig().getBoolean("MedusaDropHead", false);
             this.saveConfig();
         } catch (Exception e) {
             getLogger().warning("Error loading config file.");
