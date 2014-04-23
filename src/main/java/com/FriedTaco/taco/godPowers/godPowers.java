@@ -354,25 +354,44 @@ public class godPowers extends JavaPlugin {
         shovelDrops.add(Material.SAND);
         shovelDrops.add(Material.GRAVEL);
         shovelDrops.add(Material.CLAY);
+        shovelDrops.add(Material.SNOW_BLOCK);
+        shovelDrops.add(Material.SOUL_SAND);
         pickDrops.add(Material.STONE);
+        pickDrops.add(Material.SMOOTH_BRICK);
         pickDrops.add(Material.COBBLESTONE);
         pickDrops.add(Material.GOLD_ORE);
         pickDrops.add(Material.IRON_ORE);
         pickDrops.add(Material.COAL_ORE);
+        pickDrops.add(Material.COAL_BLOCK);
         pickDrops.add(Material.LAPIS_ORE);
         pickDrops.add(Material.LAPIS_BLOCK);
+        pickDrops.add(Material.EMERALD_ORE);
+        pickDrops.add(Material.EMERALD_BLOCK);
         pickDrops.add(Material.SANDSTONE);
         pickDrops.add(Material.GOLD_BLOCK);
         pickDrops.add(Material.IRON_BLOCK);
         pickDrops.add(Material.DOUBLE_STEP);
+        pickDrops.add(Material.REDSTONE_ORE);
+        pickDrops.add(Material.REDSTONE_BLOCK);
         pickDrops.add(Material.STEP);
         pickDrops.add(Material.BRICK);
         pickDrops.add(Material.MOSSY_COBBLESTONE);
         pickDrops.add(Material.OBSIDIAN);
         pickDrops.add(Material.DIAMOND_ORE);
         pickDrops.add(Material.DIAMOND_BLOCK);
+        pickDrops.add(Material.NETHERRACK);
+        pickDrops.add(Material.NETHER_BRICK);
+        pickDrops.add(Material.QUARTZ_ORE);
+        pickDrops.add(Material.QUARTZ_BLOCK);
+        pickDrops.add(Material.CLAY_BRICK);
+        pickDrops.add(Material.STAINED_CLAY);
+        pickDrops.add(Material.ENDER_STONE);
         axeDrops.add(Material.WOOD);
+        axeDrops.add(Material.WOOD_STEP);
+        axeDrops.add(Material.WOOD_DOUBLE_STEP);
+        axeDrops.add(Material.WOOD_STAIRS);
         axeDrops.add(Material.LOG);
+        axeDrops.add(Material.LOG_2);
 
     }
 
