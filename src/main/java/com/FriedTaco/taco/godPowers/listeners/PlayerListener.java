@@ -15,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
@@ -409,6 +410,21 @@ public class PlayerListener implements Listener {
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
+        Player player = event.getPlayer();
+        if (plugin.medusaDropHead) {
+            if (event.getItemInHand().getItemMeta().getDisplayName() != null) {
+                if (event.getItemInHand().getItemMeta().getDisplayName().equals("Medusa Head")) { // If the player is placing our skull item
+                    if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                        plugin.hasMedusaHead.remove(player.getUniqueId());
+                        player.sendMessage("[godPowers] Removed from hasMedusaHead array");
                     }
                 }
             }
