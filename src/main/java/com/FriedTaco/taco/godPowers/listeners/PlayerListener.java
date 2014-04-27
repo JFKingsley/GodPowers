@@ -340,6 +340,11 @@ public class PlayerListener implements Listener {
                             } else if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
                                 player.sendMessage("[godPowers] Player is already in hasMedusaHead array");
                             }
+                        } else { // the item isn't our skull but does have a display name
+                            if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                                plugin.hasMedusaHead.remove(player.getUniqueId());
+                                player.sendMessage("[godPowers] Removed from hasMedusaHead array");
+                            }
                         }
                     } else { // the item isn't our skull
                         if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
