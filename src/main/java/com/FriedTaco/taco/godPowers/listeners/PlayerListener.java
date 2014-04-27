@@ -376,26 +376,6 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler
-    public void onPickupItem(PlayerPickupItemEvent event) {
-        if (plugin.medusaDropHead) {
-            Player player = event.getPlayer();
-            if (player.hasPermission("godpowers.medusa.usehead")) {
-                if (event.getItem().getItemStack().getItemMeta().getDisplayName() != null) {
-                    if (event.getItem().getItemStack().getItemMeta().getDisplayName().equals("Medusa Head")) { // If the item being picked up is our skull item
-                        // TODO: Check to see if the item is being held by the player before we add them to the list
-                        if (!plugin.hasMedusaHead.contains(player.getUniqueId())) {
-                            plugin.hasMedusaHead.add(player.getUniqueId());
-                            player.sendMessage("[godPowers] Added to hasMedusaHead array");
-                        } else if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
-                            player.sendMessage("[godPowers] Player is already in hasMedusaArray");
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         if (event.getWhoClicked() instanceof Player) {
             Player player = (Player) event.getWhoClicked();
