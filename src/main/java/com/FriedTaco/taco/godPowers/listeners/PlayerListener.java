@@ -322,7 +322,6 @@ public class PlayerListener implements Listener {
         }
     }
 
-    // TODO: Remove debug messages after further testing
     @EventHandler
     public void onPlayerItemHeld(PlayerItemHeldEvent event) {
         if (plugin.medusaDropHead) {
@@ -336,26 +335,20 @@ public class PlayerListener implements Listener {
                         if (item.getItemMeta().getDisplayName().equals("Medusa Head")) { // If the player is holding our skull item
                             if (!plugin.hasMedusaHead.contains(player.getUniqueId())) {
                                 plugin.hasMedusaHead.add(player.getUniqueId());
-                                player.sendMessage("[godPowers] Added to hasMedusaHead array");
-                            } else if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
-                                player.sendMessage("[godPowers] Player is already in hasMedusaHead array");
                             }
                         } else { // the item isn't our skull but does have a display name
                             if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
                                 plugin.hasMedusaHead.remove(player.getUniqueId());
-                                player.sendMessage("[godPowers] Removed from hasMedusaHead array");
                             }
                         }
                     } else { // the item isn't our skull
                         if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
                             plugin.hasMedusaHead.remove(player.getUniqueId());
-                            player.sendMessage("[godPowers] Removed from hasMedusaHead array");
                         }
                     }
                 } else { // the slot is null (empty)
                     if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
                         plugin.hasMedusaHead.remove(player.getUniqueId());
-                        player.sendMessage("[godPowers] Removed from hasMedusaHead array");
                     }
                 }
                 // Slot change handling stop
@@ -372,7 +365,6 @@ public class PlayerListener implements Listener {
                     if (event.getItemDrop().getItemStack().getItemMeta().getDisplayName().equals("Medusa Head")) { // If the player is holding our skull item
                         if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
                             plugin.hasMedusaHead.remove(player.getUniqueId());
-                            player.sendMessage("[godPowers] Removed from hasMedusaHead array");
                         }
                     }
                 }
@@ -391,7 +383,6 @@ public class PlayerListener implements Listener {
                             if (event.getCurrentItem().getItemMeta().getDisplayName().equals("Medusa Head")) { // If this is our skull item
                                 if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
                                     plugin.hasMedusaHead.remove(player.getUniqueId());
-                                    player.sendMessage("[godPowers] Removed from hasMedusaHead array");
                                 }
                             }
                         }
@@ -409,7 +400,6 @@ public class PlayerListener implements Listener {
                 if (event.getItemInHand().getItemMeta().getDisplayName().equals("Medusa Head")) { // If the player is placing our skull item
                     if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
                         plugin.hasMedusaHead.remove(player.getUniqueId());
-                        player.sendMessage("[godPowers] Removed from hasMedusaHead array");
                     }
                 }
             }
