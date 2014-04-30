@@ -98,6 +98,7 @@ public class EntityListener implements Listener {
                         skull.setItemMeta(skullMeta);
                         e.getDrops().add(skull);
                         plugin.isMedusa.remove(player.getUniqueId());
+                        player.getKiller().sendMessage(ChatColor.BLUE + StringHandler.MEDUSA_DROPHEAD);
                     }
                 }
             }
