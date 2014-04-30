@@ -373,6 +373,20 @@ public class PlayerListener implements Listener {
     }
 
     @EventHandler
+    public void onPickupItem(PlayerPickupItemEvent event) {
+        if (plugin.medusaDropHead) {
+            Player player = event.getPlayer();
+            if (player.hasPermission("godpowers.medusa.usehead")) {
+                if (event.getItem().getItemStack().getItemMeta().getDisplayName() != null) {
+                    if (event.getItem().getItemStack().getItemMeta().getDisplayName().equals("Medusa Head")) { // If the item being picked up is our skull item
+                        player.sendMessage(ChatColor.BLUE + StringHandler.MEDUSA_PICKUPHEAD);
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         if (event.getWhoClicked() instanceof Player) {
             Player player = (Player) event.getWhoClicked();

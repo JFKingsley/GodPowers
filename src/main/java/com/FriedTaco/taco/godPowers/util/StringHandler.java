@@ -101,6 +101,7 @@ public class StringHandler {
     public static String MAIM_SYNTAX;
     public static String MEDUSA_ADD;
     public static String MEDUSA_DROPHEAD;
+    public static String MEDUSA_PICKUPHEAD;
     public static String MEDUSA_REMOVE;
     public static String MEDUSA_SYNTAX;
     public static String MEDUSA_GONE;
