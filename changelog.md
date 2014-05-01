@@ -1,6 +1,5 @@
 ## Changelog ##
-As always, more detailed info can be found in the commit logs at
-https://github.com/JFKingsley/GodPowers/commits/master
+As always, more detailed info can be found in the [commit logs](https://github.com/JFKingsley/GodPowers/commits/master) and at [our wiki](https://github.com/JFKingsley/GodPowers/wiki)
 
 ## GodPowers 3.6 ##
 - Switch logging methods (cleaner, easier to read)
@@ -9,6 +8,8 @@ https://github.com/JFKingsley/GodPowers/commits/master
 - (More) compatibility changes for plugins that alter player health
 - Ability to exempt players from the MedusaEffect (godpowers.medusa.exempt)
 - Make /die public death message customizable (see strings file)
+- Update GodTools supported blocks
+- Add "MedusaDropHead" feature, defaults to off (see wiki)
 
 ## GodPowers 3.5 ##
 - Add /repair command
