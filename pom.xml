@@ -3,7 +3,7 @@
     <groupId>com.FriedTaco.taco.godPowers</groupId>
     <artifactId>godPowers</artifactId>
     <packaging>jar</packaging>
-    <version>3.5</version>
+    <version>3.6</version>
     <name>godPowers</name>
     <url>https://github.com/JFKingsley/GodPowers</url>
     <properties>
