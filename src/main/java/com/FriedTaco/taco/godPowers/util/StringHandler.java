@@ -100,10 +100,13 @@ public class StringHandler {
     public static String MAIM_TARGET;
     public static String MAIM_SYNTAX;
     public static String MEDUSA_ADD;
+    public static String MEDUSA_DROPHEAD;
+    public static String MEDUSA_PICKUPHEAD;
     public static String MEDUSA_REMOVE;
     public static String MEDUSA_SYNTAX;
     public static String MEDUSA_GONE;
     public static String MEDUSA_CURSED;
+    public static String MEDUSA_LORE;
     public static String MEDUSA_MOVEATTEMPT;
     public static String MEDUSA_UNCURSED;
     public static String PLUTUS_ADD;

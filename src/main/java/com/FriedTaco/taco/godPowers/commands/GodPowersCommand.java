@@ -103,6 +103,7 @@ public class GodPowersCommand implements CommandExecutor {
                 if (args[0].equalsIgnoreCase("credits")) {
                     player.sendMessage(ChatColor.DARK_AQUA + "Credits:");
                     player.sendMessage(ChatColor.GOLD + "- " + ChatColor.GREEN + "UnceCrafter" + ChatColor.BLUE + " (/poseidon)");
+                    player.sendMessage(ChatColor.GOLD + "- " + ChatColor.GREEN + "Cookiem42" + ChatColor.BLUE + " (Medusa Head Drop)");
                 }
             } else {
                 player.sendMessage("Incorrect syntax. Use '/godpowers [commands/update]'");

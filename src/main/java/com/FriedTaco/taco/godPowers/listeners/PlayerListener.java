@@ -15,6 +15,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
@@ -139,7 +141,7 @@ public class PlayerListener implements Listener {
                 event.getPlayer().setRemainingAir(300);
             }
         }
-        if (plugin.isMedusa.contains(event.getPlayer().getUniqueId())) {
+        if (plugin.isMedusa.contains(event.getPlayer().getUniqueId()) || plugin.hasMedusaHead.contains(event.getPlayer().getUniqueId())) {
             if (getTarget(event.getPlayer()) != null) {
                 Player target = getTarget(event.getPlayer());
                 Player player = event.getPlayer();
@@ -314,6 +316,104 @@ public class PlayerListener implements Listener {
                         mine(p, b, i);
                     } else if (i.getType() == Material.GOLD_AXE && plugin.axeDrops.contains(b.getType())) {
                         mine(p, b, i);
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPlayerItemHeld(PlayerItemHeldEvent event) {
+        if (plugin.medusaDropHead) {
+            Player player = event.getPlayer();
+            if (player.hasPermission("godpowers.medusa.usehead")) {
+                ItemStack item;
+                item = event.getPlayer().getInventory().getItem(event.getNewSlot());
+                // Slot change handling start
+                if (item != null) {
+                    if (item.getItemMeta().getDisplayName() != null) {
+                        if (item.getItemMeta().getDisplayName().equals("Medusa Head")) { // If the player is holding our skull item
+                            if (!plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                                plugin.hasMedusaHead.add(player.getUniqueId());
+                            }
+                        } else { // the item isn't our skull but does have a display name
+                            if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                                plugin.hasMedusaHead.remove(player.getUniqueId());
+                            }
+                        }
+                    } else { // the item isn't our skull
+                        if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                            plugin.hasMedusaHead.remove(player.getUniqueId());
+                        }
+                    }
+                } else { // the slot is null (empty)
+                    if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                        plugin.hasMedusaHead.remove(player.getUniqueId());
+                    }
+                }
+                // Slot change handling stop
+            }
+        }
+    }
+
+    @EventHandler
+    public void onDropItem(PlayerDropItemEvent event) {
+        if (plugin.medusaDropHead) {
+            Player player = event.getPlayer();
+            if (player.hasPermission("godpowers.medusa.usehead")) {
+                if (event.getItemDrop().getItemStack().getItemMeta().getDisplayName() != null) {
+                    if (event.getItemDrop().getItemStack().getItemMeta().getDisplayName().equals("Medusa Head")) { // If the player is holding our skull item
+                        if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                            plugin.hasMedusaHead.remove(player.getUniqueId());
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onPickupItem(PlayerPickupItemEvent event) {
+        if (plugin.medusaDropHead) {
+            Player player = event.getPlayer();
+            if (player.hasPermission("godpowers.medusa.usehead")) {
+                if (event.getItem().getItemStack().getItemMeta().getDisplayName() != null) {
+                    if (event.getItem().getItemStack().getItemMeta().getDisplayName().equals("Medusa Head")) { // If the item being picked up is our skull item
+                        player.sendMessage(ChatColor.BLUE + StringHandler.MEDUSA_PICKUPHEAD);
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onInventoryClick(InventoryClickEvent event) {
+        if (event.getWhoClicked() instanceof Player) {
+            Player player = (Player) event.getWhoClicked();
+            if (plugin.medusaDropHead) {
+                if (event.getCurrentItem() != null) { // If we're even working w/in an inventory
+                    if (!event.getCurrentItem().getType().equals(Material.AIR)) { // If the slot isnt empty
+                        if (event.getCurrentItem().getItemMeta().getDisplayName() != null) { // If the item has a display name
+                            if (event.getCurrentItem().getItemMeta().getDisplayName().equals("Medusa Head")) { // If this is our skull item
+                                if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                                    plugin.hasMedusaHead.remove(player.getUniqueId());
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event) {
+        Player player = event.getPlayer();
+        if (plugin.medusaDropHead) {
+            if (event.getItemInHand().getItemMeta().getDisplayName() != null) {
+                if (event.getItemInHand().getItemMeta().getDisplayName().equals("Medusa Head")) { // If the player is placing our skull item
+                    if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                        plugin.hasMedusaHead.remove(player.getUniqueId());
                     }
                 }
             }
