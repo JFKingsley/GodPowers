@@ -107,7 +107,9 @@ public class GodPowersCommand implements CommandExecutor {
                 }
                 if (args[0].equalsIgnoreCase("version") || args[0].equalsIgnoreCase("ver")) {
                     String plVer = plugin.getDescription().getVersion();
+                    String plHash = plugin.getDescription().getDescription(); // Yep we're storing the commit hash in the description, deal with it
                     player.sendMessage(ChatColor.DARK_AQUA + "You're running GodPowers version " + ChatColor.GOLD + plVer);
+                    player.sendMessage(ChatColor.DARK_AQUA + "This plugin is based on the tree from " + ChatColor.GOLD + plHash);
                 }
             } else {
                 player.sendMessage("Incorrect syntax. Use '/godpowers [commands/update]'");
