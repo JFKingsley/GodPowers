@@ -105,6 +105,10 @@ public class GodPowersCommand implements CommandExecutor {
                     player.sendMessage(ChatColor.GOLD + "- " + ChatColor.GREEN + "UnceCrafter" + ChatColor.BLUE + " (/poseidon)");
                     player.sendMessage(ChatColor.GOLD + "- " + ChatColor.GREEN + "Cookiem42" + ChatColor.BLUE + " (Medusa Head Drop)");
                 }
+                if (args[0].equalsIgnoreCase("version") || args[0].equalsIgnoreCase("ver")) {
+                    String plVer = plugin.getDescription().getVersion();
+                    player.sendMessage(ChatColor.DARK_AQUA + "You're running GodPowers version " + ChatColor.GOLD + plVer);
+                }
             } else {
                 player.sendMessage("Incorrect syntax. Use '/godpowers [commands/update]'");
             }

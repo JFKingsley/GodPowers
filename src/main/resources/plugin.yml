@@ -1,6 +1,6 @@
 name: godPowers
 main: com.FriedTaco.taco.godPowers.godPowers
-version: ${project.version}
+version: ${project.version}-${git.commit.id.abbrev}
 author: Swift
 commands:
     bless:
