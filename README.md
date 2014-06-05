@@ -9,5 +9,10 @@ Although this video is a little out of date, it does do a good job showing off s
 
 [![Example Video](http://img.youtube.com/vi/VJ1_40gL7as/0.jpg)](http://www.youtube.com/watch?v=VJ1_40gL7as)
 
-##Building from source
-To build GodPowers from source, clone the repo and after installing [Maven 3](http://maven.apache.org/download.html) use `mvn clean package` from the source directory to build the latest version of GodPowers.
+##Building
+The latest GodPowers builds are available on our [Build Server, here](http://ci.destroystokyo.com/job/GodPowers/).
+
+Keep in mind these are unapproved builds built from the latest source changes, so stability is not always guaranteed.
+
+
+If you'd prefer to build GodPowers from source, clone the repo and, after installing [Maven 3](http://maven.apache.org/download.html), use `mvn clean package` from the source directory to build the latest version of GodPowers.
