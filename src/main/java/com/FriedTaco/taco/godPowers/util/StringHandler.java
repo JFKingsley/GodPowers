@@ -109,6 +109,7 @@ public class StringHandler {
     public static String MEDUSA_LORE;
     public static String MEDUSA_MOVEATTEMPT;
     public static String MEDUSA_UNCURSED;
+    public static String MIDAS_MIDAS;
     public static String PLUTUS_ADD;
     public static String PLUTUS_SYNTAX;
     public static String PLUTUS_ERROR;

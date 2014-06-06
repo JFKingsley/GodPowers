@@ -58,6 +58,9 @@ commands:
     medusa:
         description: Curses you with the ability to turn people to stone!
         usage: /medusa
+    midas:
+        description: Does something with gold -- placeholder
+        usage: /midas
     myballsareonfire:
         description: See vulcan.
         usage: /myballsareonfire
@@ -106,6 +109,7 @@ permissions:
             godpowers.maim: true
             godpowers.medusa: true
             godpowers.medusa.usehead: true
+            godpowers.midas: true
             godpowers.plutus: true
             godpowers.poseidon: true
             godpowers.repair: true
@@ -166,6 +170,9 @@ permissions:
         default: false
     godpowers.medusa.usehead:
         description: Allows a player to use a dropped medusa head.
+        default: op
+    godpowers.midas:
+        description: Gives permission to relevant command.
         default: op
     godpowers.plutus:
         description: Gives permission to relevant command.

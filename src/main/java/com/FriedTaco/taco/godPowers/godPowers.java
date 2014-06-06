@@ -344,6 +344,11 @@ public class godPowers extends JavaPlugin {
         } catch (Exception e) {
             getLogger().warning(error + "itemrepair.");
         }
+        try {
+            getCommand("midas").setExecutor(new MidasCommand(this));
+        } catch (Exception e) {
+            getLogger().warning(error + "midas.");
+        }
 
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new EntityListener(this), this);
