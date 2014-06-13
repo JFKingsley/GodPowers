@@ -53,12 +53,14 @@ public class StringHandler {
     public static String DEMIGOD_ERROR;
     public static String DEMIGOD_YOURSELF;
     public static String DEMIGOD_RETURNYOU;
+    public static String DEMIGOD_SYNTAXERROR;
     public static String DIE_CANTDIE;
     public static String DIE_DEATHMSG;
     public static String DIE_DIE;
     public static String DUPE_DUPE;
     public static String DUPE_ERROR;
     public static String DUPE_NOTHING;
+    public static String DUPE_SYNTAXERROR;
     public static String FUSRODAH_SYNTAX;
     public static String FUSRODAH_FUSRODAH;
     public static String FUSRODAH_ERROR;
@@ -78,6 +80,7 @@ public class StringHandler {
     public static String GODMODE_POWEROF;
     public static String GODMODE_POWEROFADDED;
     public static String GODMODE_LOGIN;
+    public static String GODMODE_SYNTAX;
     public static String HADES_REMOVE;
     public static String HADES_ADD;
     public static String HADES_SYNTAX;
@@ -86,6 +89,7 @@ public class StringHandler {
     public static String HEAL_HEALEDYOU;
     public static String HEAL_ERROR;
     public static String HEAL_YOURSELF;
+    public static String HEAL_SYNTAX;
     public static String HERMES_SYNTAX;
     public static String HERMES_REMOVE;
     public static String HERMES_ADD;
@@ -110,6 +114,7 @@ public class StringHandler {
     public static String MEDUSA_MOVEATTEMPT;
     public static String MEDUSA_UNCURSED;
     public static String MIDAS_MIDAS;
+    public static String MIDAS_SYNTAX;
     public static String PLUTUS_ADD;
     public static String PLUTUS_SYNTAX;
     public static String PLUTUS_ERROR;

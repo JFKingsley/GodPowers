@@ -28,16 +28,13 @@ public class GaiaCommand implements CommandExecutor {
                         player.sendMessage(ChatColor.DARK_GREEN + StringHandler.GAIA_ADD);
                         plugin.gaia.add(player.getUniqueId());
                     }
-                    return true;
                 } else {
                     player.sendMessage(ChatColor.RED + StringHandler.GAIA_SYNTAX);
-                    return true;
                 }
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
-                return true;
             }
         }
-        return false;
+        return true;
     }
 }

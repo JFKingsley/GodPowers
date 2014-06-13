@@ -19,11 +19,10 @@ public class DupeCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        String[] split = args;
         if (sender instanceof Player) {
             player = (Player) sender;
             if (player.hasPermission("godpowers.dupe")) {
-                if (split.length == 0) {
+                if (args.length == 0) {
                     int amount = 64;
                     if (player.getItemInHand().getType() != Material.AIR) {
                         try {
@@ -43,10 +42,10 @@ public class DupeCommand implements CommandExecutor {
                     } else {
                         player.sendMessage(ChatColor.DARK_RED + StringHandler.DUPE_NOTHING);
                     }
-                } else if (split.length == 1) {
+                } else if (args.length == 1) {
                     if (player.getItemInHand().getType() != Material.AIR) {
                         player.sendMessage(ChatColor.BLUE + StringHandler.DUPE_DUPE);
-                        int amount = Integer.parseInt(split[0]);
+                        int amount = Integer.parseInt(args[0]);
                         if (amount == 0) {
                             amount = 64;
                         }
@@ -62,13 +61,13 @@ public class DupeCommand implements CommandExecutor {
                     } else {
                         player.sendMessage(ChatColor.DARK_RED + StringHandler.DUPE_NOTHING);
                     }
+                } else {
+                    player.sendMessage(ChatColor.RED + StringHandler.DUPE_SYNTAXERROR);
                 }
-                return true;
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
-                return true;
             }
         }
-        return false;
+        return true;
     }
 }

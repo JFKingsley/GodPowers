@@ -1,7 +1,5 @@
 package com.FriedTaco.taco.godPowers.commands;
 
-//import org.bukkit.World;
-
 import com.FriedTaco.taco.godPowers.godPowers;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
@@ -20,12 +18,11 @@ public class MaimCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        String[] split = args;
         if (sender instanceof Player) {
             player = (Player) sender;
             if (player.hasPermission("godpowers.maim")) {
-                if (split.length == 1) {
-                    Player targetPlayer = plugin.getServer().getPlayer(split[0]);
+                if (args.length == 1) {
+                    Player targetPlayer = plugin.getServer().getPlayer(args[0]);
                     if (targetPlayer == null) {
                         player.sendMessage(ChatColor.RED + StringHandler.MAIM_ERROR);
                     } else if (plugin.godmodeEnabled.contains(targetPlayer.getUniqueId())) {
@@ -35,16 +32,13 @@ public class MaimCommand implements CommandExecutor {
                         player.sendMessage(ChatColor.BLUE + StringHandler.MAIM_ATTACK + " " + targetPlayer.getName() + " " + StringHandler.MAIM_DAMAGE);
                         targetPlayer.sendMessage(ChatColor.BLUE + player.getName() + " " + StringHandler.MAIM_TARGET);
                     }
-                    return true;
                 } else {
                     player.sendMessage(ChatColor.RED + StringHandler.MAIM_SYNTAX);
-                    return true;
                 }
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
-                return true;
             }
         }
-        return false;
+        return true;
     }
 }

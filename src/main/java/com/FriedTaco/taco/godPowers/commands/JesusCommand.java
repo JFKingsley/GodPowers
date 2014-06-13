@@ -1,7 +1,5 @@
 package com.FriedTaco.taco.godPowers.commands;
 
-//import org.bukkit.World;
-
 import com.FriedTaco.taco.godPowers.godPowers;
 import com.FriedTaco.taco.godPowers.util.Jesus;
 import com.FriedTaco.taco.godPowers.util.Jesus.Raft;
@@ -32,19 +30,16 @@ public class JesusCommand implements CommandExecutor {
                     player.sendMessage(ChatColor.BLUE + StringHandler.JESUS_ADD);
                     plugin.isJesus.add(player.getUniqueId());
                     Jesus.rafts.put(player.getUniqueId(), j.new Raft());
-                    return true;
                 } else {
                     player.sendMessage(ChatColor.BLUE + StringHandler.JESUS_REMOVE);
                     Jesus.rafts.remove(player.getUniqueId());
                     plugin.isJesus.remove(player.getUniqueId());
                     r.destroyJesusRaft(player);
-                    return true;
                 }
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
-                return true;
             }
         }
-        return false;
+        return true;
     }
 }

@@ -1,7 +1,5 @@
 package com.FriedTaco.taco.godPowers.commands;
 
-//import org.bukkit.World;
-
 import com.FriedTaco.taco.godPowers.godPowers;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
@@ -31,10 +29,8 @@ public class InfernoCommand implements CommandExecutor {
                 }
             } else {
                 player.sendMessage(ChatColor.RED + StringHandler.GODPOWERS_NOPERMISSION);
-                return true;
             }
-            return true;
         }
-        return false;
+        return true;
     }
 }

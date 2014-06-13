@@ -17,32 +17,28 @@ public class BlessCommand implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        String[] split = args;
         if (sender instanceof Player) {
             player = (Player) sender;
             if (player.hasPermission("godpowers.bless")) {
-                if (split.length == 1) {
-                    Player player2 = plugin.getServer().getPlayer(split[0]);
+                if (args.length == 1) {
+                    Player player2 = plugin.getServer().getPlayer(args[0]);
                     if (player2 != null) {
                         player.sendMessage(ChatColor.BLUE + StringHandler.BLESS_PLAYER2 + " " + player2.getDisplayName());
                         player2.sendMessage(ChatColor.BLUE + StringHandler.BLESS_BLESSED);
                         plugin.bless(player2);
                     } else {
-                        player.sendMessage(ChatColor.BLUE + StringHandler.BLESS_CANNOTBLESS);
+                        player.sendMessage(ChatColor.RED + StringHandler.BLESS_CANNOTBLESS);
                     }
-                    return true;
-                } else if (split.length == 0) {
+                } else if (args.length == 0) {
                     player.sendMessage(ChatColor.BLUE + StringHandler.BLESS_BLESSED);
                     plugin.bless(player);
-                    return true;
                 } else {
                     player.sendMessage(ChatColor.RED + StringHandler.BLESS_SYNTAXERROR);
-                    return true;
                 }
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
             }
         }
-        return false;
+        return true;
     }
 }

@@ -1,7 +1,5 @@
 package com.FriedTaco.taco.godPowers.commands;
 
-//import org.bukkit.World;
-
 import com.FriedTaco.taco.godPowers.godPowers;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
@@ -19,30 +17,26 @@ public class DemigodCommand implements CommandExecutor {
     }
 
     @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        String[] split = args;
+    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {;
         if (sender instanceof Player) {
             player = (Player) sender;
             if (player.hasPermission("godpowers.demigod")) {
-                if (split.length == 0) {
+                if (args.length == 0) {
                     if (plugin.DemiGod.contains(player.getUniqueId())) {
                         plugin.DemiGod.remove(player.getUniqueId());
                         player.sendMessage(ChatColor.BLUE + StringHandler.DEMIGOD_REMOVE);
-                        return true;
                     } else {
                         player.sendMessage(ChatColor.BLUE + StringHandler.DEMIGOD_SHARED);
                         player.sendMessage(ChatColor.BLUE + StringHandler.DEMIGOD_ADD);
                         plugin.DemiGod.add(player.getUniqueId());
                         player.setHealth(player.getMaxHealth());
-                        return true;
                     }
-                } else {
-                    Player targetPlayer = plugin.getServer().getPlayer(split[0]);
+                } else if (args.length == 1) {
+                    Player targetPlayer = plugin.getServer().getPlayer(args[0]);
                     if (targetPlayer == null) {
                         player.sendMessage(ChatColor.RED + StringHandler.DEMIGOD_ERROR);
                     } else if (targetPlayer == player) {
                         player.sendMessage(ChatColor.RED + StringHandler.DEMIGOD_YOURSELF);
-
                     } else {
                         if (plugin.DemiGod.contains(targetPlayer.getUniqueId())) {
                             plugin.DemiGod.remove(targetPlayer.getUniqueId());
@@ -56,13 +50,13 @@ public class DemigodCommand implements CommandExecutor {
                             player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " " + StringHandler.DEMIGOD_ADDED);
                         }
                     }
-                    return true;
+                } else {
+                    player.sendMessage(ChatColor.RED + StringHandler.DEMIGOD_SYNTAXERROR);
                 }
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
-                return true;
             }
         }
-        return false;
+        return true;
     }
 }

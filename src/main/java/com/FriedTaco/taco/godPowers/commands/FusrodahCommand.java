@@ -21,27 +21,24 @@ public class FusrodahCommand implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        String[] split = args;
         if (sender instanceof Player) {
             player = (Player) sender;
             if (player.hasPermission("godpowers.fusrodah")) {
-                if (split.length > 0) {
+                if (args.length > 0) {
                     player.sendMessage(ChatColor.RED + StringHandler.FUSRODAH_SYNTAX);
-                    return true;
                 } else {
                     ItemStack i = player.getItemInHand();
                     if (i != null && i.getType() != Material.AIR) {
-                        player.sendMessage(ChatColor.DARK_RED + StringHandler.FUSRODAH_FUSRODAH);
+                        player.sendMessage(ChatColor.BLUE + StringHandler.FUSRODAH_FUSRODAH);
                         i.addUnsafeEnchantment(Enchantment.KNOCKBACK, 10);
                     } else {
                         player.sendMessage(ChatColor.RED + StringHandler.FUSRODAH_ERROR);
                     }
-                    return true;
                 }
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
             }
         }
-        return false;
+        return true;
     }
 }

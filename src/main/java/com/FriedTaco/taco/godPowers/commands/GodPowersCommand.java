@@ -88,10 +88,9 @@ public class GodPowersCommand implements CommandExecutor {
                             player.sendMessage(ChatColor.RED + "/zeus " + ChatColor.GREEN + StringHandler.LIST_ZEUS_DESCRIPTION);
                     } else {
                         player.sendMessage(StringHandler.GODPOWERS_NOPERMISSION);
-                        return true;
                     }
                 }
-                if (args[0].equalsIgnoreCase("update")) {
+                else if (args[0].equalsIgnoreCase("update")) {
                     Updater updater = new Updater(plugin, 33866, plugin.file, Updater.UpdateType.NO_DOWNLOAD, false);
                     if (updater.getResult().equals(Updater.UpdateResult.NO_UPDATE)) {
                         player.sendMessage(ChatColor.GREEN + "godPowers: " + ChatColor.GOLD + "There are currently no updates available.");
@@ -100,22 +99,23 @@ public class GodPowersCommand implements CommandExecutor {
                         new Updater(plugin, 33866, plugin.file, Updater.UpdateType.NO_VERSION_CHECK, true);
                     }
                 }
-                if (args[0].equalsIgnoreCase("credits")) {
+                else if (args[0].equalsIgnoreCase("credits")) {
                     player.sendMessage(ChatColor.DARK_AQUA + "Credits:");
                     player.sendMessage(ChatColor.GOLD + "- " + ChatColor.GREEN + "UnceCrafter" + ChatColor.BLUE + " (/poseidon)");
                     player.sendMessage(ChatColor.GOLD + "- " + ChatColor.GREEN + "Cookiem42" + ChatColor.BLUE + " (Medusa Head Drop)");
                 }
-                if (args[0].equalsIgnoreCase("version") || args[0].equalsIgnoreCase("ver")) {
+                else if (args[0].equalsIgnoreCase("version") || args[0].equalsIgnoreCase("ver")) {
                     String plVer = plugin.getDescription().getVersion();
                     String plHash = plugin.getDescription().getDescription(); // Yep we're storing the commit hash in the description, deal with it
                     player.sendMessage(ChatColor.DARK_AQUA + "You're running GodPowers version " + ChatColor.GOLD + plVer);
                     player.sendMessage(ChatColor.DARK_AQUA + "This plugin is based on the tree from " + ChatColor.GOLD + plHash);
+                } else {
+                    player.sendMessage(ChatColor.RED + "Incorrect syntax. Use '/godpowers <commands/update>'");
                 }
             } else {
-                player.sendMessage("Incorrect syntax. Use '/godpowers [commands/update]'");
+                player.sendMessage(ChatColor.RED + "Incorrect syntax. Use '/godpowers <commands/update>'");
             }
-            return true;
         }
-        return false;
+        return true;
     }
 }

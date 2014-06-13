@@ -25,19 +25,16 @@ public class DieCommand implements CommandExecutor {
             if (player.hasPermission("godpowers.die")) {
                 if (plugin.godmodeEnabled.contains(player.getUniqueId())) {
                     player.sendMessage(ChatColor.BLUE + StringHandler.DIE_CANTDIE);
-                    return true;
                 } else {
                     plugin.die.add(player.getUniqueId());
                     player.setHealth(0);
                     plugin.dropDeadItems(player);
                     player.sendMessage(StringHandler.DIE_DIE);
-                    return true;
                 }
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
-                return true;
             }
         }
-        return false;
+        return true;
     }
 }

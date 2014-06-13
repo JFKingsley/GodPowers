@@ -24,13 +24,11 @@ public class PlutusCommand implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        String[] split = args;
         if (sender instanceof Player) {
             player = (Player) sender;
             if (player.hasPermission("godpowers.plutus")) {
-                if (split.length > 0) {
+                if (args.length > 0) {
                     player.sendMessage(ChatColor.RED + StringHandler.PLUTUS_SYNTAX);
-                    return true;
                 } else {
                     Material poss[] = {Material.IRON_SPADE, Material.IRON_PICKAXE, Material.IRON_AXE, Material.WOOD_SPADE, Material.WOOD_PICKAXE, Material.WOOD_AXE, Material.STONE_SPADE, Material.STONE_PICKAXE, Material.STONE_AXE, Material.DIAMOND_SPADE, Material.DIAMOND_PICKAXE, Material.DIAMOND_AXE, Material.GOLD_SPADE, Material.GOLD_PICKAXE, Material.GOLD_AXE};
                     ArrayList<Material> possible = new ArrayList<Material>();
@@ -42,12 +40,11 @@ public class PlutusCommand implements CommandExecutor {
                     } else {
                         player.sendMessage(ChatColor.RED + StringHandler.PLUTUS_ERROR);
                     }
-                    return true;
                 }
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
             }
         }
-        return false;
+        return true;
     }
 }

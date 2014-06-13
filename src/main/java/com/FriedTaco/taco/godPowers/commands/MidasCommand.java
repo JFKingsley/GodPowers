@@ -27,10 +27,11 @@ public class MidasCommand implements CommandExecutor {
                     goldenReplace(player);
                     goldenBless(player);
                     player.sendMessage(ChatColor.BLUE + StringHandler.MIDAS_MIDAS);
+                } else {
+                    player.sendMessage(ChatColor.RED + StringHandler.MIDAS_SYNTAX);
                 }
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
-                return true;
             }
         }
         return true;

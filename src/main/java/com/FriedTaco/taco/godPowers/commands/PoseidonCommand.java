@@ -18,29 +18,24 @@ public class PoseidonCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        String[] split = args;
         if (sender instanceof Player) {
             player = (Player) sender;
             if (player.hasPermission("godpowers.poseidon")) {
-                if (split.length == 0) {
+                if (args.length == 0) {
                     if (plugin.isPoseidon.contains(player.getUniqueId())) {
                         plugin.isPoseidon.remove(player.getUniqueId());
                         player.sendMessage(ChatColor.BLUE + StringHandler.POSEIDON_REMOVE);
-                        return true;
                     } else {
                         player.sendMessage(ChatColor.BLUE + StringHandler.POSEIDON_ADD);
                         plugin.isPoseidon.add(player.getUniqueId());
-                        return true;
                     }
                 } else {
                     player.sendMessage(ChatColor.RED + StringHandler.POSEIDON_YOURSELF);
-                    return true;
                 }
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
-                return true;
             }
         }
-        return false;
+        return true;
     }
 }

@@ -1,7 +1,5 @@
 package com.FriedTaco.taco.godPowers.commands;
 
-//import org.bukkit.World;
-
 import com.FriedTaco.taco.godPowers.godPowers;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.ChatColor;
@@ -30,12 +28,10 @@ public class SuperjumpCommand implements CommandExecutor {
                     player.sendMessage(ChatColor.BLUE + StringHandler.SUPERJUMP_ADD);
                     plugin.superJumper.add(player.getUniqueId());
                 }
-                return true;
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
-                return true;
             }
         }
-        return false;
+        return true;
     }
 }

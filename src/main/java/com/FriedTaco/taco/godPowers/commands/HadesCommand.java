@@ -28,16 +28,13 @@ public class HadesCommand implements CommandExecutor {
                         player.sendMessage(ChatColor.DARK_RED + StringHandler.HADES_ADD);
                         plugin.hades.add(player.getUniqueId());
                     }
-                    return true;
                 } else {
                     player.sendMessage(ChatColor.RED + StringHandler.HADES_SYNTAX);
-                    return true;
                 }
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
-                return true;
             }
         }
-        return false;
+        return true;
     }
 }

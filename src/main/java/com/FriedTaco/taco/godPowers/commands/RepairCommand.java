@@ -48,11 +48,9 @@ public class RepairCommand implements CommandExecutor {
                     }
                 } else {
                     player.sendMessage(StringHandler.REPAIR_SYNTAX);
-                    return true;
                 }
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
-                return true;
             }
         }
         return true;

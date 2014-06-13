@@ -20,13 +20,11 @@ public class MedusaCommand implements CommandExecutor {
     }
 
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        String[] split = args;
         if (sender instanceof Player) {
             player = (Player) sender;
             if (player.hasPermission("godpowers.medusa")) {
-                if (split.length > 0) {
+                if (args.length > 0) {
                     player.sendMessage(ChatColor.RED + StringHandler.MEDUSA_SYNTAX);
-                    return true;
                 } else {
                     if (!plugin.isMedusa.contains(player.getUniqueId())) {
                         player.sendMessage(ChatColor.GREEN + StringHandler.MEDUSA_ADD);
@@ -44,12 +42,11 @@ public class MedusaCommand implements CommandExecutor {
                             }
                         }
                     }
-                    return true;
                 }
             } else {
                 player.sendMessage(ChatColor.DARK_RED + StringHandler.GODPOWERS_NOPERMISSION);
             }
         }
-        return false;
+        return true;
     }
 }
