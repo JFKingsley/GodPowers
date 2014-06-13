@@ -24,6 +24,7 @@ public class HealCommand implements CommandExecutor {
                     player.sendMessage(ChatColor.BLUE + StringHandler.HEAL_HEALED);
                     player.setHealth(player.getMaxHealth());
                     player.setFoodLevel(20);
+                    player.setSaturation(5F);
                 } else if (args.length == 1) {
                     Player targetPlayer = plugin.getServer().getPlayer(args[0]);
                     if (targetPlayer == null) {
@@ -34,6 +35,8 @@ public class HealCommand implements CommandExecutor {
                         player.sendMessage(ChatColor.BLUE + targetPlayer.getName() + " " + StringHandler.HEAL_HEALEDOTHER);
                         targetPlayer.sendMessage(ChatColor.BLUE + player.getName() + " " + StringHandler.HEAL_HEALEDYOU);
                         targetPlayer.setHealth(targetPlayer.getMaxHealth());
+                        targetPlayer.setFoodLevel(20);
+                        targetPlayer.setSaturation(5F);
                     }
                 } else {
                     player.sendMessage(ChatColor.RED + StringHandler.HEAL_SYNTAX);

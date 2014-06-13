@@ -100,6 +100,7 @@ public class PlayerListener implements Listener {
                     plugin.godmodeEnabled.add(player.getUniqueId());
                     player.setHealth(player.getMaxHealth());
                     player.setFoodLevel(20);
+                    player.setSaturation(5F);
                     player.setDisplayName(plugin.title + player.getName());
                 }
             }, 10L);
