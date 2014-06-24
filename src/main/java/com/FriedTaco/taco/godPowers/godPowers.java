@@ -36,7 +36,6 @@ import java.util.UUID;
 
 public class godPowers extends JavaPlugin {
     public String title = "";
-    private final HashMap<Player, Boolean> debugees = new HashMap<Player, Boolean>();
     public HashMap<UUID, Integer> curse = new HashMap<UUID, Integer>();
     public ArrayList<UUID> godmodeEnabled = new ArrayList<UUID>();
     public ArrayList<UUID> isJesus = new ArrayList<UUID>();
@@ -182,147 +181,35 @@ public class godPowers extends JavaPlugin {
                 e.printStackTrace();
             }
         }
-        String error = "ERROR another plugin has already taken the command ";
-        try {
-            getCommand("zeus").setExecutor(new ZeusCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "zeus.");
-        }
-        try {
-            getCommand("godmode").setExecutor(new GodmodeCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "godmode.");
-        }
-        try {
-            getCommand("godmodeon").setExecutor(new GodmodeCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "godmodeon.");
-        }
-        try {
-            getCommand("godmodeoff").setExecutor(new GodmodeCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "godmodeoff.");
-        }
-        try {
-            getCommand("jesus").setExecutor(new JesusCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "jesus.");
-        }
-        try {
-            getCommand("die").setExecutor(new DieCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "die.");
-        }
-        try {
-            getCommand("slay").setExecutor(new SlayCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "slay.");
-        }
-        try {
-            getCommand("smite").setExecutor(new SlayCommand(this));
-        } catch (Exception e1) {
-            getLogger().warning(error + "smite.");
-        }
-        try {
-            getCommand("maim").setExecutor(new MaimCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "maim.");
-        }
-        try {
-            getCommand("inferno").setExecutor(new InfernoCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "inferno.");
-        }
-        try {
-            getCommand("superjump").setExecutor(new SuperjumpCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "superjump.");
-        }
-        try {
-            getCommand("gaia").setExecutor(new GaiaCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "gaia.");
-        }
-        try {
-            getCommand("heal").setExecutor(new HealCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "heal.");
-        }
-        try {
-            getCommand("godpowers").setExecutor(new GodPowersCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "godpowers. How dare they!");
-        }
-        try {
-            getCommand("vulcan").setExecutor(new VulcanCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "vulcan.");
-        }
-        try {
-            getCommand("myballsareonfire").setExecutor(new VulcanCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "myballsareonfire.");
-        }
-        try {
-            getCommand("demigod").setExecutor(new DemigodCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "demigod.");
-        }
-        try {
-            getCommand("hades").setExecutor(new HadesCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "hades.");
-        }
-        try {
-            getCommand("bless").setExecutor(new BlessCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "bless.");
-        }
-        try {
-            getCommand("fusrodah").setExecutor(new FusrodahCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "FusRoDAHCommand.");
-        }
-        try {
-            getCommand("plutus").setExecutor(new PlutusCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "plutus");
-        }
-        try {
-            getCommand("dupe").setExecutor(new DupeCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "dupe.");
-        }
-        try {
-            getCommand("medusa").setExecutor(new MedusaCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "medusa.");
-        }
-        try {
-            getCommand("hermes").setExecutor(new HermesCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "hermes. ");
-        }
-        try {
-            getCommand("poseidon").setExecutor(new PoseidonCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "poseidon.");
-        }
-        try {
-            getCommand("repair").setExecutor(new RepairCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "repair.");
-        }
-        try {
-            getCommand("itemrepair").setExecutor(new RepairCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "itemrepair.");
-        }
-        try {
-            getCommand("midas").setExecutor(new MidasCommand(this));
-        } catch (Exception e) {
-            getLogger().warning(error + "midas.");
-        }
+        // Register commands
+        getCommand("bless").setExecutor(new BlessCommand(this));
+        getCommand("demigod").setExecutor(new DemigodCommand(this));
+        getCommand("die").setExecutor(new DieCommand(this));
+        getCommand("dupe").setExecutor(new DupeCommand(this));
+        getCommand("fusrodah").setExecutor(new FusrodahCommand(this));
+        getCommand("gaia").setExecutor(new GaiaCommand(this));
+        getCommand("godmode").setExecutor(new GodmodeCommand(this));
+        getCommand("godmodeoff").setExecutor(new GodmodeCommand(this));
+        getCommand("godmodeon").setExecutor(new GodmodeCommand(this));
+        getCommand("godpowers").setExecutor(new GodPowersCommand(this));
+        getCommand("hades").setExecutor(new HadesCommand(this));
+        getCommand("heal").setExecutor(new HealCommand(this));
+        getCommand("hermes").setExecutor(new HermesCommand(this));
+        getCommand("inferno").setExecutor(new InfernoCommand(this));
+        getCommand("itemrepair").setExecutor(new RepairCommand(this));
+        getCommand("jesus").setExecutor(new JesusCommand(this));
+        getCommand("maim").setExecutor(new MaimCommand(this));
+        getCommand("medusa").setExecutor(new MedusaCommand(this));
+        getCommand("midas").setExecutor(new MidasCommand(this));
+        getCommand("myballsareonfire").setExecutor(new VulcanCommand(this));
+        getCommand("plutus").setExecutor(new PlutusCommand(this));
+        getCommand("poseidon").setExecutor(new PoseidonCommand(this));
+        getCommand("repair").setExecutor(new RepairCommand(this));
+        getCommand("slay").setExecutor(new SlayCommand(this));
+        getCommand("smite").setExecutor(new SlayCommand(this));
+        getCommand("superjump").setExecutor(new SuperjumpCommand(this));
+        getCommand("vulcan").setExecutor(new VulcanCommand(this));
+        getCommand("zeus").setExecutor(new ZeusCommand(this));
 
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new EntityListener(this), this);
@@ -333,62 +220,51 @@ public class godPowers extends JavaPlugin {
     }
 
     public void populateLists() {
-        shovelDrops.add(Material.GRASS);
-        shovelDrops.add(Material.DIRT);
-        shovelDrops.add(Material.SAND);
-        shovelDrops.add(Material.GRAVEL);
-        shovelDrops.add(Material.CLAY);
-        shovelDrops.add(Material.SNOW_BLOCK);
-        shovelDrops.add(Material.SOUL_SAND);
-        pickDrops.add(Material.STONE);
-        pickDrops.add(Material.SMOOTH_BRICK);
-        pickDrops.add(Material.COBBLESTONE);
-        pickDrops.add(Material.GOLD_ORE);
-        pickDrops.add(Material.IRON_ORE);
-        pickDrops.add(Material.COAL_ORE);
-        pickDrops.add(Material.COAL_BLOCK);
-        pickDrops.add(Material.LAPIS_ORE);
-        pickDrops.add(Material.LAPIS_BLOCK);
-        pickDrops.add(Material.EMERALD_ORE);
-        pickDrops.add(Material.EMERALD_BLOCK);
-        pickDrops.add(Material.SANDSTONE);
-        pickDrops.add(Material.GOLD_BLOCK);
-        pickDrops.add(Material.IRON_BLOCK);
-        pickDrops.add(Material.DOUBLE_STEP);
-        pickDrops.add(Material.REDSTONE_ORE);
-        pickDrops.add(Material.REDSTONE_BLOCK);
-        pickDrops.add(Material.STEP);
-        pickDrops.add(Material.BRICK);
-        pickDrops.add(Material.MOSSY_COBBLESTONE);
-        pickDrops.add(Material.OBSIDIAN);
-        pickDrops.add(Material.DIAMOND_ORE);
-        pickDrops.add(Material.DIAMOND_BLOCK);
-        pickDrops.add(Material.NETHERRACK);
-        pickDrops.add(Material.NETHER_BRICK);
-        pickDrops.add(Material.QUARTZ_ORE);
-        pickDrops.add(Material.QUARTZ_BLOCK);
-        pickDrops.add(Material.CLAY_BRICK);
-        pickDrops.add(Material.STAINED_CLAY);
-        pickDrops.add(Material.ENDER_STONE);
-        axeDrops.add(Material.WOOD);
-        axeDrops.add(Material.WOOD_STEP);
-        axeDrops.add(Material.WOOD_DOUBLE_STEP);
-        axeDrops.add(Material.WOOD_STAIRS);
         axeDrops.add(Material.LOG);
         axeDrops.add(Material.LOG_2);
+        axeDrops.add(Material.WOOD);
+        axeDrops.add(Material.WOOD_DOUBLE_STEP);
+        axeDrops.add(Material.WOOD_STAIRS);
+        axeDrops.add(Material.WOOD_STEP);
+        pickDrops.add(Material.BRICK);
+        pickDrops.add(Material.CLAY_BRICK);
+        pickDrops.add(Material.COAL_BLOCK);
+        pickDrops.add(Material.COAL_ORE);
+        pickDrops.add(Material.COBBLESTONE);
+        pickDrops.add(Material.DIAMOND_BLOCK);
+        pickDrops.add(Material.DIAMOND_ORE);
+        pickDrops.add(Material.DOUBLE_STEP);
+        pickDrops.add(Material.EMERALD_BLOCK);
+        pickDrops.add(Material.EMERALD_ORE);
+        pickDrops.add(Material.ENDER_STONE);
+        pickDrops.add(Material.GOLD_BLOCK);
+        pickDrops.add(Material.GOLD_ORE);
+        pickDrops.add(Material.IRON_BLOCK);
+        pickDrops.add(Material.IRON_ORE);
+        pickDrops.add(Material.LAPIS_BLOCK);
+        pickDrops.add(Material.LAPIS_ORE);
+        pickDrops.add(Material.MOSSY_COBBLESTONE);
+        pickDrops.add(Material.NETHERRACK);
+        pickDrops.add(Material.NETHER_BRICK);
+        pickDrops.add(Material.OBSIDIAN);
+        pickDrops.add(Material.QUARTZ_BLOCK);
+        pickDrops.add(Material.QUARTZ_ORE);
+        pickDrops.add(Material.REDSTONE_BLOCK);
+        pickDrops.add(Material.REDSTONE_ORE);
+        pickDrops.add(Material.SANDSTONE);
+        pickDrops.add(Material.SMOOTH_BRICK);
+        pickDrops.add(Material.STAINED_CLAY);
+        pickDrops.add(Material.STEP);
+        pickDrops.add(Material.STONE);
+        shovelDrops.add(Material.CLAY);
+        shovelDrops.add(Material.DIRT);
+        shovelDrops.add(Material.GRASS);
+        shovelDrops.add(Material.GRAVEL);
+        shovelDrops.add(Material.SAND);
+        shovelDrops.add(Material.SNOW_BLOCK);
+        shovelDrops.add(Material.SOUL_SAND);
 
-    }
 
-    public boolean isDebugging(final Player player) {
-        if (debugees.containsKey(player)) {
-            return debugees.get(player);
-        } else {
-            return false;
-        }
-    }
-
-    public void setDebugging(final Player player, final boolean value) {
-        debugees.put(player, value);
     }
 
     public void dropDeadItems(Player player) {
@@ -398,472 +274,6 @@ public class godPowers extends JavaPlugin {
             for (ItemStack anItem : item) {
                 if (anItem != null && anItem.getType() != Material.AIR) {
                     player.getWorld().dropItemNaturally(position, anItem);
-                }
-            }
-        }
-    }
-
-    public void arrowSlay(Location arrows, World world, Player player) {
-        arrows = new Location(world, player.getLocation().getX() + 2, player.getLocation().getY() + 1, player.getLocation().getZ() + 2);
-        Arrow arrow = world.spawnArrow(arrows, new Vector(5, 1, 5), 2.0f, 4.0f);
-        arrow.setFireTicks(100);
-        arrow.teleport((Entity) player);
-    }
-
-    public void bless(Player p) {
-        for (ItemStack i : p.getInventory().getContents()) {
-            if (i != null) {
-                switch (i.getType()) {
-                    case IRON_SPADE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.SILK_TOUCH, 1);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case IRON_PICKAXE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.SILK_TOUCH, 1);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case IRON_AXE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case BOW:
-                        i.addEnchantment(Enchantment.ARROW_DAMAGE, 5);
-                        i.addEnchantment(Enchantment.ARROW_FIRE, 1);
-                        i.addEnchantment(Enchantment.ARROW_KNOCKBACK, 2);
-                        i.addEnchantment(Enchantment.ARROW_INFINITE, 1);
-                        break;
-                    case IRON_SWORD:
-                        i.addEnchantment(Enchantment.DAMAGE_ALL, 5);
-                        i.addEnchantment(Enchantment.DAMAGE_ARTHROPODS, 5);
-                        i.addEnchantment(Enchantment.DAMAGE_UNDEAD, 5);
-                        i.addEnchantment(Enchantment.FIRE_ASPECT, 2);
-                        i.addEnchantment(Enchantment.KNOCKBACK, 2);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_MOBS, 3);
-                        break;
-                    case WOOD_SWORD:
-                        i.addEnchantment(Enchantment.DAMAGE_ALL, 5);
-                        i.addEnchantment(Enchantment.DAMAGE_ARTHROPODS, 5);
-                        i.addEnchantment(Enchantment.DAMAGE_UNDEAD, 5);
-                        i.addEnchantment(Enchantment.FIRE_ASPECT, 2);
-                        i.addEnchantment(Enchantment.KNOCKBACK, 2);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_MOBS, 3);
-                        break;
-                    case WOOD_SPADE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.SILK_TOUCH, 1);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case WOOD_PICKAXE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case WOOD_AXE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case STONE_SWORD:
-                        i.addEnchantment(Enchantment.DAMAGE_ALL, 5);
-                        i.addEnchantment(Enchantment.DAMAGE_ARTHROPODS, 5);
-                        i.addEnchantment(Enchantment.DAMAGE_UNDEAD, 5);
-                        i.addEnchantment(Enchantment.FIRE_ASPECT, 2);
-                        i.addEnchantment(Enchantment.KNOCKBACK, 2);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_MOBS, 3);
-                        break;
-                    case STONE_SPADE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.SILK_TOUCH, 1);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case STONE_PICKAXE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.SILK_TOUCH, 1);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case STONE_AXE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case DIAMOND_SWORD:
-                        i.addEnchantment(Enchantment.DAMAGE_ALL, 5);
-                        i.addEnchantment(Enchantment.DAMAGE_ARTHROPODS, 5);
-                        i.addEnchantment(Enchantment.DAMAGE_UNDEAD, 5);
-                        i.addEnchantment(Enchantment.FIRE_ASPECT, 2);
-                        i.addEnchantment(Enchantment.KNOCKBACK, 2);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_MOBS, 3);
-                        break;
-                    case DIAMOND_SPADE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.SILK_TOUCH, 1);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case DIAMOND_PICKAXE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.SILK_TOUCH, 1);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case DIAMOND_AXE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case GOLD_SWORD:
-                        i.addEnchantment(Enchantment.DAMAGE_ALL, 5);
-                        i.addEnchantment(Enchantment.DAMAGE_ARTHROPODS, 5);
-                        i.addEnchantment(Enchantment.DAMAGE_UNDEAD, 5);
-                        i.addEnchantment(Enchantment.FIRE_ASPECT, 2);
-                        i.addEnchantment(Enchantment.KNOCKBACK, 2);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_MOBS, 3);
-                        break;
-                    case GOLD_SPADE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.SILK_TOUCH, 1);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case GOLD_PICKAXE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.SILK_TOUCH, 1);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case GOLD_AXE:
-                        i.addEnchantment(Enchantment.DIG_SPEED, 5);
-                        i.addEnchantment(Enchantment.DURABILITY, 3);
-                        i.addEnchantment(Enchantment.LOOT_BONUS_BLOCKS, 3);
-                        break;
-                    case LEATHER_HELMET:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.OXYGEN, 3);
-                        i.addEnchantment(Enchantment.WATER_WORKER, 1);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case LEATHER_CHESTPLATE:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case LEATHER_LEGGINGS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case LEATHER_BOOTS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FALL, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case CHAINMAIL_HELMET:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.OXYGEN, 3);
-                        i.addEnchantment(Enchantment.WATER_WORKER, 1);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case CHAINMAIL_CHESTPLATE:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case CHAINMAIL_LEGGINGS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case CHAINMAIL_BOOTS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FALL, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case IRON_HELMET:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.OXYGEN, 3);
-                        i.addEnchantment(Enchantment.WATER_WORKER, 1);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case IRON_CHESTPLATE:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case IRON_LEGGINGS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case IRON_BOOTS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FALL, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case DIAMOND_HELMET:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.OXYGEN, 3);
-                        i.addEnchantment(Enchantment.WATER_WORKER, 1);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case DIAMOND_CHESTPLATE:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case DIAMOND_LEGGINGS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case DIAMOND_BOOTS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FALL, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case GOLD_HELMET:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.OXYGEN, 3);
-                        i.addEnchantment(Enchantment.WATER_WORKER, 1);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case GOLD_CHESTPLATE:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case GOLD_LEGGINGS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case GOLD_BOOTS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FALL, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-        for (ItemStack i : p.getInventory().getArmorContents()) {
-            if (i != null) {
-                switch (i.getType()) {
-                    case LEATHER_HELMET:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.OXYGEN, 3);
-                        i.addEnchantment(Enchantment.WATER_WORKER, 1);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case LEATHER_CHESTPLATE:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case LEATHER_LEGGINGS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case LEATHER_BOOTS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FALL, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case CHAINMAIL_HELMET:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.OXYGEN, 3);
-                        i.addEnchantment(Enchantment.WATER_WORKER, 1);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case CHAINMAIL_CHESTPLATE:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case CHAINMAIL_LEGGINGS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case CHAINMAIL_BOOTS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FALL, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case IRON_HELMET:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.OXYGEN, 3);
-                        i.addEnchantment(Enchantment.WATER_WORKER, 1);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case IRON_CHESTPLATE:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case IRON_LEGGINGS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case IRON_BOOTS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FALL, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case DIAMOND_HELMET:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.OXYGEN, 3);
-                        i.addEnchantment(Enchantment.WATER_WORKER, 1);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case DIAMOND_CHESTPLATE:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case DIAMOND_LEGGINGS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case DIAMOND_BOOTS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FALL, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case GOLD_HELMET:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.OXYGEN, 3);
-                        i.addEnchantment(Enchantment.WATER_WORKER, 1);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case GOLD_CHESTPLATE:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case GOLD_LEGGINGS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    case GOLD_BOOTS:
-                        i.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_EXPLOSIONS, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FIRE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_PROJECTILE, 4);
-                        i.addEnchantment(Enchantment.PROTECTION_FALL, 4);
-                        i.addEnchantment(Enchantment.THORNS, 3);
-                        break;
-                    default:
-                        break;
                 }
             }
         }

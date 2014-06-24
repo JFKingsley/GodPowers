@@ -8,6 +8,7 @@ import com.FriedTaco.taco.godPowers.util.MedusaPlayer;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
@@ -221,7 +222,7 @@ public class PlayerListener implements Listener {
             event.getPlayer().setFireTicks(9001);
         }
         if (plugin.arrowKill.contains(event.getPlayer().getUniqueId())) {
-            plugin.arrowSlay(event.getTo(), event.getPlayer().getWorld(), event.getPlayer());
+            arrowSlay(event.getTo(), event.getPlayer().getWorld(), event.getPlayer());
         }
         if (plugin.gaia.contains(event.getPlayer().getUniqueId())) {
             for (int x = -2; x <= 2; x++) {
@@ -419,6 +420,13 @@ public class PlayerListener implements Listener {
                 }
             }
         }
+    }
+
+    private void arrowSlay(Location arrows, World world, Player player) {
+        arrows = new Location(world, player.getLocation().getX() + 2, player.getLocation().getY() + 1, player.getLocation().getZ() + 2);
+        Arrow arrow = world.spawnArrow(arrows, new Vector(5, 1, 5), 2.0f, 4.0f);
+        arrow.setFireTicks(100);
+        arrow.teleport((Entity) player);
     }
 
     private void mine(Player p, Block b, ItemStack i) {
