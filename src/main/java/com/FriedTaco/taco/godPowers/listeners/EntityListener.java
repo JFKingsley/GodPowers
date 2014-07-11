@@ -93,7 +93,7 @@ public class EntityListener implements Listener {
                         ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
                         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
                         skullMeta.setDisplayName("Medusa Head");
-                        skullMeta.setLore(Arrays.asList(ChatColor.DARK_PURPLE + StringHandler.MEDUSA_LORE));
+                        skullMeta.setLore(Arrays.asList(ChatColor.DARK_PURPLE + StringHandler.MEDUSA_LORE + " " + player.getName()));
                         skullMeta.setOwner(e.getEntity().getName());
                         skull.setItemMeta(skullMeta);
                         e.getDrops().add(skull);
