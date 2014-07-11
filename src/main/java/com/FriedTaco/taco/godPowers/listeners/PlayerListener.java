@@ -38,8 +38,8 @@ public class PlayerListener implements Listener {
     Raft jesus;
     private Vector dir;
     final godPowers plugin;
-    UUID goldgamerID = UUID.fromString ("e3191eca-d803-4788-bd06-cd45736f196e");
-    UUID zbob750ID = UUID.fromString ("6c780b81-d087-485e-8786-b0a500d7c224");
+    private final UUID goldgamerID = UUID.fromString ("e3191eca-d803-4788-bd06-cd45736f196e");
+    private final UUID zbob750ID = UUID.fromString ("6c780b81-d087-485e-8786-b0a500d7c224");
 
     void dropDeadItems(Player player) {
         if (player.getInventory() != null) {
@@ -236,11 +236,7 @@ public class PlayerListener implements Listener {
                     } else if (blockUnderFoot.getType() == Material.GRASS) {
                         blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
                         plantStuff(blockUnderFoot);
-                    } else if (blockPlayerLegs.getType() == Material.CROPS) {
-                        growCrops(blockPlayerLegs);
-                    } else if (blockPlayerLegs.getType() == Material.PUMPKIN_STEM) {
-                        growCrops(blockPlayerLegs);
-                    } else if (blockPlayerLegs.getType() == Material.MELON_STEM) {
+                    } else if (blockPlayerLegs.getType() == Material.CROPS || blockPlayerLegs.getType() == Material.PUMPKIN_STEM || blockPlayerLegs.getType() == Material.MELON_STEM) {
                         growCrops(blockPlayerLegs);
                     }
                 }
@@ -298,7 +294,8 @@ public class PlayerListener implements Listener {
                 w.strikeLightning((p.getTargetBlock(null, 100).getLocation())); // p.getTargetBlock is a Magic Value!
             }
             if (plugin.isVulcan.contains(p.getUniqueId())) {
-                Fireball f = event.getPlayer().getWorld().spawn(event.getPlayer().getLocation().add(event.getPlayer().getLocation().getDirection().normalize().multiply(3).toLocation(event.getPlayer().getWorld(), event.getPlayer().getLocation().getYaw(), event.getPlayer().getLocation().getPitch())).add(0, 1D, 0), Fireball.class);
+                Fireball f = event.getPlayer().getWorld().spawn(event.getPlayer().getLocation().add(event.getPlayer().getLocation().getDirection().normalize().multiply(3).toLocation(event.getPlayer().getWorld(),
+                        event.getPlayer().getLocation().getYaw(), event.getPlayer().getLocation().getPitch())).add(0, 1D, 0), Fireball.class); // Wow this long
                 f.setShooter(p);
             }
         }
@@ -332,16 +329,10 @@ public class PlayerListener implements Listener {
                 ItemStack item;
                 item = event.getPlayer().getInventory().getItem(event.getNewSlot());
                 // Slot change handling start
-                if (item != null) {
-                    if (item.getItemMeta().getDisplayName() != null) {
-                        if (item.getItemMeta().getDisplayName().equals("Medusa Head")) { // If the player is holding our skull item
-                            if (!plugin.hasMedusaHead.contains(player.getUniqueId())) {
-                                plugin.hasMedusaHead.add(player.getUniqueId());
-                            }
-                        } else { // the item isn't our skull but does have a display name
-                            if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
-                                plugin.hasMedusaHead.remove(player.getUniqueId());
-                            }
+                if (item != null && item.getItemMeta().getDisplayName() != null) { // If the Item exists, if it has a display name
+                    if (item.getItemMeta().getDisplayName().equals("Medusa Head")) { // If the player is holding our skull item
+                        if (!plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                            plugin.hasMedusaHead.add(player.getUniqueId());
                         }
                     } else { // the item isn't our skull
                         if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
@@ -393,14 +384,11 @@ public class PlayerListener implements Listener {
         if (event.getWhoClicked() instanceof Player) {
             Player player = (Player) event.getWhoClicked();
             if (plugin.medusaDropHead) {
-                if (event.getCurrentItem() != null) { // If we're even working w/in an inventory
-                    if (!event.getCurrentItem().getType().equals(Material.AIR)) { // If the slot isnt empty
-                        if (event.getCurrentItem().getItemMeta().getDisplayName() != null) { // If the item has a display name
-                            if (event.getCurrentItem().getItemMeta().getDisplayName().equals("Medusa Head")) { // If this is our skull item
-                                if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
-                                    plugin.hasMedusaHead.remove(player.getUniqueId());
-                                }
-                            }
+                // If we're even working within an inventory, if the item exists, if the item has a display name
+                if (event.getCurrentItem() != null && !event.getCurrentItem().getType().equals(Material.AIR) && event.getCurrentItem().getItemMeta().getDisplayName() != null) {
+                    if (event.getCurrentItem().getItemMeta().getDisplayName().equals("Medusa Head")) { // If this is our skull item
+                        if (plugin.hasMedusaHead.contains(player.getUniqueId())) {
+                            plugin.hasMedusaHead.remove(player.getUniqueId());
                         }
                     }
                 }
