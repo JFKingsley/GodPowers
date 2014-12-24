@@ -20,13 +20,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 import org.mcstats.Metrics;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
@@ -144,42 +139,7 @@ public class godPowers extends JavaPlugin {
                 }
             }
         }
-        if (uploadToList) {
-            String ip = null;
-            try {
-                URL whatismyip = new URL("http://checkip.amazonaws.com");
-                BufferedReader in = new BufferedReader(new InputStreamReader(
-                        whatismyip.openStream()));
-                ip = in.readLine(); //you get the IP as a String
-            } catch (Exception e) {
-                getLogger().info("Unable to add server to GodPowers' server list");
-                e.printStackTrace();
-            }
-            try {
-                String data = this.getServer().toString();
-                data = data.substring(12, data.length() - 1);
-                data = data.split(",")[2].substring(17);
-                String url = "http://jfkingsley.co.uk/godPowers.php?IP=" + URLEncoder.encode(ip, "UTF-8") + "&MOTD=" + URLEncoder.encode(getServer().getMotd(), "UTF-8") + "&VERSION=" + URLEncoder.encode(data, "UTF-8");
-                URL obj = new URL(url);
-                HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-                con.setRequestMethod("GET");
-                con.setRequestProperty("User-Agent", "Mozilla/5.0");
-                int responseCode = con.getResponseCode();
-                getLogger().info("Response Code from server list: " + responseCode);
-                BufferedReader in = new BufferedReader(
-                        new InputStreamReader(con.getInputStream()));
-                String inputLine;
-                StringBuffer response = new StringBuffer();
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                in.close();
-                //getLogger().info("Response: " + response); // We really don't want to see this nasty output :-/
-            } catch (Exception e) {
-                getLogger().info("Unable to add server to GodPowers' server list");
-                e.printStackTrace();
-            }
-        }
+
         // Register commands
         getCommand("bless").setExecutor(new BlessCommand(this));
         getCommand("demigod").setExecutor(new DemigodCommand(this));
