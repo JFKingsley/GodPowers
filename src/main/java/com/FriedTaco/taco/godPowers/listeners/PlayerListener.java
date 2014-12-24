@@ -41,18 +41,6 @@ public class PlayerListener implements Listener {
     private final UUID goldgamerID = UUID.fromString ("e3191eca-d803-4788-bd06-cd45736f196e");
     private final UUID zbob750ID = UUID.fromString ("6c780b81-d087-485e-8786-b0a500d7c224");
 
-    void dropDeadItems(Player player) {
-        if (player.getInventory() != null) {
-            ItemStack[] item = this.plugin.getServer().getPlayer(player.getName()).getInventory().getContents();
-            Location position = new Location(player.getWorld(), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ());
-            for (int x = 0; x < 36; x++) {
-                if (item[x].getType() != Material.AIR) {
-                    player.getWorld().dropItemNaturally(position, item[x]);
-                }
-            }
-        }
-    }
-
     public PlayerListener(godPowers instance) {
         plugin = instance;
     }
@@ -61,7 +49,7 @@ public class PlayerListener implements Listener {
     public void onPlayerJoin(final PlayerJoinEvent event) {
         final Player player = event.getPlayer();
         if (plugin.developerJoinEffect) {
-            if (player.getUniqueId().equals(goldgamerID) | player.getUniqueId().equals(zbob750ID)) {
+            if (player.getUniqueId().equals(goldgamerID) || player.getUniqueId().equals(zbob750ID)) {
                 plugin.getServer().broadcastMessage(ChatColor.DARK_GREEN + "[godPowers] " + ChatColor.GOLD + "A godPowers Developer has joined the game.");
                 plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                     public void run() {
@@ -93,6 +81,7 @@ public class PlayerListener implements Listener {
                 }, 20L);
             }
         }
+
         if (plugin.godModeOnLogin && player.hasPermission("godpowers.godmodeonlogin")) {
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
                 public void run() {
@@ -102,7 +91,6 @@ public class PlayerListener implements Listener {
                     player.setHealth(player.getMaxHealth());
                     player.setFoodLevel(20);
                     player.setSaturation(5F);
-                    player.setDisplayName(plugin.title + player.getName());
                 }
             }, 10L);
         }
@@ -113,6 +101,7 @@ public class PlayerListener implements Listener {
         if (plugin.godmodeEnabled.contains(event.getPlayer().getUniqueId())) {
             plugin.godmodeEnabled.remove(event.getPlayer().getUniqueId());
         }
+
         if (plugin.isJesus.contains(event.getPlayer().getUniqueId())) {
             plugin.isJesus.remove(event.getPlayer().getUniqueId());
             jesus = (Raft) Jesus.rafts.get(event.getPlayer().getUniqueId());
@@ -135,6 +124,7 @@ public class PlayerListener implements Listener {
         if (plugin.isHermes.contains(event.getPlayer().getUniqueId())) {
             event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 120, 6));
         }
+
         if (plugin.isPoseidon.contains(event.getPlayer().getUniqueId())) {
             Material m = event.getPlayer().getLocation().getBlock().getType();
             if (m == Material.STATIONARY_WATER || m == Material.WATER) {
@@ -143,6 +133,7 @@ public class PlayerListener implements Listener {
                 event.getPlayer().setRemainingAir(300);
             }
         }
+
         if (plugin.isMedusa.contains(event.getPlayer().getUniqueId()) || plugin.hasMedusaHead.contains(event.getPlayer().getUniqueId())) {
             if (getTarget(event.getPlayer()) != null) {
                 Player target = getTarget(event.getPlayer());
@@ -161,6 +152,7 @@ public class PlayerListener implements Listener {
                 }
             }
         }
+
         ListIterator<MedusaPlayer> it = plugin.isUnderMedusaInfluence.listIterator();
         if (it.hasNext()) {
             MedusaPlayer mplayer = it.next();
@@ -179,14 +171,17 @@ public class PlayerListener implements Listener {
                 }
             }
         }
+
         if (plugin.godmodeEnabled.contains(event.getPlayer().getUniqueId()) && event.getPlayer().getFireTicks() > 1) {
             event.getPlayer().setFireTicks(0);
         }
+
         if (plugin.isJesus.contains(event.getPlayer().getUniqueId())) {
             Raft jesus = (Raft) Jesus.rafts.get(event.getPlayer().getUniqueId());
             jesus.destroyJesusRaft(event.getPlayer());
             jesus.makeJesusRaft(event.getPlayer());
         }
+
         if (plugin.isInferno.contains(event.getPlayer().getUniqueId())) {
             double diffX = event.getFrom().getX() - event.getTo().getX();
             double diffZ = event.getFrom().getZ() - event.getTo().getZ();
@@ -206,6 +201,7 @@ public class PlayerListener implements Listener {
                 block.setType(Material.FIRE);
             }
         }
+
         if ((plugin.superJumper.contains(event.getPlayer().getUniqueId()))) {
             Block block, control;
             dir = event.getPlayer().getVelocity().setY(2);
@@ -218,22 +214,25 @@ public class PlayerListener implements Listener {
                 }
             }
         }
+
         if (plugin.burn.contains(event.getPlayer().getUniqueId()) && event.getPlayer().getFireTicks() < 10) {
             event.getPlayer().setFireTicks(9001);
         }
+
         if (plugin.arrowKill.contains(event.getPlayer().getUniqueId())) {
             arrowSlay(event.getTo(), event.getPlayer().getWorld(), event.getPlayer());
         }
+
         if (plugin.gaia.contains(event.getPlayer().getUniqueId())) {
             for (int x = -2; x <= 2; x++) {
                 for (int z = -2; z <= 2; z++) {
                     Block blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY() - 1, event.getTo().getBlockZ() + z); // Block under player's feet
                     Block blockPlayerLegs = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z); // Block at same Y-level as player's legs
-                    if (blockUnderFoot.getType() == Material.DIRT) {
+                    if (blockUnderFoot.getType() == Material.DIRT && blockPlayerLegs.getType() == Material.AIR) {
                         blockUnderFoot.setType(Material.GRASS);
                         blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
                         plantStuff(blockUnderFoot);
-                    } else if (blockUnderFoot.getType() == Material.GRASS) {
+                    } else if (blockUnderFoot.getType() == Material.GRASS && blockPlayerLegs.getType() == Material.AIR) {
                         blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
                         plantStuff(blockUnderFoot);
                     } else if (blockPlayerLegs.getType() == Material.CROPS || blockPlayerLegs.getType() == Material.PUMPKIN_STEM || blockPlayerLegs.getType() == Material.MELON_STEM) {
@@ -242,6 +241,7 @@ public class PlayerListener implements Listener {
                 }
             }
         }
+
         if (plugin.hades.contains(event.getPlayer().getUniqueId()) && event.getFrom().getBlock().getLocation().distance(event.getTo().getBlock().getLocation()) > 0) {
             for (int x = -2; x <= 2; x++) {
                 for (int z = -2; z <= 2; z++) {
@@ -273,12 +273,47 @@ public class PlayerListener implements Listener {
 
     private void plantStuff(Block block) {
         if (block.getType() == Material.AIR) {
-            double chance = Math.random();
-            if (chance < .02)
+            double chance = Math.random() * .1; // Leave some air spaces so it looks (more) natural
+            // FLOWER TYPES
+            if (chance < .01)
                 block.setType(Material.YELLOW_FLOWER);
-            else if (chance >= .02 && chance <= .04)
+            else if (chance >= .01 && chance <= .02)
+                // Poppy
                 block.setType(Material.RED_ROSE);
-            else if (chance > .04 && chance <= .1) {
+            else if (chance >= .02 && chance <= .03) {
+                // Blue Orchid
+                block.setType(Material.RED_ROSE);
+                block.setData((byte) 1);
+            } else if (chance >= .03 && chance <= .04) {
+                // Allium
+                block.setType(Material.RED_ROSE);
+                block.setData((byte) 2);
+            } else if (chance >= .04 && chance <= .05) {
+                // Azure Bluet
+                block.setType(Material.RED_ROSE);
+                block.setData((byte) 3);
+            } else if (chance >= .05 && chance <= .06) {
+                // Red Tulip
+                block.setType(Material.RED_ROSE);
+                block.setData((byte) 4);
+            } else if (chance >= .06 && chance <= .07) {
+                // Orange Tulip
+                block.setType(Material.RED_ROSE);
+                block.setData((byte) 5);
+            } else if (chance >= .07 && chance <= .08) {
+                // White Tulip
+                block.setType(Material.RED_ROSE);
+                block.setData((byte) 6);
+            } else if (chance >= .07 && chance <= .08) {
+                // Pink Tulip
+                block.setType(Material.RED_ROSE);
+                block.setData((byte) 7);
+            }  else if (chance >= .08 && chance <= .09) {
+                // Oxeye Daisy
+                block.setType(Material.RED_ROSE);
+                block.setData((byte) 8);
+            // LONG GRASS
+            } else if (chance > .09 && chance <= .1) {
                 block.setType(Material.LONG_GRASS);
                 block.setData((byte) 1);
             }
