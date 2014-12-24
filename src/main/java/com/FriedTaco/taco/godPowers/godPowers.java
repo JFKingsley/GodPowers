@@ -9,6 +9,7 @@ import com.FriedTaco.taco.godPowers.util.OnOneSecond;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
 import net.gravitydevelopment.updater.Updater;
 import net.gravitydevelopment.updater.Updater.UpdateResult;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -106,6 +107,17 @@ public class godPowers extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        // Because I'm not going to listen to people freak out about gaia flowers breaking things
+        // and this is likely the direction ongoing development will go as more features are updated
+        if (!this.getServer().getBukkitVersion().contains("1.8")) {
+            Bukkit.getLogger().severe("============================================================");
+            Bukkit.getLogger().severe("    This version of GodPowers only supports 1.8 servers!    ");
+            Bukkit.getLogger().severe("Please update your server or use one of our legacy releases!");
+            Bukkit.getLogger().severe("============================================================");
+            this.getServer().getPluginManager().disablePlugin(this);
+            return;
+        }
+
         file = this.getFile();
         loadConfig();
         StringHandler.init(this);
