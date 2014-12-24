@@ -85,11 +85,10 @@ public class EntityListener implements Listener {
                 plugin.die.remove(UUID);
             } else if (plugin.medusaDropHead) {
                 PlayerDeathEvent e = (PlayerDeathEvent) event;
-                Material items[] = {Material.WOOD_SWORD, Material.STONE_SWORD, Material.DIAMOND_SWORD, Material.GOLD_SWORD, Material.IRON_SWORD};
-                ArrayList<Material> swords = new ArrayList<Material>();
-                Collections.addAll(swords, items);
-                if (plugin.isMedusa.contains(UUID)) { // If dead player was a medusa player
-                    if (player.getKiller() != null && swords.contains(player.getKiller().getItemInHand().getType())) { // If player was killed by a player holding a sword
+                if (plugin.isMedusa.contains(UUID) && player.getKiller() != null) { // If dead player was a medusa player
+                    Material itemType = player.getKiller().getItemInHand().getType();
+                    if (itemType == Material.WOOD_SWORD || itemType == Material.STONE_SWORD
+                            || itemType == Material.DIAMOND_SWORD || itemType == Material.GOLD_SWORD || itemType ==  Material.IRON_SWORD) {
                         ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (short) 3);
                         SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
                         skullMeta.setDisplayName("Medusa Head");
@@ -103,12 +102,5 @@ public class EntityListener implements Listener {
                 }
             }
         }
-    }
-
-    public boolean isCancelled() {
-        return false;
-    }
-
-    public void setCancelled(boolean arg0) {
     }
 }
