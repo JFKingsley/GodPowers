@@ -2,7 +2,7 @@ package com.FriedTaco.taco.godPowers;
 
 
 import com.FriedTaco.taco.godPowers.util.*;
-import com.FriedTaco.taco.godPowers.util.Metrics.Plotter;
+import org.mcstats.Metrics;
 import com.FriedTaco.taco.godPowers.util.Updater.UpdateResult;
 import com.FriedTaco.taco.godPowers.commands.*;
 import com.FriedTaco.taco.godPowers.listeners.EntityListener;
@@ -121,7 +121,8 @@ public class godPowers extends JavaPlugin {
         try {
             Metrics metrics = new Metrics(this);
             // Plot the total amount of protections
-            metrics.addCustomData(new Plotter("Total Players using Godmode") {
+            Metrics.Graph graphTotalGM = metrics.createGraph("Total Players using Godmode");
+            graphTotalGM.addPlotter(new Metrics.Plotter("Total Players using Godmode") {
 
                 @Override
                 public int getValue() {
