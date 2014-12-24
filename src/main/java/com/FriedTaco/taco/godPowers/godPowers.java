@@ -9,13 +9,11 @@ import com.FriedTaco.taco.godPowers.util.OnOneSecond;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
 import net.gravitydevelopment.updater.Updater;
 import net.gravitydevelopment.updater.Updater.UpdateResult;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -110,10 +108,10 @@ public class godPowers extends JavaPlugin {
         // Because I'm not going to listen to people freak out about gaia flowers breaking things
         // and this is likely the direction ongoing development will go as more features are updated
         if (!this.getServer().getBukkitVersion().contains("1.8")) {
-            Bukkit.getLogger().severe("============================================================");
-            Bukkit.getLogger().severe("    This version of GodPowers only supports 1.8 servers!    ");
-            Bukkit.getLogger().severe("Please update your server or use one of our legacy releases!");
-            Bukkit.getLogger().severe("============================================================");
+            this.getLogger().severe("============================================================");
+            this.getLogger().severe("    This version of GodPowers only supports 1.8 servers!    ");
+            this.getLogger().severe("Please update your server or use one of our legacy releases!");
+            this.getLogger().severe("============================================================");
             this.getServer().getPluginManager().disablePlugin(this);
             return;
         }
