@@ -1,5 +1,7 @@
 package com.FriedTaco.taco.godPowers.util;
 
+import org.bukkit.plugin.Plugin;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.net.MalformedURLException;
@@ -8,8 +10,6 @@ import java.net.URLClassLoader;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
-
-import org.bukkit.plugin.Plugin;
 
 public class StringHandler {
     private static final String BUNDLE_NAME = "strings";

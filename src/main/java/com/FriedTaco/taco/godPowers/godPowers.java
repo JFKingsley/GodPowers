@@ -1,26 +1,24 @@
 package com.FriedTaco.taco.godPowers;
 
 
-import com.FriedTaco.taco.godPowers.util.*;
-import org.mcstats.Metrics;
-import com.FriedTaco.taco.godPowers.util.Updater.UpdateResult;
 import com.FriedTaco.taco.godPowers.commands.*;
 import com.FriedTaco.taco.godPowers.listeners.EntityListener;
 import com.FriedTaco.taco.godPowers.listeners.PlayerListener;
+import com.FriedTaco.taco.godPowers.util.MedusaPlayer;
+import com.FriedTaco.taco.godPowers.util.OnOneSecond;
+import com.FriedTaco.taco.godPowers.util.StringHandler;
+import com.FriedTaco.taco.godPowers.util.Updater;
+import com.FriedTaco.taco.godPowers.util.Updater.UpdateResult;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
-import org.bukkit.util.Vector;
+import org.mcstats.Metrics;
 
 import java.io.BufferedReader;
 import java.io.File;

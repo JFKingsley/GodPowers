@@ -1,6 +1,6 @@
 package com.FriedTaco.taco.godPowers.listeners;
 
-import com.FriedTaco.taco.godPowers.*;
+import com.FriedTaco.taco.godPowers.godPowers;
 import com.FriedTaco.taco.godPowers.util.FireworkEffectPlayer;
 import com.FriedTaco.taco.godPowers.util.Jesus;
 import com.FriedTaco.taco.godPowers.util.Jesus.Raft;
