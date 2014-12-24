@@ -59,7 +59,7 @@ commands:
         description: Curses you with the ability to turn people to stone!
         usage: /medusa
     midas:
-        description: Does something with gold -- placeholder
+        description: Upgrades and enchants your tools to gold!
         usage: /midas
     myballsareonfire:
         description: See vulcan.
