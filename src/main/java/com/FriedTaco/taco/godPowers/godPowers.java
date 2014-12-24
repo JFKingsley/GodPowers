@@ -173,8 +173,6 @@ public class godPowers extends JavaPlugin {
         PluginManager pm = getServer().getPluginManager();
         pm.registerEvents(new EntityListener(this), this);
         pm.registerEvents(new PlayerListener(this), this);
-        PluginDescriptionFile pdfFile = this.getDescription();
-        getLogger().info("version " + pdfFile.getVersion() + " is enabled!");
         populateLists();
     }
 
