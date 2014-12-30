@@ -107,9 +107,9 @@ public class godPowers extends JavaPlugin {
     public void onEnable() {
         // Because I'm not going to listen to people freak out about gaia flowers breaking things
         // and this is likely the direction ongoing development will go as more features are updated
-        if (!this.getServer().getBukkitVersion().contains("1.8")) {
+        if (!this.getServer().getBukkitVersion().contains("1.8") || !this.getServer().getBukkitVersion().contains("1.7")) {
             this.getLogger().severe("============================================================");
-            this.getLogger().severe("    This version of GodPowers only supports 1.8 servers!    ");
+            this.getLogger().severe("This version of GodPowers only supports 1.7 and 1.8 servers!");
             this.getLogger().severe("Please update your server or use one of our legacy releases!");
             this.getLogger().severe("============================================================");
             this.getServer().getPluginManager().disablePlugin(this);
