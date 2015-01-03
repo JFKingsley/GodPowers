@@ -8,6 +8,7 @@ import com.FriedTaco.taco.godPowers.util.MedusaPlayer;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.*;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Fireball;
@@ -266,8 +267,8 @@ public class PlayerListener implements Listener {
     }
 
     private void growCrops(Block block) {
-        if (block.getData() != 7) {
-            block.setData((byte) 7);
+        if (block.getData() != CropState.RIPE.getData()) {
+            block.setData(CropState.RIPE.getData());
         }
     }
 
