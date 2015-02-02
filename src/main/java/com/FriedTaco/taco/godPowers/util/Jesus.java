@@ -68,13 +68,13 @@ public class Jesus {
                     raftY[i] = (int) player.getLocation().getY() + raft[i].y;
                     raftZ[i] = (int) player.getLocation().getZ() + raft[i].z;
                     raft[i].made = true;
-                    block.setType(Material.ICE);
+                    block.setType(Material.ICE, false);
                 } else if (block.getType() == Material.LAVA | block.getType() == Material.STATIONARY_LAVA) {
                     raftX[i] = (int) player.getLocation().getX() + raft[i].x;
                     raftY[i] = (int) player.getLocation().getY() + raft[i].y;
                     raftZ[i] = (int) player.getLocation().getZ() + raft[i].z;
                     raft[i].made = true;
-                    block.setType(Material.OBSIDIAN);
+                    block.setType(Material.OBSIDIAN, false);
                 } else {
                     raft[i].made = false;
                 }
@@ -85,9 +85,9 @@ public class Jesus {
             for (int i = 0; i < raft.length; i++) {
                 Block block = player.getWorld().getBlockAt(((int) raftX[i]), ((int) raftY[i]), ((int) raftZ[i]));
                 if (block.getType() == Material.ICE) {
-                    block.setType(Material.WATER);
+                    block.setType(Material.WATER, false);
                 } else if (block.getType() == Material.OBSIDIAN) {
-                    block.setType(Material.LAVA);
+                    block.setType(Material.LAVA, false);
                 }
                 if (raft[i].made) {
                     raft[i].made = false;

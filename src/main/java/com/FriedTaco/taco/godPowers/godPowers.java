@@ -4,11 +4,13 @@ package com.FriedTaco.taco.godPowers;
 import com.FriedTaco.taco.godPowers.commands.*;
 import com.FriedTaco.taco.godPowers.listeners.EntityListener;
 import com.FriedTaco.taco.godPowers.listeners.PlayerListener;
+import com.FriedTaco.taco.godPowers.util.Jesus;
 import com.FriedTaco.taco.godPowers.util.MedusaPlayer;
 import com.FriedTaco.taco.godPowers.util.OnOneSecond;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
 import net.gravitydevelopment.updater.Updater;
 import net.gravitydevelopment.updater.Updater.UpdateResult;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -100,7 +102,13 @@ public class godPowers extends JavaPlugin {
         }
     }
 
+    @Override
     public void onDisable() {
+        /* Remove jesus rafts when the plugin is disabled */
+        for (UUID playerID : isJesus) {
+            Jesus.Raft raft = (Jesus.Raft) Jesus.rafts.get(playerID);
+            raft.destroyJesusRaft(Bukkit.getServer().getPlayer(playerID));
+        }
     }
 
     @Override
