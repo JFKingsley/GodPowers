@@ -8,7 +8,6 @@ import com.FriedTaco.taco.godPowers.util.MedusaPlayer;
 import com.FriedTaco.taco.godPowers.util.StringHandler;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Fireball;
@@ -31,16 +30,9 @@ import java.util.*;
 
 public class PlayerListener implements Listener {
 
-
-    int health = 0;
-    int[] raftX = new int[25];
-    int[] raftY = new int[25];
-    int[] raftZ = new int[25];
-    Raft jesus;
-    private Vector dir;
-    final godPowers plugin;
-    private final UUID goldgamerID = UUID.fromString ("e3191eca-d803-4788-bd06-cd45736f196e");
-    private final UUID zbob750ID = UUID.fromString ("6c780b81-d087-485e-8786-b0a500d7c224");
+    private final godPowers plugin;
+    private final UUID GOLDGAMER_ID = UUID.fromString ("e3191eca-d803-4788-bd06-cd45736f196e");
+    private final UUID ZBOB750_ID = UUID.fromString ("6c780b81-d087-485e-8786-b0a500d7c224");
 
     public PlayerListener(godPowers instance) {
         plugin = instance;
@@ -50,9 +42,10 @@ public class PlayerListener implements Listener {
     public void onPlayerJoin(final PlayerJoinEvent event) {
         final Player player = event.getPlayer();
         if (plugin.developerJoinEffect) {
-            if (player.getUniqueId().equals(goldgamerID) || player.getUniqueId().equals(zbob750ID)) {
+            if (player.getUniqueId().equals(GOLDGAMER_ID) || player.getUniqueId().equals(ZBOB750_ID)) {
                 plugin.getServer().broadcastMessage(ChatColor.DARK_GREEN + "[godPowers] " + ChatColor.GOLD + "A godPowers Developer has joined the game.");
                 plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                    @Override
                     public void run() {
                         FireworkEffectPlayer firework = new FireworkEffectPlayer();
                         Player p = event.getPlayer();
@@ -85,6 +78,7 @@ public class PlayerListener implements Listener {
 
         if (plugin.godModeOnLogin && player.hasPermission("godpowers.godmodeonlogin")) {
             plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new Runnable() {
+                @Override
                 public void run() {
                     player.sendMessage(StringHandler.GODMODE_LOGIN);
                     player.setDisplayName(plugin.title + player.getDisplayName());
@@ -105,33 +99,119 @@ public class PlayerListener implements Listener {
 
         if (plugin.isJesus.contains(event.getPlayer().getUniqueId())) {
             plugin.isJesus.remove(event.getPlayer().getUniqueId());
-            jesus = (Raft) Jesus.rafts.get(event.getPlayer().getUniqueId());
-            jesus.destroyJesusRaft(event.getPlayer());
+            Raft raft = (Raft) Jesus.rafts.get(event.getPlayer().getUniqueId());
+            raft.destroyJesusRaft(event.getPlayer());
         }
     }
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
-        /*
-        if(event.getFrom().getBlock() != event.getTo().getBlock())
-    	{
-    		event.getFrom().getBlock().getRelative(0,-1,0).setTypeId(plugin.lastID);
-    		event.getFrom().getBlock().getRelative(0,-1,0).setData((byte) plugin.lastData);
-    		plugin.lastID = event.getTo().getBlock().getRelative(0,-1,0).getTypeId();
-    		plugin.lastData = event.getTo().getBlock().getRelative(0,-1,0).getData();
-    		event.getTo().getBlock().getRelative(0,-1,0).setTypeId(89);
-    	}
-    	*/
-        if (plugin.isHermes.contains(event.getPlayer().getUniqueId())) {
-            event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 120, 6));
-        }
+        /* Check if the player has really moved for these features */
+        if (!checkReallyMoved(event.getFrom().getBlock(), event.getTo().getBlock())) {
+            if (plugin.isHermes.contains(event.getPlayer().getUniqueId())) {
+                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 120, 6));
+            }
 
-        if (plugin.isPoseidon.contains(event.getPlayer().getUniqueId())) {
-            Material m = event.getPlayer().getLocation().getBlock().getType();
-            if (m == Material.STATIONARY_WATER || m == Material.WATER) {
-                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120, 2));
-                event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 120, 2));
-                event.getPlayer().setRemainingAir(300);
+            // TODO: Rewrite to check actively, passive check isn't really working out here.
+            if (plugin.isPoseidon.contains(event.getPlayer().getUniqueId())) {
+                Material m = event.getPlayer().getLocation().getBlock().getType();
+                if (m == Material.STATIONARY_WATER || m == Material.WATER) {
+                    event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 120, 2));
+                    event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 120, 2));
+                    event.getPlayer().setRemainingAir(300);
+                }
+            }
+
+            if (plugin.godmodeEnabled.contains(event.getPlayer().getUniqueId()) && event.getPlayer().getFireTicks() > 1) {
+                event.getPlayer().setFireTicks(0);
+            }
+
+            if (plugin.isJesus.contains(event.getPlayer().getUniqueId())) {
+                Raft jesus = (Raft) Jesus.rafts.get(event.getPlayer().getUniqueId());
+                jesus.destroyJesusRaft(event.getPlayer());
+                jesus.makeJesusRaft(event.getPlayer());
+            }
+
+            if (plugin.isInferno.contains(event.getPlayer().getUniqueId())) {
+                double diffX = event.getFrom().getX() - event.getTo().getX();
+                double diffZ = event.getFrom().getZ() - event.getTo().getZ();
+                if (diffX > 0) {
+                    diffX = 1;
+                } else if (diffX < 0) {
+                    diffX = -1;
+                }
+                if (diffZ > 0) {
+                    diffZ = 1;
+                } else if (diffZ < 0) {
+                    diffZ = -1;
+                }
+                Block block = event.getPlayer().getWorld().getBlockAt((int) (event.getFrom().getX() + diffX), (int) event.getFrom().getY(), (int) (event.getFrom().getZ() + diffZ));
+                if (block.getType() == Material.AIR) {
+                    event.getPlayer().setFireTicks(0);
+                    block.setType(Material.FIRE);
+                }
+            }
+
+            if ((plugin.superJumper.contains(event.getPlayer().getUniqueId()))) {
+                Block block, control;
+                Vector dir = event.getPlayer().getVelocity().setY(2);
+                if (event.getTo().getY() > event.getFrom().getY()) {
+                    block = event.getPlayer().getWorld().getBlockAt(new Location(event.getPlayer().getWorld(), event.getTo().getX(), event.getTo().getY() + 2, event.getTo().getZ()));
+                    control = event.getPlayer().getWorld().getBlockAt(new Location(event.getPlayer().getWorld(), event.getTo().getX(), event.getTo().getY() - 2, event.getTo().getZ()));
+                    if (!(block.getType() != Material.AIR || control.getType() == Material.AIR)) {
+                        //event.getPlayer().teleportTo(new Location(event.getPlayer().getWorld(), event.getTo().getX()+diffX, event.getTo().getY()+2, event.getTo().getZ()+diffZ));
+                        event.getPlayer().setVelocity(dir);
+                    }
+                }
+            }
+
+            if (plugin.burn.contains(event.getPlayer().getUniqueId()) && event.getPlayer().getFireTicks() < 10) {
+                event.getPlayer().setFireTicks(9001);
+            }
+
+            if (plugin.arrowKill.contains(event.getPlayer().getUniqueId())) {
+                arrowSlay(event.getTo(), event.getPlayer().getWorld(), event.getPlayer());
+            }
+
+            if (plugin.gaia.contains(event.getPlayer().getUniqueId())) {
+                for (int x = -2; x <= 2; x++) {
+                    for (int z = -2; z <= 2; z++) {
+                        Block blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY() - 1, event.getTo().getBlockZ() + z); // Block under player's feet
+                        Block blockPlayerLegs = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z); // Block at same Y-level as player's legs
+                        if (blockUnderFoot.getType() == Material.DIRT && blockPlayerLegs.getType() == Material.AIR) {
+                            blockUnderFoot.setType(Material.GRASS);
+                            blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
+                            plantStuff(blockUnderFoot);
+                        } else if (blockUnderFoot.getType() == Material.GRASS && blockPlayerLegs.getType() == Material.AIR) {
+                            blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
+                            plantStuff(blockUnderFoot);
+                        } else if (blockPlayerLegs.getType() == Material.CROPS || blockPlayerLegs.getType() == Material.PUMPKIN_STEM || blockPlayerLegs.getType() == Material.MELON_STEM) {
+                            growCrops(blockPlayerLegs);
+                        }
+                    }
+                }
+            }
+
+            if (plugin.hades.contains(event.getPlayer().getUniqueId()) && event.getFrom().getBlock().getLocation().distance(event.getTo().getBlock().getLocation()) > 0) {
+                for (int x = -2; x <= 2; x++) {
+                    for (int z = -2; z <= 2; z++) {
+                        Block block = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY() - 1, event.getTo().getBlockZ() + z);
+                        if (block.getType() != Material.AIR && block.getType() != Material.WATER && block.getType() != Material.STATIONARY_WATER) {
+                            double rand = Math.random();
+                            if (x == 0 && z == 0) {
+                                if (rand < .5)
+                                    block.setType(Material.NETHERRACK);
+                                else
+                                    block.setType(Material.SOUL_SAND);
+                            } else {
+                                if (rand < .2)
+                                    block.setType(Material.NETHERRACK);
+                                else if (rand > .2 && rand <= .4)
+                                    block.setType(Material.SOUL_SAND);
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -172,98 +252,18 @@ public class PlayerListener implements Listener {
                 }
             }
         }
+    }
 
-        if (plugin.godmodeEnabled.contains(event.getPlayer().getUniqueId()) && event.getPlayer().getFireTicks() > 1) {
-            event.getPlayer().setFireTicks(0);
-        }
-
-        if (plugin.isJesus.contains(event.getPlayer().getUniqueId())) {
-            Raft jesus = (Raft) Jesus.rafts.get(event.getPlayer().getUniqueId());
-            jesus.destroyJesusRaft(event.getPlayer());
-            jesus.makeJesusRaft(event.getPlayer());
-        }
-
-        if (plugin.isInferno.contains(event.getPlayer().getUniqueId())) {
-            double diffX = event.getFrom().getX() - event.getTo().getX();
-            double diffZ = event.getFrom().getZ() - event.getTo().getZ();
-            if (diffX > 0) {
-                diffX = 1;
-            } else if (diffX < 0) {
-                diffX = -1;
-            }
-            if (diffZ > 0) {
-                diffZ = 1;
-            } else if (diffZ < 0) {
-                diffZ = -1;
-            }
-            Block block = event.getPlayer().getWorld().getBlockAt((int) (event.getFrom().getX() + diffX), (int) event.getFrom().getY(), (int) (event.getFrom().getZ() + diffZ));
-            if (block.getType() == Material.AIR) {
-                event.getPlayer().setFireTicks(0);
-                block.setType(Material.FIRE);
-            }
-        }
-
-        if ((plugin.superJumper.contains(event.getPlayer().getUniqueId()))) {
-            Block block, control;
-            dir = event.getPlayer().getVelocity().setY(2);
-            if (event.getTo().getY() > event.getFrom().getY()) {
-                block = event.getPlayer().getWorld().getBlockAt(new Location(event.getPlayer().getWorld(), event.getTo().getX(), event.getTo().getY() + 2, event.getTo().getZ()));
-                control = event.getPlayer().getWorld().getBlockAt(new Location(event.getPlayer().getWorld(), event.getTo().getX(), event.getTo().getY() - 2, event.getTo().getZ()));
-                if (!(block.getType() != Material.AIR || control.getType() == Material.AIR)) {
-                    //event.getPlayer().teleportTo(new Location(event.getPlayer().getWorld(), event.getTo().getX()+diffX, event.getTo().getY()+2, event.getTo().getZ()+diffZ));
-                    event.getPlayer().setVelocity(dir);
-                }
-            }
-        }
-
-        if (plugin.burn.contains(event.getPlayer().getUniqueId()) && event.getPlayer().getFireTicks() < 10) {
-            event.getPlayer().setFireTicks(9001);
-        }
-
-        if (plugin.arrowKill.contains(event.getPlayer().getUniqueId())) {
-            arrowSlay(event.getTo(), event.getPlayer().getWorld(), event.getPlayer());
-        }
-
-        if (plugin.gaia.contains(event.getPlayer().getUniqueId())) {
-            for (int x = -2; x <= 2; x++) {
-                for (int z = -2; z <= 2; z++) {
-                    Block blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY() - 1, event.getTo().getBlockZ() + z); // Block under player's feet
-                    Block blockPlayerLegs = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z); // Block at same Y-level as player's legs
-                    if (blockUnderFoot.getType() == Material.DIRT && blockPlayerLegs.getType() == Material.AIR) {
-                        blockUnderFoot.setType(Material.GRASS);
-                        blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
-                        plantStuff(blockUnderFoot);
-                    } else if (blockUnderFoot.getType() == Material.GRASS && blockPlayerLegs.getType() == Material.AIR) {
-                        blockUnderFoot = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY(), event.getTo().getBlockZ() + z);
-                        plantStuff(blockUnderFoot);
-                    } else if (blockPlayerLegs.getType() == Material.CROPS || blockPlayerLegs.getType() == Material.PUMPKIN_STEM || blockPlayerLegs.getType() == Material.MELON_STEM) {
-                        growCrops(blockPlayerLegs);
-                    }
-                }
-            }
-        }
-
-        if (plugin.hades.contains(event.getPlayer().getUniqueId()) && event.getFrom().getBlock().getLocation().distance(event.getTo().getBlock().getLocation()) > 0) {
-            for (int x = -2; x <= 2; x++) {
-                for (int z = -2; z <= 2; z++) {
-                    Block block = event.getPlayer().getWorld().getBlockAt(event.getTo().getBlockX() + x, event.getTo().getBlockY() - 1, event.getTo().getBlockZ() + z);
-                    if (block.getType() != Material.AIR && block.getType() != Material.WATER && block.getType() != Material.STATIONARY_WATER) {
-                        double rand = Math.random();
-                        if (x == 0 && z == 0) {
-                            if (rand < .5)
-                                block.setType(Material.NETHERRACK);
-                            else
-                                block.setType(Material.SOUL_SAND);
-                        } else {
-                            if (rand < .2)
-                                block.setType(Material.NETHERRACK);
-                            else if (rand > .2 && rand <= .4)
-                                block.setType(Material.SOUL_SAND);
-                        }
-                    }
-                }
-            }
-        }
+    /**
+     * Checks if a player has actually moved in PlayerMoveEvent
+     * Prevents spamming the event
+     *
+     * @param from Block the player moved from
+     * @param to   Block the plyer moved to
+     * @return     If they are different locations
+     */
+    private boolean checkReallyMoved(Block from, Block to) {
+        return from.getX() != to.getX() || from.getY() != to.getY() || from.getZ() != to.getZ();
     }
 
     private void growCrops(Block block) {
