@@ -263,7 +263,7 @@ public class PlayerListener implements Listener {
      * @return     If they are different locations
      */
     private boolean hasMovedXYZ(Block from, Block to) {
-        return from.getX() == to.getX() || from.getY() == to.getY() || from.getZ() == to.getZ();
+        return from.getX() != to.getX() || from.getY() != to.getY() || from.getZ() != to.getZ();
     }
 
     private void growCrops(Block block) {
