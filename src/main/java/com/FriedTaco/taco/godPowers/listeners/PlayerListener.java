@@ -107,7 +107,7 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event) {
         /* Check if the player has really moved for these features */
-        if (!checkReallyMoved(event.getFrom().getBlock(), event.getTo().getBlock())) {
+        if (hasMovedXYZ(event.getFrom().getBlock(), event.getTo().getBlock())) {
             if (plugin.isHermes.contains(event.getPlayer().getUniqueId())) {
                 event.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 120, 6));
             }
@@ -255,15 +255,15 @@ public class PlayerListener implements Listener {
     }
 
     /**
-     * Checks if a player has actually moved in PlayerMoveEvent
-     * Prevents spamming the event
+     * Checks if a player's XYZ coordinates have changed
+     * Prevents spamming the PlayerMoveEvent for certain features
      *
      * @param from Block the player moved from
      * @param to   Block the plyer moved to
      * @return     If they are different locations
      */
-    private boolean checkReallyMoved(Block from, Block to) {
-        return from.getX() != to.getX() || from.getY() != to.getY() || from.getZ() != to.getZ();
+    private boolean hasMovedXYZ(Block from, Block to) {
+        return from.getX() == to.getX() || from.getY() == to.getY() || from.getZ() == to.getZ();
     }
 
     private void growCrops(Block block) {
